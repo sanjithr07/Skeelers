@@ -1,377 +1,510 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Skeelers Roller Skating Club</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeelers Roller Skating Club - Kottayam</title>
+    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Syne:wght@400..800&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    
-    <!-- Material Icons for icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    
-    <style type="text/tailwindcss">
-        body {
-            font-family: 'Poppins', sans-serif;
-            /* Padding will be set dynamically by JavaScript */
-        }
-        .nav-link.active {
-            color: #E63946; /* skeelers-red */
-            font-weight: 600;
-        }
-        .aspect-4-3 {
-            aspect-ratio: 4 / 3;
-        }
-    </style>
-    <script>
-        // Custom color palette configuration for Tailwind CSS
+    <!-- Custom Tailwind Configuration --><script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        heading: ['Noto Sans', 'sans-serif'],
+                        hero: ['Syne', 'sans-serif'],
+                    },
                     colors: {
-                        'skeelers-red': '#E63946',
-                        'skeelers-offwhite': '#F1FAEE',
-                        'skeelers-lightblue': '#A8DADC',
-                        'skeelers-darkgray': '#1C1C22',
-                        'skeelers-darkblue': '#1D3557',
+                        'primary-bg': '#F1EBE4',
+                        'primary-text': '#003552',
+                        'secondary-text': '#262C29',
+                        'accent-red': '#E01522',
+                        'accent-yellow': '#FFF3C2',
                     }
                 }
             }
         }
     </script>
-</head>
-<body class="bg-skeelers-offwhite text-skeelers-darkgray">
 
-<!-- Navigation -->
-<div id="navbar-container" class="fixed top-0 left-0 right-0 z-50 p-2 md:p-4">
-    <nav id="navbar" class="container mx-auto bg-skeelers-darkgray/25 backdrop-blur-lg shadow-lg rounded-full">
-        <div class="flex items-center justify-between py-3 px-6">
-            <a class="text-white text-2xl font-bold tracking-wider" href="#">SKEELERS</a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a class="nav-link text-white hover:text-skeelers-red transition duration-300" href="#about">About Us</a>
-                <a class="nav-link text-white hover:text-skeelers-red transition duration-300" href="#disciplines">Disciplines</a>
-                <a class="nav-link text-white hover:text-skeelers-red transition duration-300" href="#gallery">Gallery</a>
-                <a class="nav-link text-white hover:text-skeelers-red transition duration-300" href="#classes">Schedule</a>
-                <a class="nav-link text-white hover:text-skeelers-red transition duration-300" href="#contact">Contact</a>
-            </div>
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-white">
-                <span class="material-icons">menu</span>
-            </button>
-        </div>
-    </nav>
-     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden container mx-auto mt-2 bg-skeelers-darkgray/30 backdrop-blur-lg rounded-xl p-4 shadow-lg">
-         <a class="nav-link block text-center text-white hover:text-skeelers-red py-2" href="#about">About Us</a>
-         <a class="nav-link block text-center text-white hover:text-skeelers-red py-2" href="#disciplines">Disciplines</a>
-         <a class="nav-link block text-center text-white hover:text-skeelers-red py-2" href="#gallery">Gallery</a>
-         <a class="nav-link block text-center text-white hover:text-skeelers-red py-2" href="#classes">Classes</a>
-         <a class="nav-link block text-center text-white hover:text-skeelers-red py-2" href="#contact">Contact</a>
-    </div>
-</div>
-
-
-<!-- Header & Hero Section -->
-<header id="home" class="relative bg-cover bg-center h-screen" style="background-image: url('https://storage.googleapis.com/gemini-prod-us-west1-45d6/prompt_images/A_dynamic_and_vibrant_wide-angle_shot_of_a_diverse_group_of_roller_skaters_in_an_urban_park_at_sunset,_with_a_sense_of_motion_and_community._The_style_should_be_energetic_and_slightly_stylized,_with_warm,_glowing_light._Cinematic,_photorealistic..jpeg');">
-    <div class="absolute inset-0 bg-black/60"></div>
-    <div class="container mx-auto px-6 md:px-12 relative z-10 flex flex-col justify-center h-full">
-        <!-- Hero Content -->
-        <div class="w-full md:w-2/3">
-            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">From Road to Rink</h1>
-            <p class="text-lg text-white mt-4 max-w-lg">Welcome to Skeelers Roller Sports Club where beginners thrive and pros hang out. Explore the thrill of skating with us, right here in Kottayam.</p>
-            <a class="mt-8 inline-block bg-skeelers-red hover:bg-opacity-80 text-white font-semibold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105" href="#contact">Start Rolling</a>
-        </div>
-    </div>
-</header>
-
-<!-- About Section -->
-<section class="py-20 bg-skeelers-offwhite" id="about">
-    <div class="container mx-auto px-6 md:px-12 text-center">
-        <h2 class="text-4xl font-bold mb-4 text-skeelers-darkblue">About Our Club</h2>
-        <p class="text-skeelers-darkgray max-w-3xl mx-auto mb-12">Founded in 2010, Skeelers has been at the heart of the local skating community. Our mission is to promote roller sports as a fun and healthy activity for all ages and skill levels. We believe in building a supportive community where everyone can share their passion for skating.</p>
-        <div class="flex flex-wrap justify-center gap-8">
-            <div class="bg-white p-8 rounded-xl shadow-lg w-full sm:w-2/3 md:w-1/3 lg:w-1/4 transform hover:-translate-y-2 transition duration-300">
-                <span class="material-icons text-skeelers-red text-4xl mb-4">groups</span>
-                <h3 class="text-xl font-semibold mb-2 text-skeelers-darkblue">Community</h3>
-                <p class="text-skeelers-darkgray">Join a vibrant community of skaters.</p>
-            </div>
-            <div class="bg-white p-8 rounded-xl shadow-lg w-full sm:w-2/3 md:w-1/3 lg:w-1/4 transform hover:-translate-y-2 transition duration-300">
-                <span class="material-icons text-skeelers-red text-4xl mb-4">school</span>
-                <h3 class="text-xl font-semibold mb-2 text-skeelers-darkblue">Expert Coaching</h3>
-                <p class="text-skeelers-darkgray">Learn from certified and experienced coaches.</p>
-            </div>
-            <div class="bg-white p-8 rounded-xl shadow-lg w-full sm:w-2/3 md:w-1/3 lg:w-1/4 transform hover:-translate-y-2 transition duration-300">
-                <span class="material-icons text-skeelers-red text-4xl mb-4">event</span>
-                <h3 class="text-xl font-semibold mb-2 text-skeelers-darkblue">Regular Events</h3>
-                <p class="text-skeelers-darkgray">Participate in workshops, competitions, and social skates.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Disciplines Section -->
-<section class="py-20 bg-white" id="disciplines">
-    <div class="container mx-auto px-6 md:px-12">
-        <h2 class="text-4xl font-bold text-center mb-12 text-skeelers-darkblue">Disciplines</h2>
-        <div class="flex flex-col gap-8 max-w-4xl mx-auto">
-            <!-- Inline Skating Card -->
-            <div class="flex flex-col md:flex-row items-center gap-8 bg-skeelers-lightblue/20 rounded-lg shadow-xl overflow-hidden p-8">
-                <img alt="Inline skater" class="w-full md:w-1/2 h-80 object-cover rounded-lg shadow-lg" src="https://placehold.co/600x400/A8DADC/1D3557?text=Inline+Skating" onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
-                <div class="md:w-1/2">
-                    <h3 class="text-3xl font-semibold mb-4 text-skeelers-darkblue">Inline Skating</h3>
-                    <p class="text-skeelers-darkgray text-lg">Experience the speed and agility of inline skating, from fitness to aggressive styles. This discipline is perfect for those who love a fast-paced workout and the thrill of executing precise maneuvers.</p>
-                </div>
-            </div>
-            <!-- Quad Skating Card -->
-            <div class="flex flex-col md:flex-row items-center gap-8 bg-skeelers-lightblue/20 rounded-lg shadow-xl overflow-hidden p-8">
-                <img alt="Quad skates" class="w-full md:w-1/2 h-80 object-cover rounded-lg shadow-lg" src="https://placehold.co/600x400/A8DADC/1D3557?text=Quad+Skating" onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
-                <div class="md:w-1/2">
-                    <h3 class="text-3xl font-semibold mb-4 text-skeelers-darkblue">Quad Skating</h3>
-                    <p class="text-skeelers-darkgray text-lg">Groove to the rhythm with classic quad skates, perfect for rink dancing and artistic skating. Quad skating offers a stable platform for expressive movements and creative dance routines.</p>
-                </div>
-            </div>
-            <!-- Roller Hockey Card -->
-            <div class="flex flex-col md:flex-row items-center gap-8 bg-skeelers-lightblue/20 rounded-lg shadow-xl overflow-hidden p-8">
-                <img alt="Roller hockey" class="w-full md:w-1/2 h-80 object-cover rounded-lg shadow-lg" src="https://placehold.co/600x400/A8DADC/1D3557?text=Roller+Hockey" onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
-                <div class="md:w-1/2">
-                    <h3 class="text-3xl font-semibold mb-4 text-skeelers-darkblue">Roller Hockey</h3>
-                    <p class="text-skeelers-darkgray text-lg">Join our fast-paced roller hockey leagues for a thrilling team sport experience. It combines the speed of skating with the strategy and teamwork of hockey.</p>
-                </div>
-            </div>
-            <!-- Alpine Skating Card -->
-            <div class="flex flex-col md:flex-row items-center gap-8 bg-skeelers-lightblue/20 rounded-lg shadow-xl overflow-hidden p-8">
-                <img alt="Alpine skater" class="w-full md:w-1/2 h-80 object-cover rounded-lg shadow-lg" src="https://placehold.co/600x400/A8DADC/1D3557?text=Alpine+Skating" onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
-                <div class="md:w-1/2">
-                    <h3 class="text-3xl font-semibold mb-4 text-skeelers-darkblue">Alpine Skating</h3>
-                    <p class="text-skeelers-darkgray text-lg">Challenge yourself with the adrenaline rush of downhill alpine skating. This discipline requires immense skill, courage, and precision as you navigate steep courses at high speeds.</p>
-                </div>
-            </div>
-            <!-- Downhill Card -->
-            <div class="flex flex-col md:flex-row items-center gap-8 bg-skeelers-lightblue/20 rounded-lg shadow-xl overflow-hidden p-8">
-                <img alt="Downhill skater" class="w-full md:w-1/2 h-80 object-cover rounded-lg shadow-lg" src="https://placehold.co/600x400/A8DADC/1D3557?text=Downhill" onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
-                <div class="md:w-1/2">
-                    <h3 class="text-3xl font-semibold mb-4 text-skeelers-darkblue">Downhill</h3>
-                    <p class="text-skeelers-darkgray text-lg">Master the art of speed and control in competitive downhill racing. This is the ultimate test of a skater's ability to handle extreme speeds and challenging road conditions.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Gallery Section -->
-<section class="py-20 bg-skeelers-offwhite" id="gallery">
-    <div class="container mx-auto px-6 md:px-12">
-        <h2 class="text-4xl font-bold text-center mb-12 text-skeelers-darkblue">Gallery</h2>
-        <div class="relative w-full max-w-4xl mx-auto">
-            <div class="relative aspect-4-3 overflow-hidden rounded-lg shadow-xl">
-                <div class="gallery-slide">
-                    <img src="https://placehold.co/800x600/E63946/F1FAEE?text=Community" class="w-full h-full object-cover"/>
-                </div>
-                <div class="gallery-slide hidden">
-                    <img src="https://placehold.co/800x600/1D3557/F1FAEE?text=Action+Shot" class="w-full h-full object-cover"/>
-                </div>
-                <div class="gallery-slide hidden">
-                    <img src="https://placehold.co/800x600/A8DADC/1D3557?text=Team+Spirit" class="w-full h-full object-cover"/>
-                </div>
-                <div class="gallery-slide hidden">
-                    <img src="https://placehold.co/800x600/E63946/F1FAEE?text=Kids+Class" class="w-full h-full object-cover"/>
-                </div>
-                <div class="gallery-slide hidden">
-                    <img src="https://placehold.co/800x600/1D3557/F1FAEE?text=Artistic+Pose" class="w-full h-full object-cover"/>
-                </div>
-            </div>
-             <!-- Controls -->
-            <button id="gallery-prev" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2 transition-colors duration-300 ml-4 z-10">
-                <span class="material-icons">chevron_left</span>
-            </button>
-            <button id="gallery-next" class="absolute top-1/2 right-0 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-2 transition-colors duration-300 mr-4 z-10">
-                <span class="material-icons">chevron_right</span>
-            </button>
-        </div>
-    </div>
-</section>
-
-<!-- Classes Section -->
-<section class="py-20 bg-white" id="classes">
-    <div class="container mx-auto px-6 md:px-12">
-        <h2 class="text-4xl font-bold text-center mb-12 text-skeelers-darkblue">Classes & Schedule</h2>
-        <div class="max-w-4xl mx-auto bg-skeelers-offwhite p-8 rounded-lg shadow-lg">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left min-w-[500px]">
-                    <thead>
-                        <tr class="border-b-2 border-skeelers-lightblue">
-                            <th class="py-3 px-4 font-semibold text-skeelers-darkblue">Class</th>
-                            <th class="py-3 px-4 font-semibold text-skeelers-darkblue">Day & Time</th>
-                            <th class="py-3 px-4 font-semibold text-skeelers-darkblue">Venue</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-skeelers-lightblue/50 hover:bg-skeelers-lightblue/20 transition duration-200">
-                            <td class="py-4 px-4">Beginner Basics</td>
-                            <td class="py-4 px-4">Saturday, 10:00 AM - 11:30 AM</td>
-                            <td class="py-4 px-4">City Park Rink</td>
-                        </tr>
-                        <tr class="border-b border-skeelers-lightblue/50 hover:bg-skeelers-lightblue/20 transition duration-200">
-                            <td class="py-4 px-4">Intermediate Flow</td>
-                            <td class="py-4 px-4">Sunday, 2:00 PM - 3:30 PM</td>
-                            <td class="py-4 px-4">Lakeside Pavilion</td>
-                        </tr>
-                        <tr class="border-b border-skeelers-lightblue/50 hover:bg-skeelers-lightblue/20 transition duration-200">
-                            <td class="py-4 px-4">Advanced Tricks</td>
-                            <td class="py-4 px-4">Wednesday, 7:00 PM - 8:30 PM</td>
-                            <td class="py-4 px-4">Downtown Skatepark</td>
-                        </tr>
-                        <tr class="hover:bg-skeelers-lightblue/20 transition duration-200">
-                            <td class="py-4 px-4">Roller Hockey Practice</td>
-                            <td class="py-4 px-4">Friday, 6:00 PM - 8:00 PM</td>
-                            <td class="py-4 px-4">Community Sports Hall</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section class="py-20 bg-skeelers-offwhite" id="contact">
-    <div class="container mx-auto px-6 md:px-12">
-        <div class="bg-skeelers-darkblue text-white rounded-lg shadow-xl p-8 md:p-12">
-            <div class="text-center">
-                <h2 class="text-4xl font-bold mb-4">Get In Touch!</h2>
-                <p class="text-lg mb-8 max-w-2xl mx-auto text-skeelers-lightblue">Have questions or ready to join? Reach out to us. We're excited to welcome you to the Skeelers family!</p>
-                <div class="flex flex-wrap justify-center gap-8">
-                    <!-- Email -->
-                    <div class="text-center">
-                        <div class="flex justify-center items-center mx-auto bg-skeelers-red h-16 w-16 rounded-full mb-3">
-                           <span class="material-icons text-3xl">email</span>
-                        </div>
-                        <h3 class="font-semibold text-xl mb-1">Email Us</h3>
-                        <a href="mailto:hello@skeelersclub.com" class="text-skeelers-lightblue hover:underline">hello@skeelersclub.com</a>
-                    </div>
-                    <!-- Phone -->
-                     <div class="text-center">
-                        <div class="flex justify-center items-center mx-auto bg-skeelers-red h-16 w-16 rounded-full mb-3">
-                           <span class="material-icons text-3xl">phone</span>
-                        </div>
-                        <h3 class="font-semibold text-xl mb-1">Call Us</h3>
-                        <a href="tel:+919876543210" class="block text-skeelers-lightblue hover:underline">+91 98765 43210</a>
-                        <a href="tel:+918765432109" class="block text-skeelers-lightblue hover:underline">+91 87654 32109</a>
-                    </div>
-                     <!-- Locations -->
-                     <div class="text-center">
-                        <div class="flex justify-center items-center mx-auto bg-skeelers-red h-16 w-16 rounded-full mb-3">
-                           <span class="material-icons text-3xl">location_on</span>
-                        </div>
-                        <h3 class="font-semibold text-xl mb-1">Visit Us</h3>
-                        <p class="text-skeelers-lightblue">City Park Rink, Central Avenue</p>
-                        <p class="text-skeelers-lightblue">Lakeside Pavilion, West End</p>
-                        <p class="text-skeelers-lightblue">Downtown Skatepark, South Side</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-skeelers-darkgray text-white py-8">
-    <div class="container mx-auto px-6 md:px-12 text-center">
-        <p class="text-skeelers-offwhite/80">© 2024 Skeelers Roller Skating Club. All Rights Reserved.</p>
-        <div class="flex justify-center space-x-4 mt-4">
-            <a class="hover:text-skeelers-lightblue transition duration-300" href="#">Facebook</a>
-            <a class="hover:text-skeelers-lightblue transition duration-300" href="#">Instagram</a>
-            <a class="hover:text-skeelers-lightblue transition duration-300" href="#">Twitter</a>
-        </div>
-    </div>
-</footer>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- 1. Dynamic Body Padding for Fixed Header ---
-    const navbarContainer = document.getElementById('navbar-container');
-    const setBodyPadding = () => {
-        const header = document.querySelector('header');
-        document.body.style.paddingTop = `${navbarContainer.offsetHeight}px`;
-        header.style.marginTop = `-${navbarContainer.offsetHeight}px`;
-    };
-    setBodyPadding();
-    window.addEventListener('resize', setBodyPadding);
-
-
-    // --- 2. Active Link on Scroll ---
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('header, section');
-
-    const onScroll = () => {
-        const scrollPos = window.scrollY + navbarContainer.offsetHeight + 50;
-        let currentActive = null;
-
-        sections.forEach(section => {
-            if (section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
-                currentActive = '#' + section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === currentActive) {
-                link.classList.add('active');
-            }
-        });
-        
-        if (window.scrollY < 200) {
-             navLinks.forEach(link => link.classList.remove('active'));
+    <style>
+        html {
+            scroll-behavior: smooth;
+            /* Adjust this value to match your sticky header's height */
+            /* 4rem (py-4) + 1.875rem (text-3xl) approx 6rem/96px */
+            scroll-padding-top: 90px; 
         }
-    };
-    window.addEventListener('scroll', onScroll);
-    onScroll();
 
-    // --- 3. Mobile Menu ---
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
+        /* Style for the active nav link */
+        .nav-link.active {
+            color: #E01522; /* accent-red */
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="font-sans bg-primary-bg text-secondary-text">
+
+    <!-- Section 1: Header & Navigation --><header class="bg-accent-yellow sticky top-0 z-50 shadow-sm">
+        <!-- Use w-full and custom padding to push items to the edge --><nav class="w-full px-6 md:px-10 py-4 flex justify-between items-center">
+            <!-- Logo / Club Name --><a href="#home" class="text-2xl md:text-3xl font-extrabold text-primary-text">
+                SKEELERS
+            </a>
+
+            <!-- Desktop Navigation --><div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Home</a>
+                <a href="#about" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">About Us</a>
+                <a href="#services" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Services</a>
+                <a href="#schedule" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Schedule</a>
+                <a href="#gallery" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Gallery</a>
+                <!-- <a href="#contact" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Contact</a> --><!-- Removed Contact Link --></div>
+
+            <!-- CTA Button --><a href="#contact" class="hidden md:inline-block bg-accent-red text-white font-medium py-3 px-6 rounded-lg shadow-md hover:bg-opacity-90 transition-all duration-300">
+                Contact Us <!-- Changed from "Book a Session" --></a>
+
+            <!-- Mobile Menu Button --><button id="mobile-menu-button" class="md:hidden text-primary-text text-3xl">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) --><div id="mobile-menu" class="hidden md:hidden bg-primary-bg shadow-lg absolute top-full left-0 w-full">
+            <a href="#home" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Home</a>
+            <a href="#about" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">About Us</a>
+            <a href="#services" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Services</a>
+            <a href="#schedule" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Schedule</a>
+            <a href="#gallery" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Gallery</a>
+            <!-- <a href="#contact" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Contact</a> --><!-- Removed Contact Link --><a href="#contact" class="block bg-accent-red text-white text-center font-medium py-4 px-6 m-4 rounded-lg">
+                Contact Us <!-- Changed from "Book a Session" --></a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section 2: Hero --><!-- This section remains full-screen --><section 
+            id="home" 
+            class="relative min-h-screen flex flex-col items-center justify-center text-center text-white py-20 md:py-32"
+            style="background-image: url('sample1.webp'); background-size: cover; background-position: center;"
+        >
+            <!-- Overlay --><div class="absolute inset-0 bg-black/60 z-0"></div>
+
+            <!-- Hero Content (Centered) --><!-- Added pt-16 to move content lower --><div class="relative z-10 container mx-auto px-6 pt-16">
+                <!-- 
+                    UPDATED: Added 'lg' breakpoint for smoother scaling to prevent overflow on mid-size screens.
+                    - h1: text-4xl sm:text-5xl md:text-6xl lg:text-8xl
+                    - p:  text-xl sm:text-2xl md:text-3xl lg:text-5xl
+                --><h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-hero font-extrabold text-white mb-4">
+                    SKEELERS
+                </h1>
+                <p class="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-hero font-bold text-white mb-8">
+                    Roller Skating Club
+                </p>
+                <p class="text-lg sm:text-xl md:text-2xl font-light text-primary-bg/90 mb-4 max-w-2xl mx-auto">
+                    "From Road to Rink"
+                </p>
+                <p class="text-base sm:text-lg text-primary-bg/80 max-w-2xl mx-auto">
+                    Join the movement and discover the joy of skating with professional coaches and a vibrant community, right here in Kerala.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: About Us --><!-- UPDATED: Removed min-h-screen and flex properties --><section id="about" class="py-16 md:py-24">
+             <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- About Image --><div class="flex justify-center">
+                    <img 
+                        src="about.jpg" 
+                        alt="The Skeelers roller skating team"
+                        class="rounded-xl shadow-2xl w-full max-w-md lg:max-w-full"
+                        onerror="this.src='https://placehold.co/600x500/CBD5E0/2D3748?text=Image+Not+Found'"
+                    >
+                </div>
+                 <!-- About Content --><div class="text-center lg:text-left">
+                    <!-- UPDATED: Added lg breakpoint for smoother text scaling --><h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-6">
+                        About Skeelers
+                    </h2>
+                    <p class="text-lg text-secondary-text mb-6 leading-relaxed">
+                        Founded in Kottayam, Skeelers is more than just a club; it's a community built on a shared passion for roller skating. Our mission is to provide a safe, fun, and professional environment for skaters of all ages and skill levels to learn, grow, and connect.
+                    </p>
+                    <p class="text-lg text-secondary-text mb-8 leading-relaxed">
+                        From first-timers finding their balance to seasoned athletes competing at the state level, our certified coaches are here to guide you every step of the way.
+                    </p> <!-- FIX: Corrected '</pos>' to '</p>' --></div>
+            </div>
+        </section>
+
+        <!-- Section 4: News & Achievements --><!-- UPDATED: Removed min-h-screen and flex properties --><section id="news" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <!-- UPDATED: Added lg breakpoint for smoother text scaling --><h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-12 text-center">
+                    Club News & Achievements
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- News Card 1 --><div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                        <img 
+                            src="https://placehold.co/600x400/FFEFAD/003552?text=State+Championship" 
+                            alt="Trophy for state championship" 
+                            class="w-full h-48 object-cover"
+                            onerror="this.src='https://placehold.co/600x400/FFEFAD/003552?text=Image+Failed'"
+                        >
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">State Championship Winners 2024</h3>
+                            <p class="text-secondary-text mb-4 flex-grow">
+                                Our speed skating team brought home the gold from the Kerala State Roller Skating Championship!
+                            </p>
+                            <a href="#" class="text-accent-red font-medium hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- News Card 2 --><div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                        <img 
+                            src="https://placehold.co/600x400/CBD5E0/2D3748?text=New+Freestyle+Batch" 
+                            alt="Skaters learning new tricks" 
+                            class="w-full h-48 object-cover"
+                            onerror="this.src='https://placehold.co/600x400/CBD5E0/2D3748?text=Image+Failed'"
+                        >
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">New Freestyle Batch Starting</h3>
+                            <p class="text-secondary-text mb-4 flex-grow">
+                                We're excited to launch a new weekend batch for intermediate freestyle skaters. Spots are limited!
+                            </p>
+                            <a href="#" class="text-accent-red font-medium hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- News Card 3 --><div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                        <img 
+                            src="https://placehold.co/600x400/003552/EFE6DE?text=Community+Skate+Day" 
+                            alt="Group of people skating in a park" 
+                            class="w-full h-48 object-cover"
+                            onerror="this.src='https://placehold.co/600x400/003552/EFE6DE?text=Image+Failed'"
+                        >
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Kottayam Community Skate Day</h3>
+                            <p class="text-secondary-text mb-4 flex-grow">
+                                Thank you to everyone who joined us for our community skate day at the local park. What a massive turnout!
+                            </p>
+                            <a href="#" class="text-accent-red font-medium hover:underline">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Services (Disciplines) --><!-- UPDATED: Removed min-h-screen and flex properties --><section id="services" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-5xl"> <!-- Reduced card width by setting max-width -->
+                <!-- UPDATED: Added lg breakpoint for smoother text scaling --><h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-12 text-center">
+                    Find Your Discipline
+                </h2>
+                <!-- UPDATED: Grid replaced with alternating layout --><div class="space-y-8">
+
+                    <!-- Item 1: Speed Quad (Photo / Content) --><div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center">
+                        <!-- Image block --><div class="w-full md:w-5/12">
+                            <img 
+                                src="https://placehold.co/600x480/CBD5E0/2D3748?text=Speed+Quad" 
+                                alt="Speed Quad Skates" 
+                                class="w-full aspect-[5/4] object-cover rounded-xl"
+                                onerror="this.src='https://placehold.co/600x480/CBD5E0/2D3748?text=Image+Failed'"
+                            >
+                        </div>
+                        <!-- Content block --><div class="w-full md:w-7/12 p-6 md:p-10">
+                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Speed Quad</h3>
+                            <p class="text-secondary-text text-lg leading-relaxed">
+                                Master speed and agility on traditional quad skates. Perfect for rink racing and building powerful fundamentals.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Speed Inline (Content / Photo) --><div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row-reverse items-center">
+                        <!-- Image block --><div class="w-full md:w-5/12">
+                            <img 
+                                src="https://placehold.co/600x480/003552/EFE6DE?text=Speed+Inline" 
+                                alt="Speed Inline Skates" 
+                                class="w-full aspect-[5/4] object-cover rounded-xl"
+                                onerror="this.src='https://placehold.co/600x480/003552/EFE6DE?text=Image+Failed'"
+                            >
+                        </div>
+                        <!-- Content block --><div class="w-full md:w-7/12 p-6 md:p-10">
+                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Speed Inline</h3>
+                            <p class="text-secondary-text text-lg leading-relaxed">
+                                Feel the rush of inline speed skating. This discipline focuses on power, technique, and endurance for track and road.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Alpine (Photo / Content) --><div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center">
+                        <!-- Image block --><div class="w-full md:w-5/12">
+                            <img 
+                                src="https://placehold.co/600x480/FFEFAD/003552?text=Alpine+Skating" 
+                                alt="Alpine skater" 
+                                class="w-full aspect-[5/4] object-cover rounded-xl"
+                                onerror="this.src='https://placehold.co/600x480/FFEFAD/003552?text=Image+Failed'"
+                            >
+                        </div>
+                        <!-- Content block --><div class="w-full md:w-7/12 p-6 md:p-10">
+                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Alpine</h3>
+                            <p class="text-secondary-text text-lg leading-relaxed">
+                                Slalom skating on wheels. Weave through cones with precision and speed in this highly technical and exciting discipline.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Downhill (Content / Photo) --><div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row-reverse items-center">
+                        <!-- Image block --><div class="w-full md:w-5/12">
+                            <img 
+                                src="https://placehold.co/600x480/E01522/FFFFFF?text=Downhill" 
+                                alt="Downhill skater" 
+                                class="w-full aspect-[5/4] object-cover rounded-xl"
+                                onerror="this.src='https://placehold.co/600x480/E01522/FFFFFF?text=Image+Failed'"
+                            >
+                        </div>
+                        <!-- Content block --><div class="w-full md:w-7/12 p-6 md:p-10">
+                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Downhill</h3>
+                            <p class="text-secondary-text text-lg leading-relaxed">
+                                The ultimate adrenaline rush. Learn safety, form, and control for navigating hills and inclines at speed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: Roller Hockey (Photo / Content) --><div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center">
+                        <!-- Image block --><div class="w-full md:w-5/12">
+                            <img 
+                                src="https://placehold.co/600x480/2D3748/CBD5E0?text=Roller+Hockey" 
+                                alt="Roller Hockey" 
+                                class="w-full aspect-[5/4] object-cover rounded-xl"
+                                onerror="this.src='https://placehold.co/600x480/2D3748/CBD5E0?text=Image+Failed'"
+                            >
+                        </div>
+                        <!-- Content block --><div class="w-full md:w-7/12 p-6 md:p-10">
+                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Roller Hockey</h3>
+                            <p class="text-secondary-text text-lg leading-relaxed">
+                                A fast-paced team sport that combines skating skills with stickhandling and strategy. Join our league!
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Schedule --><!-- UPDATED: Removed min-h-screen and flex properties --><section id="schedule" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <!-- UPDATED: Added lg breakpoint for smoother text scaling --><h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-12 text-center">
+                    Our Weekly Schedule
+                </h2>
+                <!-- UPDATED: Content replaced with new schedule --><div class="bg-white rounded-xl shadow-lg p-6 md:p-12 space-y-8">
+                    <!-- Venue 1: Decathlon --><div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text mb-4">Venue: Decathlon</h3>
+                        <ul class="space-y-3 text-lg text-secondary-text">
+                            <li class="flex flex-col sm:flex-row sm:justify-between">
+                                <span>Monday & Friday: 6:00 PM - 7:30 PM</span>
+                                <span class="font-medium text-primary-text">Basic Session</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:justify-between">
+                                <span>Saturday: 5:30 PM - 7:00 PM</span>
+                                <span class="font-medium text-primary-text">Basic Session</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Venue 2: Auditorium --><div>
+                        <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text mb-4">Venue: Auditorium</h3>
+                        <ul class="space-y-3 text-lg text-secondary-text">
+                            <li class="flex flex-col sm:flex-row sm:justify-between">
+                                <span>Tuesday, Thursday & Saturday</span>
+                                <span class="font-medium text-primary-text"></span>
+                            </li>
+                             <li class="flex flex-col sm:flex-row sm:justify-between">
+                                <span>6:30 PM - 9:00 PM</span>
+                                <span class="font-medium text-primary-text">Advanced Session</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Removed old 3rd day block --></div>
+            </div>
+        </section>
+
+        <!-- Section 7: Gallery (NEW) --><!-- UPDATED: Removed min-h-screen and flex properties --><section id="gallery" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-6xl"> <!-- Increased max-width for better grid display -->
+                <!-- UPDATED: Added lg breakpoint for smoother text scaling --><h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-12 text-center">
+                    Our Gallery
+                </h2>
+                
+                <!-- NEW: Masonry-style grid -->
+                <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" 
+                         src="https://placehold.co/600x400/003552/EFE6DE?text=Skating+Moment+1" 
+                         alt="Gallery Image 1"
+                         onerror="this.src='https://placehold.co/600x400/003552/EFE6DE?text=Image+Failed'">
+                    
+                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" 
+                         src="https://placehold.co/600x700/E01522/FFFFFF?text=State+Championship" 
+                         alt="Gallery Image 2"
+                         onerror="this.src='https://placehold.co/600x700/E01522/FFFFFF?text=Image+Failed'">
+                         
+                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" 
+                         src="https://placehold.co/600x500/FFEFAD/003552?text=Community+Day" 
+                         alt="Gallery Image 3"
+                         onerror="this.src='https://placehold.co/600x500/FFEFAD/003552?text=Image+Failed'">
+                         
+                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" 
+                         src="https://placehold.co/600x600/CBD5E0/2D3748?text=Team+Photo" 
+                         alt="Gallery Image 4"
+                         onerror="this.src='https://placehold.co/600x600/CBD5E0/2D3748?text=Image+Failed'">
+                         
+                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" 
+                         src="https://placehold.co/600x450/2D3748/CBD5E0?text=Practice+Session" 
+                         alt="Gallery Image 5"
+                         onerror="this.src='https://placehold.co/600x450/2D3748/CBD5E0?text=Image+Failed'">
+                         
+                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" 
+                         src="https://placehold.co/600x800/003552/EFE6DE?text=Skating+Moment+2" 
+                         alt="Gallery Image 6"
+                         onerror="this.src='httpsall-images-in-gallery-should-be-rounded.co/600x800/003552/EFE6DE?text=Image+Failed'">
+                </div>
+
+                <!-- NEW: See More Button -->
+                <div class="text-center mt-12">
+                    <a href="https://www.instagram.com/skeelers.rsc" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="inline-block bg-accent-red text-white font-medium py-3 px-8 rounded-lg shadow-md hover:bg-opacity-90 transition-all duration-300 text-lg">
+                        See More on Instagram
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Contact (NEW MINIMALIST DESIGN) --><!-- UPDATED: Removed min-h-screen and flex properties --><section id="contact" class="bg-primary-bg text-primary-text py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <!-- UPDATED: Added lg breakpoint for smoother text scaling --><h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-6">
+                    Get In Touch!
+                </h2>
+                <p class="text-lg text-secondary-text max-w-2xl mx-auto mb-12 md:mb-16">
+                    Have questions or ready to join? Reach out to us. We're excited to welcome you to the Skeelers family!
+                </ssp>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <!-- Email Us --><div class="flex flex-col items-center">
+                        <div class="bg-accent-red rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 shadow-lg">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Email Us</h3>
+                        <p class="text-secondary-text text-lg">contact@skeelers.com</p>
+                    </div>
+
+                    <!-- Call Us --><div class="flex flex-col items-center">
+                        <div class="bg-accent-red rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 shadow-lg">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Call Us</h3>
+                        <p class="text-secondary-text text-lg">(+91) 987 654 3210</p>
+                        <p class="text-secondary-text text-lg">(+91) 876 543 2109</p>
+                    </div>
+
+                    <!-- Visit Us --><div class="flex flex-col items-center">
+                        <div class="bg-accent-red rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 shadow-lg">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Visit Us</h3>
+                        <p class="text-secondary-text text-lg">City Park Rink, Central Avenue</p>
+                        <p class="text-secondary-text text-lg">Kottayam, Kerala, India</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Section 9: Footer --><footer class="bg-primary-text text-primary-bg py-16" style="margin-top: -1px;">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Column 1: Logo & About --><div>
+                <a href="#home" class="text-3xl font-extrabold text-white mb-4 block">
+                    SKEELERS
+                </a>
+                <p class="text-primary-bg/70">
+                    Kottayam's premier roller skating club.
+                </p>
+            </div>
+
+            <!-- Column 2: Quick Links --><div>
+                <h4 class="text-xl font-heading font-bold text-white mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#about" class="text-primary-bg/70 hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#services" class="text-primary-bg/70 hover:text-white transition-colors">Services</a></li>
+                    <li><a href="#schedule" class="text-primary-bg/70 hover:text-white transition-colors">Schedule</a></li>
+                    <li><a href="#gallery" class="text-primary-bg/70 hover:text-white transition-colors">Gallery</a></li>
+                    <li><a href="#contact" class="text-primary-bg/70 hover:text-white transition-colors">Contact Us</a></li> <!-- Updated Link Text --></ul>
+            </div>
+
+            <!-- Column 3: Social --><div>
+                <h4 class="text-xl font-heading font-bold text-white mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <!-- Facebook --><a href="#" class="text-primary-bg/70 hover:text-white transition-colors" aria-label="Facebook">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <!-- Instagram --><a href="#" class="text-primary-bg/70 hover:text-white transition-colors" aria-label="Instagram">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427.465C8.901 2.013 9.256 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm5.25-8.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" clip-rule="evenodd" /></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-12 border-t border-primary-bg/20 pt-8 text-center text-primary-bg/50">
+            &copy; 2025 Skeelers Roller Skating Club. All Rights Reserved.
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. Active Link on Scroll ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main > section'); // Target sections inside main
+            const header = document.querySelector('header');
+            const homeSection = document.querySelector('#home');
+
+            const onScroll = () => {
+                const scrollPos = window.scrollY + header.offsetHeight + 50;
+                let currentActive = null;
+
+                sections.forEach(section => {
+                    if (section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
+                        currentActive = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                // Handle home link separately
+                if (window.scrollY < homeSection.offsetTop) {
+                    currentActive = '#home';
+                } else if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 50) {
+                    // Bonus: Light up "Contact" if scrolled to the very bottom
+                    currentActive = '#contact';
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active', 'font-medium');
+                    if (link.getAttribute('href') === currentActive) {
+                        link.classList.add('active', 'font-medium');
+                    }
+                });
+            };
+            window.addEventListener('scroll', onScroll);
+            onScroll(); // Run on load
+
+            // --- 2. Mobile Menu ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- 3. Automatic Gallery (REMOVED) ---
+            // Removed the slider logic as it's been replaced by the grid
         });
-    });
-
-    // --- 4. Automatic Gallery ---
-    let activeSlide = 0;
-    const slides = document.querySelectorAll('.gallery-slide');
-    const totalSlides = slides.length;
-
-    const showSlide = (index) => {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('hidden', i !== index);
-        });
-    };
-
-    const nextSlide = () => {
-        activeSlide = (activeSlide + 1) % totalSlides;
-        showSlide(activeSlide);
-    };
-    
-    const prevSlide = () => {
-        activeSlide = (activeSlide - 1 + totalSlides) % totalSlides;
-        showSlide(activeSlide);
-    };
-
-    if(totalSlides > 0) {
-        document.getElementById('gallery-next').addEventListener('click', nextSlide);
-        document.getElementById('gallery-prev').addEventListener('click', prevSlide);
-        setInterval(nextSlide, 4000);
-    }
-});
-</script>
+    </script>
 
 </body>
 </html>
+
