@@ -510,7 +510,7 @@ p {
     flex-direction: column;
     align-items: stretch;
     text-align: center;
-    background: url('../hero.webp') center/cover no-repeat;
+    background: url('../images/hero.webp') center/cover no-repeat;
     color: #fff;
     overflow: hidden;
 }
