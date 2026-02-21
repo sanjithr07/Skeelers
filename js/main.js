@@ -28,19 +28,33 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =============================================
        MOBILE MENU
        ============================================= */
+
+    // Inject a dim overlay element for outside-tap detection
+    const navOverlay = document.createElement('div');
+    navOverlay.className = 'nav-overlay';
+    navOverlay.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(navOverlay);
+
+    const closeMenu = () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        navOverlay.classList.remove('visible');
+        document.body.classList.remove('menu-open');
+    };
+
     hamburger.addEventListener('click', () => {
         const isOpen = navLinks.classList.toggle('open');
         hamburger.classList.toggle('open', isOpen);
+        navOverlay.classList.toggle('visible', isOpen);
         document.body.classList.toggle('menu-open', isOpen);
     });
 
-    // Close on any nav-link click
+    // Close when user taps the dim overlay (outside the drawer)
+    navOverlay.addEventListener('click', closeMenu);
+
+    // Close on any nav-link or CTA click
     document.querySelectorAll('.nav-link, .btn-nav').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-            hamburger.classList.remove('open');
-            document.body.classList.remove('menu-open');
-        });
+        link.addEventListener('click', closeMenu);
     });
 
     /* =============================================

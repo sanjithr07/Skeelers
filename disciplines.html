@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disciplines – Skeelers Roller Skating Club</title>
+    <meta name="description"
+        content="Explore all five roller skating disciplines at Skeelers: Speed Quad, Speed Inline, Alpine, Downhill and Roller Hockey – Kottayam's premier skating academy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── Disciplines Page ── */
+        .disc-page-hero {
+            background: var(--bg-dark);
+            padding: calc(var(--nav-h) + 3rem) 0 3rem;
+            text-align: center;
+        }
+
+        .disc-page-hero .section-eyebrow {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .disc-page-hero h1 {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            color: #fff;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .disc-page-hero p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 1rem;
+        }
+
+        /* Discipline Cards */
+        .disc-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding: 3rem 0 4rem;
+        }
+
+        .disc-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow var(--t), transform var(--t);
+        }
+
+        .disc-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .disc-card.reverse {
+            direction: rtl;
+        }
+
+        .disc-card.reverse>* {
+            direction: ltr;
+        }
+
+        .disc-card-img {
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .disc-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .disc-card:hover .disc-card-img img {
+            transform: scale(1.04);
+        }
+
+        .disc-card-body {
+            padding: 2.5rem 2.5rem 2.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .disc-card.reverse .disc-card-body {
+            padding: 2.5rem 3rem 2.5rem 2.5rem;
+        }
+
+        .disc-num-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .disc-num-badge::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .disc-card-body h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            margin-bottom: 0;
+            color: var(--text-primary);
+        }
+
+        .disc-card-body p {
+            color: var(--text-muted);
+            font-size: 0.97rem;
+            line-height: 1.75;
+        }
+
+        .disc-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .disc-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            background: rgba(0, 53, 82, 0.07);
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 860px) {
+
+            .disc-card,
+            .disc-card.reverse {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+
+            .disc-card-img {
+                aspect-ratio: 16/9;
+            }
+
+            .disc-card-body,
+            .disc-card.reverse .disc-card-body {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">SKEELERS</a>
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+
+                <div class="nav-item-dropdown">
+                    <a href="index.html#training" class="nav-link">Training</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html#training">Overview</a>
+                        <a href="disciplines.html">Racing Disciplines</a>
+                    </div>
+                </div>
+
+                <div class="nav-item-dropdown">
+                    <a href="index.html#club-life" class="nav-link">Club Life</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html#club-life">Achievements</a>
+                        <a href="gallery.html">Photo Gallery</a>
+                    </div>
+                </div>
+
+                <a href="index.html#schedule" class="nav-link">Schedule</a>
+                <a href="index.html#join" class="btn-nav">Join Skeelers</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="disc-page-hero">
+            <div class="container">
+                <span class="section-eyebrow">What We Teach</span>
+                <h1>Our Disciplines</h1>
+                <p>Five worlds of skating, one club. Find your discipline and start your journey.</p>
+            </div>
+        </div>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="disc-cards">
+
+                    <!-- Speed Quad -->
+                    <div class="disc-card reveal">
+                        <div class="disc-card-img">
+                            <img src="quad.jpg" alt="Speed Quad Skates" loading="lazy"
+                                onerror="this.src='https://placehold.co/720x540/E8E0D8/003552?text=Speed+Quad'">
+                        </div>
+                        <div class="disc-card-body">
+                            <h2>Speed Quad</h2>
+                            <p>Master speed and agility on traditional four-wheel quad skates. Perfect for rink racing,
+                                bank track events, and building a powerful foundational skating style that translates
+                                across all disciplines.</p>
+                            <div class="disc-highlights">
+                                <span class="disc-tag">Track Racing</span>
+                                <span class="disc-tag">Road Racing</span>
+                                <span class="disc-tag">Beginner Friendly</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Speed Inline -->
+                    <div class="disc-card reverse reveal">
+                        <div class="disc-card-img">
+                            <img src="inline.jpg" alt="Speed Inline Skates" loading="lazy"
+                                onerror="this.src='https://placehold.co/720x540/003552/F1EBE4?text=Speed+Inline'">
+                        </div>
+                        <div class="disc-card-body">
+                            <h2>Speed Inline</h2>
+                            <p>Feel the rush of inline speed skating. This discipline focuses on raw power, efficient
+                                stride technique, and endurance — built for road races, track events, and competitions
+                                at state and national level.</p>
+                            <div class="disc-highlights">
+                                <span class="disc-tag">Track Racing</span>
+                                <span class="disc-tag">Road Racing</span>
+                                <span class="disc-tag">More Competitive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alpine -->
+                    <div class="disc-card reveal">
+                        <div class="disc-card-img">
+                            <img src="alphine.jpg" alt="Alpine Skating" loading="lazy"
+                                onerror="this.src='https://placehold.co/720x540/FFF3C2/003552?text=Alpine'">
+                        </div>
+                        <div class="disc-card-body">
+                            <h2>Alpine</h2>
+                            <p>Slalom skating on wheels. Weave through precisely spaced cones demanding balance, rhythm,
+                                and technical precision. Alpine is the most stylistic and artistic of all speed skating
+                                disciplines — deeply rewarding to master.</p>
+                            <div class="disc-highlights">
+                                <span class="disc-tag">Road</span>
+                                <span class="disc-tag">Full Gear</span>
+                                <span class="disc-tag">Agility and Focus</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Downhill -->
+                    <div class="disc-card reverse reveal">
+                        <div class="disc-card-img">
+                            <img src="downhill.jpg" alt="Downhill Skating" loading="lazy"
+                                onerror="this.src='https://placehold.co/720x540/E01522/FFFFFF?text=Downhill'">
+                        </div>
+                        <div class="disc-card-body">
+                            <h2>Downhill</h2>
+                            <p>The ultimate adrenaline rush. Downhill training teaches safety-first form, aerodynamic
+                                body posture, and controlled braking so skaters can tackle steep inclines at speed —
+                                safely and confidently.</p>
+                            <div class="disc-highlights">
+                                <span class="disc-tag">Road</span>
+                                <span class="disc-tag">Speed Control</span>
+                                <span class="disc-tag">Steep Declines</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Roller Hockey -->
+                    <div class="disc-card reveal">
+                        <div class="disc-card-img">
+                            <img src="hockey.jpg" alt="Roller Hockey" loading="lazy"
+                                onerror="this.src='https://placehold.co/720x540/1a1a2e/F1EBE4?text=Roller+Hockey'">
+                        </div>
+                        <div class="disc-card-body">
+                            <h2>Roller Hockey</h2>
+                            <p>A fast-paced team sport that fuses skating skill with stickhandling, spatial awareness,
+                                and team strategy. Our hockey sessions are open to all levels — join our league and roll
+                                with the team!</p>
+                            <div class="disc-highlights">
+                                <span class="disc-tag">Team</span>
+                                <span class="disc-tag">Protective Gear</span>
+                                <span class="disc-tag">Strategy & Speed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="text-align:center; padding-bottom: 2rem;">
+                    <a href="index.html#join" class="btn-primary">Book a Free Trial</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">SKEELERS</a>
+                <p>From Road to Rink.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#training">Training</a></li>
+                    <li><a href="index.html#schedule">Schedule</a></li>
+                    <li><a href="index.html#club-life">Club Life</a></li>
+                    <li><a href="index.html#join">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm5.25-8.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Skeelers Roller Skating Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scrolled state for inner pages
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 30);
+        }, { passive: true });
+        navbar.classList.toggle('scrolled', window.scrollY > 30);
+
+        // Hamburger — inject overlay for outside-tap close
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        const navOverlay = document.createElement('div');
+        navOverlay.className = 'nav-overlay';
+        navOverlay.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(navOverlay);
+
+        const closeMenu = () => {
+            navLinks.classList.remove('open');
+            hamburger.classList.remove('open');
+            navOverlay.classList.remove('visible');
+            document.body.classList.remove('menu-open');
+        };
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            navOverlay.classList.toggle('visible', isOpen);
+            document.body.classList.toggle('menu-open', isOpen);
+        });
+
+        navOverlay.addEventListener('click', closeMenu);
+
+        document.querySelectorAll('.nav-link, .btn-nav').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Scroll reveal
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    revealObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    </script>
+</body>
+
+</html>

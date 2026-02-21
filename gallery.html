@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery – Skeelers Roller Skating Club</title>
+    <meta name="description"
+        content="Browse the Skeelers gallery – training sessions, events and championship moments from Kottayam's premier roller skating club.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── Gallery Page Specific ── */
+        .gallery-page-hero {
+            background: var(--bg-dark);
+            padding: calc(var(--nav-h) + 3rem) 0 3rem;
+            text-align: center;
+        }
+
+        .gallery-page-hero .section-eyebrow {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .gallery-page-hero h1 {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            color: #fff;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-page-hero p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 1rem;
+        }
+
+        .gallery-full-grid {
+            columns: 3;
+            column-gap: 1rem;
+            padding: 3rem 0;
+        }
+
+        .gallery-full-grid img {
+            width: 100%;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            break-inside: avoid;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-full-grid img:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.92);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        #lightbox.open {
+            display: flex;
+        }
+
+        #lightbox img {
+            max-width: min(92vw, 1000px);
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: var(--radius);
+        }
+
+        .lb-close {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lb-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lb-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lb-nav:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .lb-prev {
+            left: 1rem;
+        }
+
+        .lb-next {
+            right: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-full-grid {
+                columns: 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-full-grid {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">SKEELERS</a>
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+
+                <div class="nav-item-dropdown">
+                    <a href="index.html#training" class="nav-link">Training</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html#training">Overview</a>
+                        <a href="disciplines.html">Racing Disciplines</a>
+                    </div>
+                </div>
+
+                <div class="nav-item-dropdown">
+                    <a href="index.html#club-life" class="nav-link">Club Life</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html#club-life">Achievements</a>
+                        <a href="gallery.html">Photo Gallery</a>
+                    </div>
+                </div>
+
+                <a href="index.html#schedule" class="nav-link">Schedule</a>
+                <a href="index.html#join" class="btn-nav">Join Skeelers</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="gallery-page-hero">
+            <div class="container">
+                <span class="section-eyebrow">Visual Diary</span>
+                <h1>Our Gallery</h1>
+                <p>Moments of speed, joy, and community from the Skeelers family.</p>
+            </div>
+        </div>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="gallery-full-grid" id="gallery-grid">
+                    <img src="gallery/img1.jpg" alt="Gallery photo 1" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x400/003552/F1EBE4?text=Gallery'">
+                    <img src="gallery/img2.jpg" alt="Gallery photo 2" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x700/E01522/FFFFFF?text=Gallery'">
+                    <img src="gallery/img3.jpg" alt="Gallery photo 3" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x500/F4EEE6/003552?text=Gallery'">
+                    <img src="gallery/img4.jpg" alt="Gallery photo 4" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x600/E8E0D8/003552?text=Gallery'">
+                    <img src="gallery/img5.jpg" alt="Gallery photo 5" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x450/1a1a2e/F1EBE4?text=Gallery'">
+                    <img src="gallery/img6.jpg" alt="Gallery photo 6" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x800/003552/F1EBE4?text=Gallery'">
+                    <img src="gallery/img7.jpg" alt="Gallery photo 7" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x500/E01522/FFFFFF?text=Gallery'">
+                    <img src="district2025/district1.jpg" alt="District Championship" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x450/003552/F1EBE4?text=Gallery'">
+                    <img src="onam/onam1.jpg" alt="Onam celebration" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x400/FFF3C2/003552?text=Gallery'">
+                    <img src="onam/onam2.jpg" alt="Onam celebration" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x600/FFF3C2/003552?text=Gallery'">
+                    <img src="onam/onam3.jpg" alt="Onam celebration" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x450/FFF3C2/003552?text=Gallery'">
+                    <img src="onam/onam4.jpg" alt="Onam celebration" loading="lazy"
+                        onerror="this.src='https://placehold.co/600x500/FFF3C2/003552?text=Gallery'">
+                </div>
+
+                <div style="text-align:center; margin-top: 2rem; padding-bottom: 2rem;">
+                    <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
+                        class="btn-primary">See More on Instagram ↗</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+        <button class="lb-close" id="lb-close" aria-label="Close">&#x2715;</button>
+        <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+        <img src="" alt="Enlarged gallery photo" id="lb-img">
+        <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">SKEELERS</a>
+                <p>From Road to Rink.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#training">Training</a></li>
+                    <li><a href="index.html#schedule">Schedule</a></li>
+                    <li><a href="index.html#club-life">Club Life</a></li>
+                    <li><a href="index.html#join">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm5.25-8.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Skeelers Roller Skating Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scrolled state
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 30);
+        }, { passive: true });
+        navbar.classList.toggle('scrolled', window.scrollY > 30);
+
+        // Hamburger — inject overlay for outside-tap close
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        const navOverlay = document.createElement('div');
+        navOverlay.className = 'nav-overlay';
+        navOverlay.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(navOverlay);
+
+        const closeMenu = () => {
+            navLinks.classList.remove('open');
+            hamburger.classList.remove('open');
+            navOverlay.classList.remove('visible');
+            document.body.classList.remove('menu-open');
+        };
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            navOverlay.classList.toggle('visible', isOpen);
+            document.body.classList.toggle('menu-open', isOpen);
+        });
+
+        navOverlay.addEventListener('click', closeMenu);
+
+        document.querySelectorAll('.nav-link, .btn-nav').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Lightbox
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        const lbClose = document.getElementById('lb-close');
+        const lbPrev = document.getElementById('lb-prev');
+        const lbNext = document.getElementById('lb-next');
+        const gridImgs = Array.from(document.querySelectorAll('.gallery-full-grid img'));
+        let lbCurrent = 0;
+
+        const openLb = (idx) => {
+            lbCurrent = idx;
+            lbImg.src = gridImgs[idx].src;
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+        const closeLb = () => {
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+        const lbNavigate = (dir) => {
+            lbCurrent = (lbCurrent + dir + gridImgs.length) % gridImgs.length;
+            lbImg.src = gridImgs[lbCurrent].src;
+        };
+
+        gridImgs.forEach((img, i) => img.addEventListener('click', () => openLb(i)));
+        lbClose.addEventListener('click', closeLb);
+        lbPrev.addEventListener('click', () => lbNavigate(-1));
+        lbNext.addEventListener('click', () => lbNavigate(1));
+        lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+        document.addEventListener('keydown', (e) => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLb();
+            if (e.key === 'ArrowLeft') lbNavigate(-1);
+            if (e.key === 'ArrowRight') lbNavigate(1);
+        });
+    </script>
+</body>
+
+</html>
