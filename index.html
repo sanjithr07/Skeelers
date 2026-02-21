@@ -1,707 +1,652 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skeelers Roller Skating Club - Kottayam</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Skeelers Roller Skating Club – Kottayam</title>
+    <meta name="description"
+        content="Skeelers Roller Skating Club – Kottayam's premier roller skating academy. Structured training in Speed Quad, Speed Inline, Alpine, Downhill and Roller Hockey.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Syne:wght@400..800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        heading: ['Noto Sans', 'sans-serif'],
-                        hero: ['Syne', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary-bg': '#F1EBE4',
-                        'primary-text': '#003552',
-                        'secondary-text': '#262C29',
-                        'accent-red': '#E01522',
-                        'accent-yellow': '#FFF3C2',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        html {
-            scroll-behavior: smooth;
-            /* Adjust scroll padding to account for the sticky header height */
-            scroll-padding-top: 70px; 
-        }
-
-        .nav-link.active {
-            color: #E01522;
-            font-weight: 500;
-        }
-
-        /* Hide scrollbar for the news carousel */
-        #news-carousel-track::-webkit-scrollbar {
-            display: none;
-        }
-        
-        #news-carousel-track {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="font-sans bg-primary-bg text-secondary-text">
 
-    <!-- Header Section -->
-    <header class="bg-accent-yellow sticky top-0 z-50 shadow-sm">
-        <nav class="w-full px-6 md:px-10 py-3 flex justify-between items-center">
-            <a href="#home" class="text-2xl md:text-3xl font-extrabold text-primary-text">SKEELERS</a>
+<body>
 
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Home</a>
-                <a href="#about" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">About Us</a>
-                <a href="#services" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Services</a>
-                <a href="#schedule" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Schedule</a>
-                <a href="#gallery" class="nav-link text-primary-text hover:text-accent-red transition-colors duration-300">Gallery</a>
-            </div>
+    <!-- =============================================
+     NAVBAR
+     ============================================= -->
+    <header class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#home" class="logo">SKEELERS</a>
+            <nav class="nav-links" id="nav-links">
+                <a href="#join" class="btn-nav">Join Skeelers</a>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
 
-            <a href="#contact" class="hidden md:inline-block bg-accent-red text-white font-medium py-3 px-6 rounded-lg shadow-md hover:bg-opacity-90 transition-all duration-300">Contact Us</a>
+                <div class="nav-item-dropdown">
+                    <a href="#training" class="nav-link">Training</a>
+                    <div class="dropdown-menu">
+                        <a href="#training">Overview</a>
+                        <a href="disciplines.html">Racing Disciplines</a>
+                    </div>
+                </div>
 
-            <!-- Mobile Menu Button -->
-            <!-- FIX: Added aria-label for accessibility -->
-            <button id="mobile-menu-button" class="md:hidden text-primary-text text-3xl" aria-label="Toggle mobile menu">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
+                <div class="nav-item-dropdown">
+                    <a href="#club-life" class="nav-link">Club Life</a>
+                    <div class="dropdown-menu">
+                        <a href="#club-life">Achievements</a>
+                        <a href="gallery.html">Photo Gallery</a>
+                    </div>
+                </div>
+
+                <a href="#schedule" class="nav-link">Schedule</a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
             </button>
-        </nav>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-primary-bg shadow-lg absolute top-full left-0 w-full">
-            <a href="#home" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Home</a>
-            <a href="#about" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">About Us</a>
-            <a href="#services" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Services</a>
-            <a href="#schedule" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Schedule</a>
-            <a href="#gallery" class="nav-link block text-primary-text text-center py-3 px-4 hover:bg-accent-yellow">Gallery</a>
-            <a href="#contact" class="block bg-accent-red text-white text-center font-medium py-4 px-6 m-4 rounded-lg">Contact Us</a>
         </div>
     </header>
-    
 
     <main>
-        <!-- Home/Hero Section -->
-        <section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center text-white py-20 md:py-32" style="background-image: url('hero.webp'); background-size: cover; background-position: center;">
-            <div class="absolute inset-0 bg-black/60 z-0"></div>
-            <div class="relative z-10 container mx-auto px-6 pt-16">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-hero font-extrabold text-white mb-4">SKEELERS</h1>
-                <p class="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-hero font-bold text-white mb-8">Roller Skating Club</p>
-                
-                <p class="text-base sm:text-lg text-primary-bg/80 max-w-2xl mx-auto">Welcome to Skeelers — where passion meets motion, and every roll tells a story.</p>
+
+        <!-- =============================================
+     BLOCK 1 — AUTHORITY
+     ============================================= -->
+
+        <!-- 1. HERO -->
+        <section id="home" class="hero">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">SKEELERS</h1>
+                <p class="hero-subtitle">Roller Skating Club</p>
+                <div class="hero-ctas">
+                    <a href="#join" class="btn-primary">Book Free Trial</a>
+                    <a href="#training" class="btn-ghost">Explore Training</a>
+                </div>
+            </div>
+            <!-- Authority Bar — anchored to bottom of hero -->
+            <div class="authority-bar">
+                <div class="authority-inner">
+                    <span class="auth-item">
+                        <strong>Since 2000</strong>
+                        <em>25+ Years of Skating</em>
+                    </span>
+                    <span class="auth-divider"></span>
+                    <span class="auth-item">
+                        <strong>70+ Active Students</strong>
+                        <em>Growing Every Season</em>
+                    </span>
+                    <span class="auth-divider"></span>
+                    <span class="auth-item">
+                        <strong>State &amp; National</strong>
+                        <em>Competition Participation</em>
+                    </span>
+                    <span class="auth-divider"></span>
+                    <span class="auth-item">
+                        <strong>2 Training Venues</strong>
+                        <em>Indoor &amp; Outdoor</em>
+                    </span>
+                </div>
             </div>
         </section>
 
-        <!-- About Us Section -->
-        <section id="about" class="py-16 md:py-24">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text">About Skeelers</h2>
-                </div>
+        <!-- 2. ABOUT -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="about-grid">
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    <div class="flex justify-center">
-                        <img src="about.jpg" alt="The Skeelers roller skating team" class="rounded-xl shadow-2xl w-full max-w-md lg:max-w-full" onerror="this.src='https://placehold.co/600x500/CBD5E0/2D3748?text=Image+Not+Found'">
+                    <div class="about-image-col reveal">
+                        <div class="about-img-frame">
+                            <img src="images/about.jpg" alt="The Skeelers roller skating team" loading="lazy"
+                                onerror="this.src='https://placehold.co/800x450/E8E0D8/003552?text=Skeelers+Club'">
+                            <div class="img-accent-block"></div>
+                        </div>
                     </div>
-                    <div class="text-center lg:text-left">
-                        <p class="text-lg text-secondary-text mb-8 leading-relaxed">We are a roller skating club dedicated to bringing people together through joy, freedom, and fitness. Whether you're a beginner or a seasoned skater, Skeelers is your home on wheels.</p>
-                        
-                        <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text mt-8 mb-4">Our Story</h3>
-                        <p class="text-lg text-secondary-text mb-6 leading-relaxed">Founded in Kottayam, Skeelers began with a dream: to make skating more than a sport — a lifestyle. From a small group of enthusiasts, we've grown into a vibrant group celebrating movement, friendship, and growth.</p>
-                        <p class="text-lg text-secondary-text mb-8 leading-relaxed">At Skeelers, we believe that skating isn't just about speed or tricks — it's about confidence, creativity, and discipline.</p>
+
+                    <div class="about-text-col reveal">
+                        <span class="section-eyebrow">About Us</span>
+                        <h2 class="section-title">About Skeelers</h2>
+                        <p class="body-text">We are a roller skating club dedicated to bringing people together through
+                            joy, freedom, and fitness. Whether you're a beginner or a seasoned skater, Skeelers is your
+                            home on wheels.</p>
+                        <p class="body-text">Founded in Kottayam, Skeelers began with a dream: to make skating more than
+                            a sport — a lifestyle. From a small group of enthusiasts, we've grown into a vibrant
+                            community celebrating movement, friendship, and growth.</p>
+                        <p class="body-text">At Skeelers, we believe that skating isn't just about speed or tricks —
+                            it's about confidence, creativity, and discipline.</p>
                     </div>
-                </div>
 
-                <div class="text-center mt-12">
-                    <button data-modal-target="modal-about" class="read-more-btn text-accent-red font-medium hover:underline text-lg">Read More &rarr;</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- News Section -->
-        <section id="news" class="py-16 md:py-24 overflow-hidden">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-12 text-center">Club News & Achievements</h2>
-                
-                <div class="relative pb-12">
-                    <!-- Carousel Track -->
-                    <div id="news-carousel-track" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -ml-3 pl-3 space-x-6">
-                        
-                        <!-- Slide 1: State Championship -->
-                        <div class="news-slide snap-center flex-shrink-0 w-11/12 md:w-3/4 lg:w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden">
-                            <img src="https://placehold.co/800x500/E01522/FFFFFF?text=State+Championship" alt="Kerala State Roller Skating Championship" class="w-full h-64 md:h-96 object-cover" onerror="this.src='https://placehold.co/800x500/E01522/FFFFFF?text=Image+Failed'">
-                            <div class="p-6 md:p-10">
-                                <h3 class="text-3xl font-heading font-bold text-primary-text mb-2">Kerala State Roller Skating Championship</h3>
-                                <p class="text-sm text-secondary-text/70 mb-4">Posted: November 04, 2025</p>
-                                <p class="text-secondary-text text-lg mb-6 flex-grow">Our club members will soon compete in the upcoming Kerala State Roller Skating Championship, representing our institution at the state level.</p>
-                                <button data-modal-target="modal-news-3" class="read-more-btn text-accent-red font-medium hover:underline text-lg">Read More &rarr;</button>
+                    <!-- Accordion now spans full width below the two columns -->
+                    <details class="about-accordion reveal">
+                        <summary>More About Skeelers</summary>
+                        <div class="accordion-body">
+                            <h4>What We Do</h4>
+                            <p>We offer year-round training, bank track practice, road practice, workshops, and
+                                events for skaters of all ages and skill levels. From recreational skating to
+                                competitive training, Skeelers provides expert guidance in a supportive environment.
+                            </p>
+                            <div class="accordion-grid">
+                                <div>
+                                    <h4>Our Mission</h4>
+                                    <p>To inspire and empower individuals to embrace the spirit of skating — promoting
+                                        health, happiness, and community through every stride.</p>
+                                </div>
+                                <div class="vision-col">
+                                    <h4>Our Vision</h4>
+                                    <p class="vision-text">To build a culture where roller skating becomes a lifestyle
+                                        of expression,
+                                        fitness,
+                                        and unity, accessible to everyone.</p>
+                                </div>
                             </div>
+                            <h4>Why Choose Skeelers</h4>
+                            <ul class="accordion-list">
+                                <li><strong>Inclusive community:</strong> Everyone is welcome, from first-time
+                                    visitors to seasoned professionals.</li>
+                                <li><strong>Professional coaching:</strong> Learn from passionate, certified
+                                    trainers.</li>
+                                <li><strong>Safe environment:</strong> Modern equipment and protective practices at
+                                    every level.</li>
+                                <li><strong>Vibrant culture:</strong> Events, workshops, and skate fests that keep
+                                    the spirit alive.</li>
+                            </ul>
+                            <p class="accordion-closing">Let's roll together — because at Skeelers, the journey is
+                                always in motion.</p>
                         </div>
+                    </details>
 
-                        <!-- Slide 2: District Championship -->
-                        <div class="news-slide snap-center flex-shrink-0 w-11/12 md:w-3/4 lg:w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden">
-                            <img src="district2025/district1.jpg" alt="Kottayam District Roller Skating Championship" class="w-full h-64 md:h-96 object-cover" onerror="this.src='https://placehold.co/800x500/003552/EFE6DE?text=Image+Failed'">
-                            <div class="p-6 md:p-10">
-                                <h3 class="text-3xl font-heading font-bold text-primary-text mb-2">Kottayam District Roller Skating Championship</h3>
-                                <p class="text-sm text-secondary-text/70 mb-4">Posted: October 15, 2025</p>
-                                <p class="text-secondary-text text-lg mb-6 flex-grow">Our students excelled at the Kottayam District Roller Skating Championship, winning multiple prizes and earning selection for the upcoming Kerala State Championship.</p>
-                                <button data-modal-target="modal-news-2" class="read-more-btn text-accent-red font-medium hover:underline text-lg">Read More &rarr;</button>
-                            </div>
-                        </div>
-
-                        <!-- Slide 3: Onam Celebration -->
-                        <div class="news-slide snap-center flex-shrink-0 w-11/12 md:w-3/4 lg:w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden">
-                            <img src="onam/onam3.jpg" alt="Onam Celebration" class="w-full h-64 md:h-96 object-cover" onerror="this.src='https://placehold.co/800x500/FFEFAD/003552?text=Image+Failed'">
-                            <div class="p-6 md:p-10">
-                                <h3 class="text-3xl font-heading font-bold text-primary-text mb-2">Team Onam Celebration</h3>
-                                <p class="text-sm text-secondary-text/70 mb-4">Posted: August 30, 2025</p>
-                                <p class="text-secondary-text text-lg mb-6 flex-grow">The Skeelers Roller Skating Club celebrated Onam with traditional attire, fun games, and a joyful dinner, bringing together our skating family in true festive spirit.</p>
-                                <button data-modal-target="modal-news-1" class="read-more-btn text-accent-red font-medium hover:underline text-lg">Read More &rarr;</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Carousel Controls -->
-                    <!-- FIX: Added aria-label for accessibility -->
-                    <button id="news-prev" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 transition-colors shadow-lg z-10" aria-label="Previous news slide">
-                        <svg class="w-6 h-6 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-                    <!-- FIX: Added aria-label for accessibility -->
-                    <button id="news-next" class="absolute top-1/2 right-0 -translate-y-1/2 bg-white/70 hover:bg-white rounded-full p-2 transition-colors shadow-lg z-10" aria-label="Next news slide">
-                        <svg class="w-6 h-6 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
-
-                    <!-- Carousel Pagination Dots -->
-                    <div id="news-pagination" class="absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-2 z-10"></div>
                 </div>
             </div>
         </section>
 
-        <!-- Services/Disciplines Section -->
-        <section id="services" class="py-16 md:py-24">
-            <div class="container mx-auto px-6 max-w-5xl">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-12 text-center">Find Your Discipline</h2>
 
-                <div class="space-y-8">
-                    <!-- Service 1: Speed Quad -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center">
-                        <div class="w-full md:w-5/12">
-                            <img src="quad.jpg" alt="Speed Quad Skates" class="w-full aspect-[5/4] object-cover rounded-xl" onerror="this.src='https://placehold.co/600x480/CBD5E0/2D3748?text=Image+Failed'">
+        <!-- =============================================
+     BLOCK 2 — DEVELOPMENT
+     ============================================= -->
+
+        <!-- 3. TRAINING & DISCIPLINES -->
+        <section id="training" class="section training-section">
+            <div class="container">
+
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">Training</span>
+                    <h2 class="section-title">Training & Disciplines</h2>
+                    <p class="section-desc">A clear structure from your first session to competitive performance —
+                        across five skating disciplines.</p>
+                </div>
+
+                <!-- A) Training Progression -->
+                <div class="progression-block reveal">
+                    <h3 class="sub-block-title">Training Progression</h3>
+                    <div class="progression-grid">
+                        <div class="progression-card">
+                            <div class="prog-step"><span class="prog-phase-label">Phase</span>01</div>
+                            <h4>Foundation</h4>
+                            <p>Equipment familiarization, posture, balance, controlled rolling, and safe stopping
+                                techniques.</p>
                         </div>
-                        <div class="w-full md:w-7/12 p-6 md:p-10">
-                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Speed Quad</h3>
-                            <p class="text-secondary-text text-lg leading-relaxed">Master speed and agility on traditional quad skates. Perfect for rink racing and building powerful fundamentals.</p>
+                        <div class="progression-card">
+                            <div class="prog-step"><span class="prog-phase-label">Phase</span>02</div>
+                            <h4>Skill Development</h4>
+                            <p>Agility drills, speed control, directional transitions, and structured track navigation.
+                            </p>
+                        </div>
+                        <div class="progression-card">
+                            <div class="prog-step"><span class="prog-phase-label">Phase</span>03</div>
+                            <h4>Performance</h4>
+                            <p>Endurance training, speed drills, competitive simulation, and advanced movement coaching.
+                            </p>
                         </div>
                     </div>
+                    <p class="progression-note">* Progression timelines depend on individual learning pace.</p>
+                </div>
 
-                    <!-- Service 2: Speed Inline -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row-reverse items-center">
-                        <div class="w-full md:w-5/12">
-                            <img src="inline.jpg" alt="Speed Inline Skates" class="w-full aspect-[5/4] object-cover rounded-xl" onerror="this.src='https://placehold.co/600x480/003552/EFE6DE?text=Image+Failed'">
-                        </div>
-                        <div class="w-full md:w-7/12 p-6 md:p-10">
-                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Speed Inline</h3>
-                            <p class="text-secondary-text text-lg leading-relaxed">Feel the rush of inline speed skating. This discipline focuses on power, technique, and endurance for track and road.</p>
-                        </div>
-                    </div>
+                <!-- B) Disciplines — compact preview linking to full page -->
+                <div class="reveal disciplines-preview-header">
+                    <h3 class="sub-block-title">Disciplines</h3>
+                </div>
 
-                    <!-- Service 3: Alpine -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center">
-                        <div class="w-full md:w-5/12">
-                            <img src="alphine.jpg" alt="Alpine skater" class="w-full aspect-[5/4] object-cover rounded-xl" onerror="this.src='https://placehold.co/600x480/FFEFAD/003552?text=Image+Failed'">
+                <div class="disciplines-preview reveal">
+                    <a href="disciplines.html" class="disc-preview-card">
+                        <div class="disc-preview-img">
+                            <img src="images/quad.jpg" alt="Speed Quad" loading="lazy"
+                                onerror="this.src='https://placehold.co/400x300/E8E0D8/003552?text=Speed+Quad'">
                         </div>
-                        <div class="w-full md:w-7/12 p-6 md:p-10">
-                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Alpine</h3>
-                            <p class="text-secondary-text text-lg leading-relaxed">Slalom skating on wheels. Weave through cones with precision and speed in this highly technical and exciting discipline.</p>
+                        <div class="disc-preview-info">
+                            <span class="disc-preview-num">01</span>
+                            <span class="disc-preview-name">Speed Quad</span>
                         </div>
-                    </div>
-
-                    <!-- Service 4: Downhill -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row-reverse items-center">
-                        <div class="w-full md:w-5/12">
-                            <img src="downhill.jpg" alt="Downhill skater" class="w-full aspect-[5/4] object-cover rounded-xl" onerror="this.src='https://placehold.co/600x480/E01522/FFFFFF?text=Image+Failed'">
+                    </a>
+                    <a href="disciplines.html" class="disc-preview-card">
+                        <div class="disc-preview-img">
+                            <img src="images/inline.jpg" alt="Speed Inline" loading="lazy"
+                                onerror="this.src='https://placehold.co/400x300/003552/F1EBE4?text=Speed+Inline'">
                         </div>
-                        <div class="w-full md:w-7/12 p-6 md:p-10">
-                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Downhill</h3>
-                            <p class="text-secondary-text text-lg leading-relaxed">The ultimate adrenaline rush. Learn safety, form, and control for navigating hills and inclines at speed.</p>
+                        <div class="disc-preview-info">
+                            <span class="disc-preview-num">02</span>
+                            <span class="disc-preview-name">Speed Inline</span>
                         </div>
-                    </div>
-
-                    <!-- Service 5: Roller Hockey -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center">
-                        <div class="w-full md:w-5/12">
-                            <img src="hockey.jpg" alt="Roller Hockey" class="w-full aspect-[5/4] object-cover rounded-xl" onerror="this.src='https://placehold.co/600x480/2D3748/CBD5E0?text=Image+Failed'">
+                    </a>
+                    <a href="disciplines.html" class="disc-preview-card">
+                        <div class="disc-preview-img">
+                            <img src="images/alphine.jpg" alt="Alpine" loading="lazy"
+                                onerror="this.src='https://placehold.co/400x300/FFF3C2/003552?text=Alpine'">
                         </div>
-                        <div class="w-full md:w-7/12 p-6 md:p-10">
-                            <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Roller Hockey</h3>
-                            <p class="text-secondary-text text-lg leading-relaxed">A fast-paced team sport that combines skating skills with stickhandling and strategy. Join our league!</p>
+                        <div class="disc-preview-info">
+                            <span class="disc-preview-num">03</span>
+                            <span class="disc-preview-name">Alpine</span>
                         </div>
-                    </div>
+                    </a>
+                    <a href="disciplines.html" class="disc-preview-card">
+                        <div class="disc-preview-img">
+                            <img src="images/downhill.jpg" alt="Downhill" loading="lazy"
+                                onerror="this.src='https://placehold.co/400x300/E01522/FFFFFF?text=Downhill'">
+                        </div>
+                        <div class="disc-preview-info">
+                            <span class="disc-preview-num">04</span>
+                            <span class="disc-preview-name">Downhill</span>
+                        </div>
+                    </a>
+                    <a href="disciplines.html" class="disc-preview-card">
+                        <div class="disc-preview-img">
+                            <img src="images/hockey.jpg" alt="Roller Hockey" loading="lazy"
+                                onerror="this.src='https://placehold.co/400x300/1a1a2e/F1EBE4?text=Roller+Hockey'">
+                        </div>
+                        <div class="disc-preview-info">
+                            <span class="disc-preview-num">05</span>
+                            <span class="disc-preview-name">Roller Hockey</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="disciplines-cta reveal">
+                    <a href="disciplines.html" class="btn-outline">Explore All Disciplines →</a>
                 </div>
             </div>
         </section>
 
-        <!-- Schedule Section -->
-        <section id="schedule" class="py-16 md:py-24">
-            <div class="container mx-auto px-6 max-w-4xl">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-12 text-center">Our Weekly Schedule</h2>
-                <div class="bg-white rounded-xl shadow-lg p-6 md:p-12 space-y-8">
-                    <!-- Venue 1: Decathlon -->
-                    <div class="border-b border-gray-200 pb-6">
-                        <div class="flex items-center mb-4">
-                            <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text">Venue: Decathlon Sports</h3>
-                            <!-- FIX: Added aria-label for accessibility -->
-                            <a href="https://maps.app.goo.gl/3Qip4bwPb5KPQuHWA" target="_blank" rel="noopener noreferrer" class="inline-block ml-3 shrink-0" aria-label="Decathlon Sports location on Google Maps">
-                                <svg class="w-6 h-6 text-accent-red hover:text-red-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+
+        <!-- =============================================
+     BLOCK 3 — ACTIVITY & PROOF
+     ============================================= -->
+
+        <!-- 4. CLUB LIFE & ACHIEVEMENTS (News + Gallery grouped) -->
+        <section id="club-life" class="section club-life-section">
+            <div class="container">
+
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">Proof of Activity</span>
+                    <h2 class="section-title">Club Life & Achievements</h2>
+                </div>
+
+                <!-- News Carousel -->
+                <div class="sub-block-label reveal">Latest News</div>
+                <div class="carousel-wrapper reveal">
+                    <div class="carousel-track" id="news-carousel-track">
+
+                        <article class="news-slide news-card">
+                            <div class="news-img-wrap">
+                                <img src="https://placehold.co/800x440/E01522/FFFFFF?text=State+Championship"
+                                    alt="Kerala State Roller Skating Championship" loading="lazy">
+                                <span class="news-tag">Championship</span>
+                            </div>
+                            <div class="news-body">
+                                <time class="news-date">November 04, 2025</time>
+                                <h3>Kerala State Roller Skating Championship</h3>
+                                <p>Our club members will soon compete in the upcoming Kerala State Roller Skating
+                                    Championship, representing our institution at the state level.</p>
+                                <button class="btn-text-link read-more-btn" data-modal-target="modal-news-3">Read More
+                                    →</button>
+                            </div>
+                        </article>
+
+                        <article class="news-slide news-card">
+                            <div class="news-img-wrap">
+                                <img src="images/district2025/district1.jpg" alt="Kottayam District Championship"
+                                    loading="lazy"
+                                    onerror="this.src='https://placehold.co/800x440/003552/F1EBE4?text=District+Championship'">
+                                <span class="news-tag">Achievement</span>
+                            </div>
+                            <div class="news-body">
+                                <time class="news-date">October 15, 2025</time>
+                                <h3>Kottayam District Roller Skating Championship</h3>
+                                <p>Our students excelled at the Kottayam District Championship, winning multiple prizes
+                                    and earning selection for the upcoming State Championship.</p>
+                                <button class="btn-text-link read-more-btn" data-modal-target="modal-news-2">Read More
+                                    →</button>
+                            </div>
+                        </article>
+
+                        <article class="news-slide news-card">
+                            <div class="news-img-wrap">
+                                <img src="images/onam/onam3.jpg" alt="Onam Celebration" loading="lazy"
+                                    onerror="this.src='https://placehold.co/800x440/FFF3C2/003552?text=Onam+Celebration'">
+                                <span class="news-tag">Event</span>
+                            </div>
+                            <div class="news-body">
+                                <time class="news-date">August 30, 2025</time>
+                                <h3>Team Onam Celebration</h3>
+                                <p>The Skeelers Club celebrated Onam with traditional attire, fun games, and a joyful
+                                    dinner, bringing together our skating family in true festive spirit.</p>
+                                <button class="btn-text-link read-more-btn" data-modal-target="modal-news-1">Read More
+                                    →</button>
+                            </div>
+                        </article>
+
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" id="news-prev" aria-label="Previous">&#8592;</button>
+                        <div id="news-pagination" class="carousel-dots"></div>
+                        <button class="carousel-btn" id="news-next" aria-label="Next">&#8594;</button>
+                    </div>
+                </div>
+
+                <!-- Gallery — preview strip linking to full gallery page -->
+                <div class="sub-block-label reveal" style="margin-top: 5rem;">Gallery</div>
+                <div class="gallery-strip reveal">
+                    <a href="gallery.html" class="gallery-strip-item">
+                        <img src="images/about.jpg" alt="Gallery 1" loading="lazy"
+                            onerror="this.src='https://placehold.co/400x400/003552/F1EBE4?text=Gallery'">
+                    </a>
+                    <a href="gallery.html" class="gallery-strip-item">
+                        <img src="images/gallery/img2.jpg" alt="Gallery 2" loading="lazy"
+                            onerror="this.src='https://placehold.co/400x400/E01522/FFFFFF?text=Gallery'">
+                    </a>
+                    <a href="gallery.html" class="gallery-strip-item">
+                        <img src="images/gallery/img3.jpg" alt="Gallery 3" loading="lazy"
+                            onerror="this.src='https://placehold.co/400x400/F4EEE6/003552?text=Gallery'">
+                    </a>
+                    <a href="gallery.html" class="gallery-strip-item">
+                        <img src="images/gallery/img4.jpg" alt="Gallery 4" loading="lazy"
+                            onerror="this.src='https://placehold.co/400x400/E8E0D8/003552?text=Gallery'">
+                    </a>
+                    <a href="gallery.html" class="gallery-strip-item gallery-strip-more">
+                        <img src="images/gallery/img5.jpg" alt="Gallery 5" loading="lazy"
+                            onerror="this.src='https://placehold.co/400x400/1a1a2e/F1EBE4?text=Gallery'">
+                        <div class="gallery-strip-overlay">View All Photos →</div>
+                    </a>
+                </div>
+                <div class="gallery-cta reveal">
+                    <a href="gallery.html" class="btn-outline">View Full Gallery →</a>
+                    <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
+                        class="btn-primary">Instagram ↗</a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =============================================
+     BLOCK 4 — OPERATIONS
+     ============================================= -->
+
+        <!-- 5. SCHEDULE -->
+        <section id="schedule" class="section schedule-section">
+            <div class="container">
+
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">Timings</span>
+                    <h2 class="section-title">Weekly Schedule</h2>
+                    <p class="section-desc">Two venues, structured sessions, designed around your week.</p>
+                </div>
+
+                <div class="schedule-grid">
+
+                    <div class="schedule-card reveal">
+                        <div class="schedule-card-header">
+                            <div class="schedule-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                                 </svg>
-                            </a>
+                            </div>
+                            <div>
+                                <h3>Decathlon Sports</h3>
+                                <a href="https://maps.app.goo.gl/3Qip4bwPb5KPQuHWA" target="_blank"
+                                    rel="noopener noreferrer" class="map-link">View on Map ↗</a>
+                            </div>
                         </div>
-                        <ul class="space-y-3 text-lg text-secondary-text">
-                            <li class="flex flex-col sm:flex-row sm:justify-between">
-                                <span>Monday & Friday: 6:00 PM - 7:30 PM</span>
-                                <span class="font-medium text-primary-text">Basic Session</span>
+                        <ul class="schedule-list">
+                            <li>
+                                <div class="schedule-day-time">
+                                    <span class="day">Monday &amp; Friday</span>
+                                    <span class="time">6:00 PM – 7:30 PM</span>
+                                </div>
+                                <span class="session-type">Basic</span>
                             </li>
-                            <li class="flex flex-col sm:flex-row sm:justify-between">
-                                <span>Saturday: 5:30 PM - 7:00 PM</span>
-                                <span class="font-medium text-primary-text">Basic Session</span>
+                            <li>
+                                <div class="schedule-day-time">
+                                    <span class="day">Saturday</span>
+                                    <span class="time">5:30 PM – 7:00 PM</span>
+                                </div>
+                                <span class="session-type">Basic</span>
                             </li>
                         </ul>
                     </div>
-                    
-                    <!-- Venue 2: St. Johns -->
-                    <div>
-                        <div class="flex items-center mb-4">
-                            <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text">Venue: St. Johns Convention Center</h3>
-                            <!-- FIX: Added aria-label for accessibility -->
-                            <a href="https://maps.app.goo.gl/8Jz6sNKLUsj5Q7iJ9" target="_blank" rel="noopener noreferrer" class="inline-block ml-3 shrink-0" aria-label="St. Johns Convention Center location on Google Maps">
-                                <svg class="w-6 h-6 text-accent-red hover:text-red-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+
+                    <div class="schedule-card reveal">
+                        <div class="schedule-card-header">
+                            <div class="schedule-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                                 </svg>
-                            </a>
+                            </div>
+                            <div>
+                                <h3>St. John's Convention Centre</h3>
+                                <a href="https://maps.app.goo.gl/8Jz6sNKLUsj5Q7iJ9" target="_blank"
+                                    rel="noopener noreferrer" class="map-link">View on Map ↗</a>
+                            </div>
                         </div>
-                        <ul class="space-y-3 text-lg text-secondary-text">
-                            <li class="flex flex-col sm:flex-row sm:justify-between">
-                                <span>Tuesday, Thursday & Saturday</span>
-                            </li>
-                            <li class="flex flex-col sm:flex-row sm:justify-between">
-                                <span>6:30 PM - 9:00 PM</span>
-                                <span class="font-medium text-primary-text">Advanced Session</span>
+                        <ul class="schedule-list">
+                            <li>
+                                <div class="schedule-day-time">
+                                    <span class="day">Tuesday, Thursday &amp; Saturday</span>
+                                    <span class="time">6:30 PM – 9:00 PM</span>
+                                </div>
+                                <span class="session-type">Advanced</span>
                             </li>
                         </ul>
                     </div>
+
                 </div>
+                <p class="progression-note" style="margin-top: 1.5rem;">* Timings and classes may vary depending on the
+                    seasons.</p>
             </div>
         </section>
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-16 md:py-24">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-12 text-center">Our Gallery</h2>
-                
-                <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" src="gallery/img1.jpg" alt="Gallery Image 1" onerror="this.src='https://placehold.co/600x400/003552/EFE6DE?text=Image+Failed'">
-                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" src="gallery/img2.jpg" alt="Gallery Image 2" onerror="this.src='https://placehold.co/600x700/E01522/FFFFFF?text=Image+Failed'">
-                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" src="gallery/img3.jpg" alt="Gallery Image 3" onerror="this.src='https://placehold.co/600x500/FFEFAD/003552?text=Image+Failed'">
-                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" src="gallery/img4.jpg" alt="Gallery Image 4" onerror="this.src='https://placehold.co/600x600/CBD5E0/2D3748?text=Image+Failed'">
-                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" src="gallery/img5.jpg" alt="Gallery Image 5" onerror="this.src='https://placehold.co/600x450/2D3748/CBD5E0?text=Image+Failed'">
-                    <img class="w-full h-auto rounded-xl shadow-lg break-inside-avoid" src="gallery/img6.jpg" alt="Gallery Image 6" onerror="this.src='https://placehold.co/600x800/003552/EFE6DE?text=Image+Failed'">
+
+        <!-- =============================================
+     BLOCK 5 — CONVERSION
+     ============================================= -->
+
+        <!-- 6. JOIN SKEELERS -->
+        <section id="join" class="section join-section">
+            <div class="container">
+
+                <div class="section-header reveal">
+                    <span class="section-eyebrow">Get Started</span>
+                    <h2 class="section-title">Join Skeelers</h2>
+                    <p class="section-desc">Have questions or ready to start? Reach out — we're excited to welcome you
+                        to the Skeelers family.</p>
+                    <a href="https://wa.me/919562559009" target="_blank" rel="noopener noreferrer"
+                        class="btn-primary btn-cta-top">Book Free Trial Session</a>
                 </div>
 
-                <div class="text-center mt-12">
-                    <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer" class="inline-block bg-accent-red text-white font-medium py-3 px-8 rounded-lg shadow-md hover:bg-opacity-90 transition-all duration-300 text-lg">See More on Instagram</a>
+                <!-- Contact Info — minimal mobile-first design -->
+                <div class="contact-list reveal">
+                    <a href="mailto:skeelersrsc@gmail.com" class="contact-row">
+                        <div class="contact-row-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                            </svg>
+                        </div>
+                        <div class="contact-row-body">
+                            <span class="contact-row-label">Email</span>
+                            <span class="contact-row-value">skeelersrsc@gmail.com</span>
+                        </div>
+                        <span class="contact-row-arrow">↗</span>
+                    </a>
+
+                    <a href="tel:+919562559009" class="contact-row">
+                        <div class="contact-row-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                            </svg>
+                        </div>
+                        <div class="contact-row-body">
+                            <span class="contact-row-label">Call — Jamal KT</span>
+                            <span class="contact-row-value">(+91) 95625 59009</span>
+                        </div>
+                        <span class="contact-row-arrow">↗</span>
+                    </a>
+
+                    <a href="tel:+919048196949" class="contact-row">
+                        <div class="contact-row-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                            </svg>
+                        </div>
+                        <div class="contact-row-body">
+                            <span class="contact-row-label">Call — Kavitha R</span>
+                            <span class="contact-row-value">(+91) 90481 96949</span>
+                        </div>
+                        <span class="contact-row-arrow">↗</span>
+                    </a>
+
+                    <div class="contact-row contact-row-location">
+                        <div class="contact-row-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                            </svg>
+                        </div>
+                        <div class="contact-row-body">
+                            <span class="contact-row-label">Our Venues</span>
+                            <span class="contact-row-value">St. John's Convention Center, Parampuzha</span>
+                            <span class="contact-row-value">Decathlon Sports, Thellakom, Kottayam</span>
+                        </div>
+                        <div class="contact-row-map-links">
+                            <a href="https://maps.app.goo.gl/8Jz6sNKLUsj5Q7iJ9" target="_blank"
+                                rel="noopener noreferrer" class="map-link-btn">Map ↗</a>
+                            <a href="https://maps.app.goo.gl/3Qip4bwPb5KPQuHWA" target="_blank"
+                                rel="noopener noreferrer" class="map-link-btn">Map ↗</a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="bg-primary-bg text-primary-text py-16 md:py-24">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-text mb-6">Get In Touch!</h2>
-                <p class="text-lg text-secondary-text max-w-2xl mx-auto mb-12 md:mb-16">Have questions or ready to join? Reach out to us. We're excited to welcome you to the Skeelers family!</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12 md:mb-16">
-                    <!-- Contact: Email -->
-                    <div class="flex flex-col items-center">
-                        <div class="bg-accent-red rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 shadow-lg">
-                            <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Email Us</h3>
-                        <p class="text-secondary-text text-lg">skeelersrsc@gmail.com</p>
-                    </div>
-
-                    <!-- Contact: Call -->
-                    <div class="flex flex-col items-center">
-                        <div class="bg-accent-red rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 shadow-lg">
-                            <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Call Us</h3>
-                        <p class="text-secondary-text text-lg">(+91) 95625 59009 - Jamal KT</p>
-                        <p class="text-secondary-text text-lg">(+91) 90481 96949 - Kavitha R</p>
-                    </div>
-                </div>
-
-                <!-- Contact: Visit -->
-                <div>
-                    <div class="flex flex-col items-center max-w-2xl mx-auto">
-                        <div class="bg-accent-red rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 shadow-lg">
-                            <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-heading font-bold text-primary-text mb-3">Visit Us</h3>
-                        <p class="text-secondary-text text-lg">- St. Johns Convention Center, Parampuzha, Kottayam, Kerala</p>
-                        <p class="text-secondary-text text-lg mb-8">- Decathlon Sports, Thellakom, Kottayam, Kerala.</p>
-                    </div>
-                    
-                    <!-- Map Embeds -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                        <div class="rounded-lg overflow-hidden shadow-xl aspect-video lg:aspect-auto">
-                            <!-- FIX: Added title for accessibility -->
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.4978037462665!2d76.5421895762553!3d9.638436479149199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07d4aba20d630d%3A0xee0594a523a75ac9!2sDecathlon%20Sports%20-%20Kottayam!5e0!3m2!1sen!2sin!4v1762270413515!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Map for Decathlon Sports - Kottayam"></iframe>
-                        </div>
-                        <div class="rounded-lg overflow-hidden shadow-xl aspect-video lg:aspect-auto">
-                            <!-- FIX: Added title for accessibility -->
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.738302389779!2d76.56047687625515!3d9.617786979492282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b062cbcf6f1eaff%3A0x25eb1138c6e67a39!2sSt%20John&#39;s%20Convention%20Centre%2CParampuzha!5e0!3m2!1sen!2sin!4v1762270494316!5m2!1sen!2sin" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Map for St John's Convention Centre, Parampuzha"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <!-- Footer Section -->
-    <footer class="bg-primary-text text-primary-bg py-16" style="margin-top: -1px;">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-            <!-- Footer: Brand -->
-            <div>
-                <a href="#home" class="text-3xl font-extrabold text-white mb-4 block">SKEELERS</a>
-                <p class="text-primary-bg/70">From Road to Rink.</p>
+    <!-- =============================================
+     FOOTER
+     ============================================= -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#home" class="logo">SKEELERS</a>
+                <p>From Road to Rink.</p>
             </div>
-
-            <!-- Footer: Quick Links -->
-            <div>
-                <h4 class="text-xl font-heading font-bold text-white mb-4">Quick Links</h4>
-                <ul class="space-y-2">
-                    <li><a href="#about" class="text-primary-bg/70 hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="#services" class="text-primary-bg/70 hover:text-white transition-colors">Services</a></li>
-                    <li><a href="#schedule" class="text-primary-bg/70 hover:text-white transition-colors">Schedule</a></li>
-                    <li><a href="#gallery" class="text-primary-bg/70 hover:text-white transition-colors">Gallery</a></li>
-                    <li><a href="#contact" class="text-primary-bg/70 hover:text-white transition-colors">Contact Us</a></li>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#training">Training</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#club-life">Club Life</a></li>
+                    <li><a href="#join">Contact</a></li>
                 </ul>
             </div>
-
-            <!-- Footer: Social Links -->
-            <div>
-                <h4 class="text-xl font-heading font-bold text-white mb-4">Follow Us</h4>
-                <div class="flex space-x-4">
-                    <!-- FIX: Added aria-label -->
-                    <a href="#" class="text-primary-bg/70 hover:text-white transition-colors" aria-label="Facebook">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                clip-rule="evenodd" />
+                        </svg>
                     </a>
-                    <!-- FIX: Added correct href and aria-label -->
-                    <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer" class="text-primary-bg/70 hover:text-white transition-colors" aria-label="Instagram">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm5.25-8.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" clip-rule="evenodd" /></svg>
+                    <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm5.25-8.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"
+                                clip-rule="evenodd" />
+                        </svg>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="container mx-auto px-6 mt-12 border-t border-primary-bg/20 pt-8 text-center text-primary-bg/50">&copy; 2025 Skeelers Roller Skating Club. All Rights Reserved.</div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Skeelers Roller Skating Club. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <!-- Modal: Onam Celebration -->
-    <div id="modal-news-1" class="news-modal fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 p-4">
-        <div class="bg-white w-full max-w-4xl rounded-lg shadow-xl overflow-hidden max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b">
-                <h3 class="text-2xl font-heading font-bold text-primary-text">Onam Celebration</h3>
-                <button class="close-modal-btn text-3xl text-gray-400 hover:text-gray-800" aria-label="Close modal">&times;</button>
-            </div>
-            <div class="p-6 overflow-y-auto">
-                <!-- FIX: Added onerror fallback -->
-                <img src="onam/onam3.jpg" alt="Onam Celebration" class="w-full h-auto rounded-lg mb-6" onerror="this.src='https://placehold.co/800x500/FFEFAD/003552?text=Image+Failed'">
-                <p class="text-lg text-secondary-text mb-4">Our Skeelers Roller Skating Club came together to celebrate Onam with great joy and team spirit. The event brought together skaters, parents, and children, all dressed in vibrant traditional attire, adding color and warmth to the celebration. The evening was filled with fun activities, games, and laughter, followed by a delightful dinner that everyone enjoyed together. It was a wonderful occasion that strengthened our sense of community and showcased the festive spirit that unites the Skeelers family.</p>
-                <p class="text-lg text-secondary-text mb-6">More photos and highlights from the event:</p>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <!-- FIX: Added onerror fallbacks -->
-                    <img src="onam/onam1.jpg" alt="Event Photo 1" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/400x300/FFEFAD/003552?text=Image+Failed'">
-                    <img src="onam/onam2.jpg" alt="Event Photo 2" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/400x300/FFEFAD/003552?text=Image+Failed'">
-                    <img src="onam/onam4.jpg" alt="Event Photo 3" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/400x300/FFEFAD/003552?text=Image+Failed'">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: District Championship -->
-    <div id="modal-news-2" class="news-modal fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 p-4">
-        <div class="bg-white w-full max-w-4xl rounded-lg shadow-xl overflow-hidden max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b">
-                <h3 class="text-2xl font-heading font-bold text-primary-text">Kottayam District Roller Skating Championship</h3>
-                <button class="close-modal-btn text-3xl text-gray-400 hover:text-gray-800" aria-label="Close modal">&times;</button>
-            </div>
-            <div class="p-6 overflow-y-auto">
-                <img src="https://placehold.co/800x500/003552/EFE6DE?text=District+Championship" alt="District Championship" class="w-full h-auto rounded-lg mb-6">
-                <p class="text-lg text-secondary-text mb-4">Detailed results from the Kottayam District Championship. Our skaters performed exceptionally, with 10 gold, 8 silver, and 12 bronze medals. This outstanding performance secured our spot as the top-ranking club in the district.</p>
-                <p class="text-lg text-secondary-text mb-6">Congratulations to all participants!</p>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <!-- FIX: Added alt attributes -->
-                    <img src="https://placehold.co/400x300/003552/EFE6DE?text=District+1" alt="District Championship Photo 1" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]">
-                    <img src="https://placehold.co/400x300/003552/EFE6DE?text=District+2" alt="District Championship Photo 2" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]">
-                    <img src="https://placehold.co/400x300/003552/EFE6DE?text=District+3" alt="District Championship Photo 3" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]">
-                    <img src="https://placehold.co/400x300/003552/EFE6DE?text=District+4" alt="District Championship Photo 4" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]">
-                    <img src="https://placehold.co/400x300/003552/EFE6DE?text=District+5" alt="District Championship Photo 5" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]">
-                    <img src="https://placehold.co/400x300/003552/EFE6DE?text=District+6" alt="District Championship Photo 6" class="rounded-lg shadow-md w-full h-auto object-cover aspect-[4/3]">
-                </div>
+    <!-- =============================================
+     MODALS
+     ============================================= -->
+    <div id="modal-news-1" class="news-modal" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <button class="close-modal-btn" aria-label="Close">&#x2715;</button>
+            <h3>Onam Celebration</h3>
+            <img src="images/onam/onam3.jpg" alt="Onam"
+                onerror="this.src='https://placehold.co/800x500/FFF3C2/003552?text=Onam'">
+            <p>Our Skeelers Club came together to celebrate Onam with great joy and team spirit. The event brought
+                together skaters, parents, and children dressed in vibrant traditional attire. The evening was filled
+                with fun activities, games, and laughter, followed by a delightful dinner.</p>
+            <div class="modal-gallery">
+                <img src="images/onam/onam1.jpg" alt="Onam 1"
+                    onerror="this.src='https://placehold.co/400x300/FFF3C2/003552?text=Photo'">
+                <img src="images/onam/onam2.jpg" alt="Onam 2"
+                    onerror="this.src='https://placehold.co/400x300/FFF3C2/003552?text=Photo'">
+                <img src="images/onam/onam4.jpg" alt="Onam 4"
+                    onerror="this.src='https://placehold.co/400x300/FFF3C2/003552?text=Photo'">
             </div>
         </div>
     </div>
 
-    <!-- Modal: State Championship -->
-    <div id="modal-news-3" class="news-modal fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 p-4">
-        <div class="bg-white w-full max-w-4xl rounded-lg shadow-xl overflow-hidden max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b">
-                <h3 class="text-2xl font-heading font-bold text-primary-text">Kerala State Roller Skating Championship</h3>
-                <button class="close-modal-btn text-3xl text-gray-400 hover:text-gray-800" aria-label="Close modal">&times;</button>
-            </div>
-            <div class="p-6 overflow-y-auto">
-                <p class="text-lg text-secondary-text">Results will be updated Soon. Stay Tuned!</p>
-            </div>
+    <div id="modal-news-2" class="news-modal" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <button class="close-modal-btn" aria-label="Close">&#x2715;</button>
+            <h3>Kottayam District Roller Skating Championship</h3>
+            <img src="images/district2025/district1.jpg" alt="District Championship"
+                onerror="this.src='https://placehold.co/800x500/003552/F1EBE4?text=District+Championship'">
+            <p>Our skaters performed exceptionally at the Kottayam District Championship — 10 gold, 8 silver, and 12
+                bronze medals. This outstanding performance secured our position as the top-ranking club in the district
+                and earned multiple selections for the Kerala State Championship.</p>
+            <p>Congratulations to all participants!</p>
         </div>
     </div>
 
-    <!-- Modal: About More -->
-    <div id="modal-about" class="news-modal fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 p-4">
-        <div class="bg-white w-full max-w-4xl rounded-lg shadow-xl overflow-hidden max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b">
-                <h3 class="text-2xl font-heading font-bold text-primary-text">More About Skeelers</h3>
-                <button class="close-modal-btn text-3xl text-gray-400 hover:text-gray-800" aria-label="Close modal">&times;</button>
-            </div>
-            <div class="p-6 md:p-10 overflow-y-auto">
-                <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text mb-4">What We Do</h3>
-                <p class="text-lg text-secondary-text mb-6 leading-relaxed">We offer year-round training, bank track practice, road practice, workshops, and events for skaters of all ages and skill levels.</p>
-                <p class="text-lg text-secondary-text mb-8 leading-relaxed">From recreational skating and fitness sessions to competitive training and performance coaching, Skeelers provides expert guidance and a supportive environment that helps you glide beyond your limits. Our certified instructors focus on safety, technique, and fun — ensuring that every session is both rewarding and exhilarating.</p>
-
-                <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text mt-8 mb-4">Our Mission</h3>
-                <p class="text-lg text-secondary-text mb-8 leading-relaxed">To inspire and empower individuals to embrace the spirit of skating — promoting health, happiness, and community through every stride.</p>
-
-                <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text mt-8 mb-4">Our Vision</h3>
-                <p class="text-lg text-secondary-text mb-8 leading-relaxed">To build a culture where roller skating becomes a lifestyle of expression, fitness, and unity, accessible to everyone.</p>
-
-                <h3 class="text-2xl md:text-3xl font-heading font-bold text-primary-text mt-8 mb-4">Why Choose Skeelers</h3>
-                <ul class="list-disc list-inside space-y-3 text-lg text-secondary-text mb-8 pl-4">
-                    <li><span class="font-semibold text-primary-text">Inclusive community:</span> Everyone is welcome, from first-time visitors to seasoned professionals.</li>
-                    <li><span class="font-semibold text-primary-text">Professional coaching:</span> Learn from passionate, certified trainers.</li>
-                    <li><span class="font-semibold text-primary-text">Safe environment:</span> Modern equipment and protective practices at every level.</li>
-                    <li><span class="font-semibold text-primary-text">Vibrant culture:</span> Events, workshops, and skate fests that keep the spirit alive.</li>
-                </ul>
-
-                <p class="text-lg text-secondary-text mb-6 leading-relaxed">Join us at Skeelers and rediscover the thrill of movement, the rhythm of wheels, and the freedom of the open floor.</p>
-                <p class="text-xl font-semibold text-primary-text">Let's roll together — because at Skeelers, the journey is always in motion.</p>
-            </div>
+    <div id="modal-news-3" class="news-modal" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <button class="close-modal-btn" aria-label="Close">&#x2715;</button>
+            <h3>Kerala State Roller Skating Championship</h3>
+            <p>Results will be updated soon. Stay Tuned!</p>
         </div>
     </div>
 
-    <!-- Page JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('main > section');
-            const header = document.querySelector('header');
-            const homeSection = document.querySelector('#home');
-
-            // Scroll-spy for navigation links
-            const onScroll = () => {
-                const scrollPos = window.scrollY + header.offsetHeight + 50;
-                let currentActive = null;
-
-                sections.forEach(section => {
-                    if (section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
-                        currentActive = '#' + section.getAttribute('id');
-                    }
-                });
-                
-                // Handle edge cases for top and bottom of page
-                if (window.scrollY < homeSection.offsetTop) {
-                    currentActive = '#home';
-                } else if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 50) {
-                    // Check if contact section is visible
-                    const contactSection = document.querySelector('#contact');
-                    if(contactSection.offsetTop <= scrollPos) {
-                         currentActive = '#contact';
-                    }
-                }
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active', 'font-medium');
-                    if (link.getAttribute('href') === currentActive) {
-                        link.classList.add('active', 'font-medium');
-                    }
-                });
-            };
-            
-            window.addEventListener('scroll', onScroll);
-            onScroll(); // Run on load to set initial state
-
-            // Mobile menu toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // Close mobile menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-
-            // News Carousel Logic
-            const newsTrack = document.getElementById('news-carousel-track');
-            const newsPrevBtn = document.getElementById('news-prev');
-            const newsNextBtn = document.getElementById('news-next');
-            const paginationContainer = document.getElementById('news-pagination');
-
-            if (newsTrack && newsPrevBtn && newsNextBtn && paginationContainer) {
-                const slides = Array.from(newsTrack.querySelectorAll('.news-slide'));
-                let currentSlideIndex = 0;
-                const dots = [];
-
-                // Create pagination dots
-                slides.forEach((slide, index) => {
-                    const dot = document.createElement('button');
-                    dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition-colors', 'pagination-dot');
-                    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-                    
-                    if (index === 0) {
-                        dot.classList.add('bg-primary-text');
-                    } else {
-                        dot.classList.add('bg-primary-text/40', 'hover:bg-primary-text/70');
-                    }
-
-                    dot.addEventListener('click', () => {
-                        scrollToSlide(index);
-                    });
-                    
-                    paginationContainer.appendChild(dot);
-                    dots.push(dot);
-                });
-
-                // Update active dot
-                const updateActiveDot = (index) => {
-                    dots.forEach((dot, i) => {
-                        if (i === index) {
-                            dot.classList.remove('bg-primary-text/40', 'hover:bg-primary-text/70');
-                            dot.classList.add('bg-primary-text');
-                        } else {
-                            dot.classList.remove('bg-primary-text');
-                            dot.classList.add('bg-primary-text/40', 'hover:bg-primary-text/70');
-                        }
-                    });
-                };
-
-                // Scroll to a specific slide
-                const scrollToSlide = (index) => {
-                    if (index < 0 || index >= slides.length) return;
-                    
-                    currentSlideIndex = index;
-                    const slideLeft = slides[index].offsetLeft - parseInt(getComputedStyle(newsTrack).paddingLeft);
-                    newsTrack.scrollTo({ left: slideLeft, behavior: 'smooth' });
-                    // Note: The Intersection Observer will handle updating the active dot
-                };
-
-                newsNextBtn.addEventListener('click', () => {
-                    const nextIndex = (currentSlideIndex + 1) % slides.length;
-                    scrollToSlide(nextIndex);
-                });
-
-                newsPrevBtn.addEventListener('click', () => {
-                    const prevIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-                    scrollToSlide(prevIndex);
-                });
-
-                // Use Intersection Observer to detect active slide on manual scroll
-                const observerOptions = {
-                    root: newsTrack,
-                    rootMargin: '0px',
-                    threshold: 0.6 // 60% of the slide must be visible
-                };
-
-                const observerCallback = (entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const index = slides.indexOf(entry.target);
-                            if (index !== -1) {
-                                currentSlideIndex = index;
-                                updateActiveDot(index);
-                            }
-                        }
-                    });
-                };
-
-                const newsObserver = new IntersectionObserver(observerCallback, observerOptions);
-                slides.forEach(slide => newsObserver.observe(slide));
-            }
-
-            // Modal open/close logic
-            const readMoreButtons = document.querySelectorAll('.read-more-btn');
-            const closeModalButtons = document.querySelectorAll('.close-modal-btn');
-            const newsModals = document.querySelectorAll('.news-modal');
-
-            const openModal = (modalId) => {
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                }
-            };
-
-            const closeModal = (modal) => {
-                if (modal) {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                    document.body.style.overflow = ''; // Restore background scrolling
-                }
-            };
-
-            readMoreButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const modalId = button.getAttribute('data-modal-target');
-                    openModal(modalId);
-                });
-            });
-
-            closeModalButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const modal = button.closest('.news-modal');
-                    closeModal(modal);
-                });
-            });
-
-            // Close modal when clicking on the overlay (outside the content)
-            newsModals.forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeModal(modal);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
