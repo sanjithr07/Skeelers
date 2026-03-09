@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
        MOBILE MENU
        ============================================= */
 
-    // Inject a dim overlay element for outside-tap detection
+    // Inject a dim overlay element for outside-tap (below the navbar)
     const navOverlay = document.createElement('div');
     navOverlay.className = 'nav-overlay';
     navOverlay.setAttribute('aria-hidden', 'true');
@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.classList.remove('open');
         navOverlay.classList.remove('visible');
         document.body.classList.remove('menu-open');
+        // Collapse any open sub-menus
+        document.querySelectorAll('.nav-item-dropdown.sub-open').forEach(d => d.classList.remove('sub-open'));
+        document.querySelectorAll('.dropdown-menu.mobile-open').forEach(m => m.classList.remove('mobile-open'));
     };
 
     hamburger.addEventListener('click', () => {
@@ -49,13 +52,30 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('menu-open', isOpen);
     });
 
-    // Close when user taps the dim overlay (outside the drawer)
+    // Close when user taps the dim overlay
     navOverlay.addEventListener('click', closeMenu);
 
-    // Close on any nav-link or CTA click
-    document.querySelectorAll('.nav-link, .btn-nav').forEach(link => {
+    // Dropdown chevron toggles (mobile only — inside mobile-nav-body)
+    document.querySelectorAll('.mobile-nav-body .nav-item-dropdown').forEach(dropdown => {
+        const trigger = dropdown.querySelector('.nav-link');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (!trigger || !menu) return;
+
+        trigger.addEventListener('click', (e) => {
+            if (window.innerWidth > 768) return;
+            e.preventDefault();
+            const isOpen = dropdown.classList.toggle('sub-open');
+            menu.classList.toggle('mobile-open', isOpen);
+        });
+    });
+
+    // Close on any nav-link, CTA click, or dropdown interior link (but not dropdown triggers on mobile)
+    document.querySelectorAll('.nav-link, .btn-nav, .btn-contact, .dropdown-menu a').forEach(link => {
+        // Prevent closing ONLY if they clicked the main dropdown toggle itself
+        if (link.classList.contains('nav-link') && link.closest('.mobile-nav-body .nav-item-dropdown')) return;
         link.addEventListener('click', closeMenu);
     });
+
 
     /* =============================================
        SCROLL-REVEAL

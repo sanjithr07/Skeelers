@@ -24,33 +24,74 @@
         <div class="nav-inner">
             <a href="#home" class="logo">SKEELERS</a>
             <nav class="nav-links" id="nav-links">
-                <a href="#join" class="btn-nav">Join Skeelers</a>
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
 
-                <div class="nav-item-dropdown">
-                    <a href="#training" class="nav-link">Training</a>
+                <!-- Mobile-only sliding panel body -->
+                <div class="mobile-nav-body">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+
+                    <div class="nav-item-dropdown">
+                        <a href="#training" class="nav-link">Training
+                            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#training">Overview</a>
+                            <a href="disciplines.html">Racing Disciplines</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item-dropdown">
+                        <a href="#club-life" class="nav-link">Club Life
+                            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#club-life">Achievements</a>
+                            <a href="gallery.html">Photo Gallery</a>
+                        </div>
+                    </div>
+
+                    <a href="#schedule" class="nav-link">Schedule</a>
+                </div>
+
+                <!-- Mobile-only bottom CTAs -->
+                <div class="mobile-nav-footer">
+                    <a href="#join" class="btn-nav">Join Skeelers</a>
+                    <a href="https://wa.me/9048196949" target="_blank" rel="noopener noreferrer" class="btn-contact">Book Free Trial</a>
+                </div>
+
+                <!-- Desktop-only nav items -->
+                <a href="#join" class="btn-nav desktop-only">Join Skeelers</a>
+                <a href="#home" class="nav-link desktop-only">Home</a>
+                <a href="#about" class="nav-link desktop-only">About</a>
+
+                <div class="nav-item-dropdown desktop-only">
+                    <a href="#training" class="nav-link">Training
+                        <svg class="nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
                     <div class="dropdown-menu">
                         <a href="#training">Overview</a>
                         <a href="disciplines.html">Racing Disciplines</a>
                     </div>
                 </div>
 
-                <div class="nav-item-dropdown">
-                    <a href="#club-life" class="nav-link">Club Life</a>
+                <div class="nav-item-dropdown desktop-only">
+                    <a href="#club-life" class="nav-link">Club Life
+                        <svg class="nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </a>
                     <div class="dropdown-menu">
                         <a href="#club-life">Achievements</a>
                         <a href="gallery.html">Photo Gallery</a>
                     </div>
                 </div>
 
-                <a href="#schedule" class="nav-link">Schedule</a>
+                <a href="#schedule" class="nav-link desktop-only">Schedule</a>
             </nav>
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
+
 
     <main>
 
