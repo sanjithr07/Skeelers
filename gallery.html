@@ -151,11 +151,47 @@
         <div class="nav-inner">
             <a href="index.html" class="logo">SKEELERS</a>
             <nav class="nav-links" id="nav-links">
-                <a href="index.html#join" class="btn-nav">Join Skeelers</a>
-                <a href="index.html#home" class="nav-link">Home</a>
-                <a href="index.html#about" class="nav-link">About</a>
 
-                <div class="nav-item-dropdown">
+                <!-- Mobile-only sliding panel body -->
+                <div class="mobile-nav-body">
+                    <a href="index.html#home" class="nav-link">Home</a>
+                    <a href="index.html#about" class="nav-link">About</a>
+
+                    <div class="nav-item-dropdown">
+                        <a href="index.html#training" class="nav-link">Training
+                            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html#training">Overview</a>
+                            <a href="disciplines.html">Racing Disciplines</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item-dropdown">
+                        <a href="index.html#club-life" class="nav-link">Club Life
+                            <svg class="nav-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html#club-life">Achievements</a>
+                            <a href="gallery.html">Photo Gallery</a>
+                        </div>
+                    </div>
+
+                    <a href="index.html#schedule" class="nav-link">Schedule</a>
+                </div>
+
+                <!-- Mobile-only bottom CTAs -->
+                <div class="mobile-nav-footer">
+                    <a href="index.html#join" class="btn-nav">Join Skeelers</a>
+                    <a href="https://wa.me/9048196949" target="_blank" rel="noopener noreferrer" class="btn-contact">Book Free Trial</a>
+                </div>
+
+                <!-- Desktop-only nav items -->
+                <a href="index.html#join" class="btn-nav desktop-only">Join Skeelers</a>
+                <a href="index.html#home" class="nav-link desktop-only">Home</a>
+                <a href="index.html#about" class="nav-link desktop-only">About</a>
+
+                <div class="nav-item-dropdown desktop-only">
                     <a href="index.html#training" class="nav-link">Training</a>
                     <div class="dropdown-menu">
                         <a href="index.html#training">Overview</a>
@@ -163,7 +199,7 @@
                     </div>
                 </div>
 
-                <div class="nav-item-dropdown">
+                <div class="nav-item-dropdown desktop-only">
                     <a href="index.html#club-life" class="nav-link">Club Life</a>
                     <div class="dropdown-menu">
                         <a href="index.html#club-life">Achievements</a>
@@ -171,13 +207,15 @@
                     </div>
                 </div>
 
-                <a href="index.html#schedule" class="nav-link">Schedule</a>
+                <a href="index.html#schedule" class="nav-link desktop-only">Schedule</a>
             </nav>
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
+
+
 
     <main>
         <div class="gallery-page-hero">
@@ -295,6 +333,8 @@
             hamburger.classList.remove('open');
             navOverlay.classList.remove('visible');
             document.body.classList.remove('menu-open');
+            document.querySelectorAll('.nav-item-dropdown.sub-open').forEach(d => d.classList.remove('sub-open'));
+            document.querySelectorAll('.dropdown-menu.mobile-open').forEach(m => m.classList.remove('mobile-open'));
         };
 
         hamburger.addEventListener('click', () => {
@@ -304,11 +344,26 @@
             document.body.classList.toggle('menu-open', isOpen);
         });
 
+        // Close when user taps the dim overlay
         navOverlay.addEventListener('click', closeMenu);
 
-        document.querySelectorAll('.nav-link, .btn-nav').forEach(link => {
+        document.querySelectorAll('.mobile-nav-body .nav-item-dropdown').forEach(dropdown => {
+            const trigger = dropdown.querySelector('.nav-link');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            if (!trigger || !menu) return;
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const isOpen = dropdown.classList.toggle('sub-open');
+                menu.classList.toggle('mobile-open', isOpen);
+            });
+        });
+
+        document.querySelectorAll('.nav-link, .btn-nav, .btn-contact').forEach(link => {
+            if (link.closest('.mobile-nav-body .nav-item-dropdown')) return;
             link.addEventListener('click', closeMenu);
         });
+
 
         // Lightbox
         const lb = document.getElementById('lightbox');
