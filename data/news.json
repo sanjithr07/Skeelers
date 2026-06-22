@@ -1,13 +1,16 @@
 [
   {
-    "id": "1",
-    "title": "Kerala State Roller Skating Championship",
-    "date": "November 04, 2025",
-    "tag": "Championship",
-    "shortDescription": "Our club members will soon compete in the upcoming Kerala State Roller Skating Championship, representing our institution at the state level.",
-    "fullDescription": "Results will be updated soon. Stay Tuned!",
-    "heroImage": "https://placehold.co/800x440/E01522/FFFFFF?text=State+Championship",
-    "additionalImages": []
+    "id": "3",
+    "title": "KV State Roller Skating Championship",
+    "date": "June 18, 2026",
+    "tag": "Achievement",
+    "shortDescription": "Skeelers Roller Skating Academy skaters delivered an impressive performance at the KV State Roller Skating Championship, securing gold, silver, and bronze medals across multiple events.",
+    "fullDescription": "Our skaters showcased exceptional talent and determination at the KV State Roller Skating Championship, bringing home an impressive collection of medals.\n\n🏅 Medal Winners:\n• Adwaith – Silver (500 m), Silver (Road 1 Lap), Bronze (1000 m)\n• Agnes – Silver (500 m), Silver (1000 m), Silver (Road 1 Lap)\n• Ann Maria – Gold (500 m), Silver (Road 1 Lap)\n\nWe are incredibly proud of all our medal winners and participants for their hard work, dedication, and outstanding sportsmanship. Congratulations to every skater for making SSS Roller Skating Academy proud. Keep striving for excellence and continue skating towards greater achievements! 🛼🏆",
+    "heroImage": "images/18may2026/1782147006602-822534984-Image.jpg",
+    "additionalImages": [
+      "images/18may2026/1782147006614-407724441-Image__2_.jpg",
+      "images/18may2026/1782147006623-757153926-Image__1_.jpg"
+    ]
   },
   {
     "id": "2",
@@ -20,7 +23,7 @@
     "additionalImages": []
   },
   {
-    "id": "3",
+    "id": "1",
     "title": "Team Onam Celebration",
     "date": "August 30, 2025",
     "tag": "Event",
