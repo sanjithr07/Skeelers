@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const additionalPreview = document.getElementById('additionalPreviewText');
     const overlay = document.getElementById('loadingOverlay');
     const toast = document.getElementById('toast');
+    const jsonInput = document.getElementById('jsonInput');
+    const copyTemplateBtn = document.getElementById('copyTemplateBtn');
+    const newsIdInput = document.getElementById('newsId');
 
     // Handle file input text updates
     heroInput.addEventListener('change', (e) => {
@@ -58,6 +61,86 @@ document.addEventListener('DOMContentLoaded', () => {
         return d.toLocaleDateString('en-US', options);
     }
 
+    function parseDateToYYYYMMDD(dateStr) {
+        if (!dateStr) return '';
+        // If it's already YYYY-MM-DD
+        if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+            return dateStr;
+        }
+        // Try JS Date parsing
+        const timestamp = Date.parse(dateStr);
+        if (!isNaN(timestamp)) {
+            const d = new Date(timestamp);
+            const yyyy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+        return '';
+    }
+
+    // JSON Quick Import Logic
+    const jsonTemplate = {
+        id: "",
+        title: "",
+        date: "YYYY-MM-DD",
+        tag: "Event/Achievement/Championship/News",
+        shortDescription: "",
+        fullDescription: ""
+    };
+
+    copyTemplateBtn.addEventListener('click', () => {
+        const templateString = JSON.stringify(jsonTemplate, null, 2);
+        navigator.clipboard.writeText(templateString)
+            .then(() => showToast('Template copied to clipboard!'))
+            .catch(err => {
+                console.error('Failed to copy: ', err);
+                showToast('Failed to copy template.', true);
+            });
+    });
+
+    jsonInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        if (!val) return;
+        try {
+            const data = JSON.parse(val);
+            if (data.id !== undefined) {
+                newsIdInput.value = data.id;
+            }
+            if (data.title !== undefined) {
+                document.getElementById('title').value = data.title;
+            }
+            if (data.date !== undefined) {
+                const formatted = parseDateToYYYYMMDD(data.date);
+                if (formatted) {
+                    document.getElementById('date').value = formatted;
+                }
+            }
+            if (data.tag !== undefined) {
+                const tagSelect = document.getElementById('tag');
+                const valLower = data.tag.toLowerCase();
+                for (let opt of tagSelect.options) {
+                    if (opt.value.toLowerCase() === valLower) {
+                        tagSelect.value = opt.value;
+                        break;
+                    }
+                }
+            }
+            if (data.shortDescription !== undefined) {
+                document.getElementById('shortDescription').value = data.shortDescription;
+            }
+            if (data.fullDescription !== undefined) {
+                const rawDesc = String(data.fullDescription);
+                document.getElementById('fullDescription').value = rawDesc.replace(/\\n/g, '\n');
+            }
+            showToast('Form fields populated!');
+        } catch (err) {
+            if (val.startsWith('{') && val.endsWith('}')) {
+                console.warn('JSON parsing error:', err);
+            }
+        }
+    });
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -69,11 +152,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         overlay.classList.add('active');
 
+        // Dynamically compute the folder name from the date input value
+        const dateVal = document.getElementById('date').value; // e.g. "2026-06-18"
+        let folderName = 'news';
+        if (dateVal) {
+            const parts = dateVal.split('-');
+            if (parts.length === 3) {
+                const year = parts[0];
+                const monthNum = parseInt(parts[1], 10);
+                const day = parseInt(parts[2], 10);
+                const months = [
+                    "january", "february", "march", "april", "may", "june",
+                    "july", "august", "september", "october", "november", "december"
+                ];
+                const monthName = months[monthNum - 1] || 'news';
+                folderName = `${day}${monthName}${year}`; // e.g. "18june2026"
+            }
+        }
+
         const formData = new FormData();
+        formData.append('id', newsIdInput.value);
         formData.append('title', document.getElementById('title').value);
         formData.append('date', formatDate(document.getElementById('date').value));
         formData.append('tag', document.getElementById('tag').value);
-        formData.append('folderName', document.getElementById('folderName').value);
+        formData.append('folderName', folderName);
         formData.append('shortDescription', document.getElementById('shortDescription').value);
         formData.append('fullDescription', document.getElementById('fullDescription').value);
 

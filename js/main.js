@@ -148,8 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     galleryHTML += '</div>';
                 }
 
-                // Format full description (replace newlines with <br> or wrap in <p>)
-                const formattedDesc = item.fullDescription.split('\n').map(p => p.trim() ? `<p>${p}</p>` : '').join('');
+                // Format full description (normalize literal '\n' strings and split into paragraphs)
+                const descText = item.fullDescription || '';
+                const formattedDesc = descText.replace(/\\n/g, '\n').split('\n').map(p => p.trim() ? `<p>${p}</p>` : '').join('');
 
                 modalsHTML += `
                     <div id="${modalId}" class="news-modal" role="dialog" aria-modal="true">

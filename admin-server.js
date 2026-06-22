@@ -78,14 +78,39 @@ app.post('/api/news', upload.fields([
         const folderName = req.body.folderName || 'news';
         const safeFolderName = folderName.replace(/[^a-z0-9_-]/gi, '-').toLowerCase();
 
+        // Read existing news.json first to generate a sequential ID
+        const newsJsonPath = path.join(__dirname, 'data', 'news.json');
+        let newsData = [];
+        if (fs.existsSync(newsJsonPath)) {
+            const rawData = fs.readFileSync(newsJsonPath, 'utf8');
+            try {
+                newsData = JSON.parse(rawData);
+            } catch (e) {
+                console.error('Error parsing news.json', e);
+            }
+        }
+
+        // Generate next sequential ID or use the custom ID provided in the request
+        let itemId = req.body.id;
+        if (!itemId || itemId.trim() === '') {
+            let nextId = 1;
+            if (newsData.length > 0) {
+                const ids = newsData.map(item => parseInt(item.id, 10)).filter(id => !isNaN(id));
+                if (ids.length > 0) {
+                    nextId = Math.max(...ids) + 1;
+                }
+            }
+            itemId = nextId.toString();
+        }
+
         // Construct new news item
         const newItem = {
-            id: Date.now().toString(),
+            id: itemId,
             title: req.body.title,
             date: req.body.date,
             tag: req.body.tag,
             shortDescription: req.body.shortDescription,
-            fullDescription: req.body.fullDescription,
+            fullDescription: (req.body.fullDescription || '').replace(/\\n/g, '\n'),
             heroImage: '',
             additionalImages: []
         };
@@ -99,18 +124,6 @@ app.post('/api/news', upload.fields([
             req.files['additionalImages'].forEach(file => {
                 newItem.additionalImages.push(`images/${safeFolderName}/${file.filename}`);
             });
-        }
-
-        // Read existing news.json
-        const newsJsonPath = path.join(__dirname, 'data', 'news.json');
-        let newsData = [];
-        if (fs.existsSync(newsJsonPath)) {
-            const rawData = fs.readFileSync(newsJsonPath, 'utf8');
-            try {
-                newsData = JSON.parse(rawData);
-            } catch (e) {
-                console.error('Error parsing news.json', e);
-            }
         }
 
         // Add new item to the beginning of the array
