@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeelers Admin Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f4eee6;
+            --text-primary: #003552;
+            --text-secondary: #7a7a7a;
+            --brand-primary: #e01522;
+            --brand-secondary: #b80f1a;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        body.dark-theme {
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #121212;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --brand-primary: #4fc3f7;
+            --brand-secondary: #ff5252;
+        }
+        .admin-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 8rem auto 4rem;
+            padding: 2.5rem;
+            background: var(--bg-primary);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .admin-header {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        .admin-header .section-title {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 0.5rem;
+        }
+        .admin-header .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .admin-container {
+                padding: 1.5rem;
+                margin-top: 6rem;
+            }
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        .form-group small {
+            display: block;
+            margin-top: 0.4rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        body.dark-theme .form-control {
+            border-color: rgba(255,255,255,0.15);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.15);
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
+        }
+        .file-upload-wrapper {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        .file-input-group {
+            border: 2px dashed rgba(0,0,0,0.2);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark-theme .file-input-group {
+            border-color: rgba(255,255,255,0.2);
+        }
+        .file-input-group:hover {
+            border-color: var(--brand-primary);
+            background: rgba(128, 128, 128, 0.05);
+        }
+        .file-input-group input[type="file"] {
+            display: none;
+        }
+        .file-icon {
+            display: block;
+            margin: 0 auto 1rem;
+            color: var(--text-secondary);
+        }
+        .file-label-btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        .file-label-btn:hover,
+        .file-input-group:hover .file-label-btn {
+            background: var(--brand-primary);
+            color: #ffffff;
+        }
+        .preview-text {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 53, 82, 0.2);
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 53, 82, 0.3);
+        }
+        
+        /* Loading & Toasts */
+        #loadingOverlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        #loadingOverlay.active {
+            visibility: visible;
+            opacity: 0.95;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(0,53,82,0.1);
+            border-top-color: var(--brand-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.error {
+            background: var(--brand-secondary);
+        }
+        
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--text-primary);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .admin-nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 2rem;
+        }
+        .admin-nav-center {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+        @media (max-width: 768px) {
+            .admin-nav-center { display: none; }
+        }
+        
+        .icon-sun, .icon-moon {
+            width: 20px;
+            height: 20px;
+        }
+        body.dark-theme .icon-moon { display: none; }
+        body:not(.dark-theme) .icon-sun { display: none; }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar (simplified for admin) -->
+    <header class="navbar" style="background: var(--bg-primary); border-bottom: 1px solid rgba(0,0,0,0.05);">
+        <div class="admin-nav-inner" style="height: 100%;">
+            <a href="index.html" class="logo">SKEELERS</a>
+            
+            <div class="admin-nav-center">Admin Portal</div>
+
+            <nav style="display: flex; align-items: center; gap: 1rem;">
+                <button id="darkModeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                    <!-- Sun Icon (shown in dark mode) -->
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon (shown in light mode) -->
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <a href="index.html" class="nav-link desktop-only" style="margin-left: 1rem;">← Back to Site</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="admin-container">
+
+            <form id="newsForm">
+                <input type="hidden" id="newsId" name="id">
+
+                <!-- JSON Quick Import Card -->
+                <div class="form-group" style="background: rgba(128, 128, 128, 0.05); padding: 1.5rem; border-radius: 16px; margin-bottom: 2rem; border: 1px solid rgba(0,0,0,0.08);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                        <label for="jsonInput" style="font-weight: 700; font-size: 1rem; margin-bottom: 0; color: var(--text-primary);">Quick Import from JSON (Optional)</label>
+                        <button type="button" id="copyTemplateBtn" class="file-label-btn" style="padding: 0.4rem 1.1rem; font-size: 0.85rem; cursor: pointer; border: none; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; height: auto;">Copy Template</button>
+                    </div>
+                    <textarea id="jsonInput" class="form-control" placeholder='Paste news JSON here (e.g. { "title": "My Title", ... }) to auto-populate fields...' style="min-height: 90px; font-family: monospace; font-size: 0.9rem;"></textarea>
+                    <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">If your JSON has an "id", it will be sent to the server. Otherwise, a sequential ID is generated.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" id="title" name="title" class="form-control" required placeholder="Title">
+                </div>
+
+                <div class="form-row form-group">
+                    <div>
+                        <label for="date">Date *</label>
+                        <input type="date" id="date" name="date" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="tag">Category *</label>
+                        <select id="tag" name="tag" class="form-control" required>
+                            <option value="Event">Event</option>
+                            <option value="Achievement">Achievement</option>
+                            <option value="Championship">Championship</option>
+                            <option value="News">News</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="shortDescription">Short Description *</label>
+                    <textarea id="shortDescription" name="shortDescription" class="form-control" required placeholder="Short Description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullDescription">Full Description *</label>
+                    <textarea id="fullDescription" name="fullDescription" class="form-control" required placeholder="Full Description"></textarea>
+                </div>
+
+                <div class="file-upload-wrapper">
+                    <div class="form-group">
+                        <label>Hero Photo (Mandatory, max 1) *</label>
+                        <div class="file-input-group" onclick="document.getElementById('heroImage').click()">
+                            <svg class="file-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            <span class="file-label-btn">Choose Image</span>
+                            <input type="file" id="heroImage" name="heroImage" accept="image/*" required>
+                            <div id="heroPreviewText" class="preview-text">No file chosen</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <label>Additional Photos (Optional, max 6)</label>
+                        <div class="file-input-group" onclick="document.getElementById('additionalImages').click()">
+                            <svg class="file-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                            <span class="file-label-btn">Choose Images</span>
+                            <input type="file" id="additionalImages" name="additionalImages" accept="image/*" multiple>
+                            <div id="additionalPreviewText" class="preview-text">No files chosen</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary submit-btn">Publish News & Photos</button>
+            </form>
+        </div>
+    </main>
+
+    <div id="loadingOverlay">
+        <div class="spinner"></div>
+        <h3 style="margin-top: 1rem; color: var(--brand-primary);">Uploading & Saving...</h3>
+    </div>
+
+    <div id="toast" class="toast">Success!</div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

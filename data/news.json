@@ -1,0 +1,39 @@
+[
+  {
+    "id": "3",
+    "title": "KV State Roller Skating Championship",
+    "date": "June 18, 2026",
+    "tag": "Achievement",
+    "shortDescription": "Skeelers Roller Skating Academy skaters delivered an impressive performance at the KV State Roller Skating Championship, securing gold, silver, and bronze medals across multiple events.",
+    "fullDescription": "Our skaters showcased exceptional talent and determination at the KV State Roller Skating Championship, bringing home an impressive collection of medals.\n\n🏅 Medal Winners:\n• Adwaith – Silver (500 m), Silver (Road 1 Lap), Bronze (1000 m)\n• Agnes – Silver (500 m), Silver (1000 m), Silver (Road 1 Lap)\n• Ann Maria – Gold (500 m), Silver (Road 1 Lap)\n\nWe are incredibly proud of all our medal winners and participants for their hard work, dedication, and outstanding sportsmanship. Congratulations to every skater for making SSS Roller Skating Academy proud. Keep striving for excellence and continue skating towards greater achievements! 🛼🏆",
+    "heroImage": "images/18may2026/1782147006602-822534984-Image.jpg",
+    "additionalImages": [
+      "images/18may2026/1782147006614-407724441-Image__2_.jpg",
+      "images/18may2026/1782147006623-757153926-Image__1_.jpg"
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Kottayam District Roller Skating Championship",
+    "date": "October 15, 2025",
+    "tag": "Achievement",
+    "shortDescription": "Our students excelled at the Kottayam District Championship, winning multiple prizes and earning selection for the upcoming State Championship.",
+    "fullDescription": "Our skaters performed exceptionally at the Kottayam District Championship — 10 gold, 8 silver, and 12 bronze medals. This outstanding performance secured our position as the top-ranking club in the district and earned multiple selections for the Kerala State Championship.\n\nCongratulations to all participants!",
+    "heroImage": "images/district2025/district1.jpg",
+    "additionalImages": []
+  },
+  {
+    "id": "1",
+    "title": "Team Onam Celebration",
+    "date": "August 30, 2025",
+    "tag": "Event",
+    "shortDescription": "The Skeelers Club celebrated Onam with traditional attire, fun games, and a joyful dinner, bringing together our skating family in true festive spirit.",
+    "fullDescription": "Our Skeelers Club came together to celebrate Onam with great joy and team spirit. The event brought together skaters, parents, and children dressed in vibrant traditional attire. The evening was filled with fun activities, games, and laughter, followed by a delightful dinner.",
+    "heroImage": "images/onam/onam3.jpg",
+    "additionalImages": [
+      "images/onam/onam1.jpg",
+      "images/onam/onam2.jpg",
+      "images/onam/onam4.jpg"
+    ]
+  }
+]

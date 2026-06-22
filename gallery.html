@@ -230,27 +230,7 @@
             <div class="container">
                 <div class="gallery-full-grid" id="gallery-grid">
 
-                    <img src="images/gallery/img2.jpg" alt="Gallery photo 2" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x700/E01522/FFFFFF?text=Gallery'">
-                    <img src="images/gallery/img3.jpg" alt="Gallery photo 3" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x500/F4EEE6/003552?text=Gallery'">
-                    <img src="images/gallery/img4.jpg" alt="Gallery photo 4" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x600/E8E0D8/003552?text=Gallery'">
-                    <img src="images/gallery/img5.jpg" alt="Gallery photo 5" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x450/1a1a2e/F1EBE4?text=Gallery'">
-
-                    <img src="images/gallery/img6.jpg" alt="Gallery photo 6" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x500/E01522/FFFFFF?text=Gallery'">
-                    <img src="images/district2025/district1.jpg" alt="District Championship" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x450/003552/F1EBE4?text=Gallery'">
-                    <img src="images/onam/onam1.jpg" alt="Onam celebration" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x400/FFF3C2/003552?text=Gallery'">
-                    <img src="images/onam/onam2.jpg" alt="Onam celebration" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x600/FFF3C2/003552?text=Gallery'">
-                    <img src="images/onam/onam3.jpg" alt="Onam celebration" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x450/FFF3C2/003552?text=Gallery'">
-                    <img src="images/onam/onam4.jpg" alt="Onam celebration" loading="lazy"
-                        onerror="this.src='https://placehold.co/600x500/FFF3C2/003552?text=Gallery'">
+                    <!-- Images will be dynamically injected here by the script below -->
                 </div>
 
                 <div style="text-align:center; margin-top: 2rem; padding-bottom: 2rem;">
@@ -365,13 +345,14 @@
         });
 
 
-        // Lightbox
+        // Dynamic Gallery Fetch & Lightbox Initialization
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lb-img');
         const lbClose = document.getElementById('lb-close');
         const lbPrev = document.getElementById('lb-prev');
         const lbNext = document.getElementById('lb-next');
-        const gridImgs = Array.from(document.querySelectorAll('.gallery-full-grid img'));
+        const galleryGrid = document.getElementById('gallery-grid');
+        let gridImgs = [];
         let lbCurrent = 0;
 
         const openLb = (idx) => {
@@ -385,11 +366,11 @@
             document.body.style.overflow = '';
         };
         const lbNavigate = (dir) => {
+            if (gridImgs.length === 0) return;
             lbCurrent = (lbCurrent + dir + gridImgs.length) % gridImgs.length;
             lbImg.src = gridImgs[lbCurrent].src;
         };
 
-        gridImgs.forEach((img, i) => img.addEventListener('click', () => openLb(i)));
         lbClose.addEventListener('click', closeLb);
         lbPrev.addEventListener('click', () => lbNavigate(-1));
         lbNext.addEventListener('click', () => lbNavigate(1));
@@ -400,6 +381,38 @@
             if (e.key === 'ArrowLeft') lbNavigate(-1);
             if (e.key === 'ArrowRight') lbNavigate(1);
         });
+
+        async function loadGallery() {
+            try {
+                const res = await fetch('data/gallery.json');
+                if (!res.ok) throw new Error('Failed to load gallery data');
+                const images = await res.json();
+
+                if (images.length === 0) {
+                    galleryGrid.innerHTML = '<p style="text-align:center; padding: 2rem; color: var(--text-secondary); column-span: all;">No photos available.</p>';
+                    return;
+                }
+
+                let html = '';
+                // Sort or reverse images so newest are likely first, depending on how server generates it. 
+                // Currently server appends, so reverse to show newest first.
+                images.reverse().forEach(src => {
+                    html += `<img src="${src}" alt="Gallery photo" loading="lazy" onerror="this.style.display='none'">`;
+                });
+
+                galleryGrid.innerHTML = html;
+                
+                // Re-select all images after injection to attach listeners
+                gridImgs = Array.from(galleryGrid.querySelectorAll('img'));
+                gridImgs.forEach((img, i) => img.addEventListener('click', () => openLb(i)));
+
+            } catch (err) {
+                console.error(err);
+                galleryGrid.innerHTML = '<p style="text-align:center; padding: 2rem; color: var(--text-secondary); column-span: all;">Unable to load gallery photos.</p>';
+            }
+        }
+
+        loadGallery();
     </script>
 </body>
 
