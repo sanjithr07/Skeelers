@@ -92,19 +92,100 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
     /* =============================================
-       NEWS CAROUSEL
+       DYNAMIC NEWS & MODALS
        ============================================= */
     const track = document.getElementById('news-carousel-track');
+    const modalsContainer = document.getElementById('dynamic-modals-container');
+    const paginDiv = document.getElementById('news-pagination');
     const prevBtn = document.getElementById('news-prev');
     const nextBtn = document.getElementById('news-next');
-    const paginDiv = document.getElementById('news-pagination');
 
-    if (track && prevBtn && nextBtn && paginDiv) {
+    async function loadNews() {
+        if (!track || !modalsContainer) return;
+
+        try {
+            const res = await fetch('data/news.json');
+            if (!res.ok) throw new Error('Could not load news');
+            const newsData = await res.json();
+
+            if (newsData.length === 0) {
+                track.innerHTML = '<p style="text-align:center; padding: 2rem;">No news available at the moment.</p>';
+                return;
+            }
+
+            let cardsHTML = '';
+            let modalsHTML = '';
+
+            newsData.forEach((item, i) => {
+                const modalId = `modal-news-${item.id}`;
+                const heroImg = item.heroImage || `https://placehold.co/800x440/E8E0D8/003552?text=News`;
+                
+                // Build Card
+                cardsHTML += `
+                    <article class="news-slide news-card">
+                        <div class="news-img-wrap">
+                            <img src="${heroImg}" alt="${item.title}" loading="lazy"
+                                onerror="this.src='https://placehold.co/800x440/003552/F1EBE4?text=News'">
+                            <span class="news-tag">${item.tag}</span>
+                        </div>
+                        <div class="news-body">
+                            <time class="news-date">${item.date}</time>
+                            <h3>${item.title}</h3>
+                            <p>${item.shortDescription}</p>
+                            <button class="btn-text-link read-more-btn" data-modal-target="${modalId}">Read More
+                                →&#xFE0E;</button>
+                        </div>
+                    </article>
+                `;
+
+                // Build Modal
+                let galleryHTML = '';
+                if (item.additionalImages && item.additionalImages.length > 0) {
+                    galleryHTML = '<div class="modal-gallery">';
+                    item.additionalImages.forEach(img => {
+                        galleryHTML += `<img src="${img}" alt="Additional photo" loading="lazy" onerror="this.style.display='none'">`;
+                    });
+                    galleryHTML += '</div>';
+                }
+
+                // Format full description (replace newlines with <br> or wrap in <p>)
+                const formattedDesc = item.fullDescription.split('\n').map(p => p.trim() ? `<p>${p}</p>` : '').join('');
+
+                modalsHTML += `
+                    <div id="${modalId}" class="news-modal" role="dialog" aria-modal="true">
+                        <div class="modal-box">
+                            <button class="close-modal-btn" aria-label="Close">&#x2715;</button>
+                            <h3>${item.title}</h3>
+                            <img src="${heroImg}" alt="${item.title}" loading="lazy"
+                                onerror="this.src='https://placehold.co/800x500/003552/F1EBE4?text=News'">
+                            ${formattedDesc}
+                            ${galleryHTML}
+                        </div>
+                    </div>
+                `;
+            });
+
+            track.innerHTML = cardsHTML;
+            modalsContainer.innerHTML = modalsHTML;
+
+            initCarousel();
+            initModals();
+
+        } catch (err) {
+            console.error(err);
+            track.innerHTML = '<p style="text-align:center; padding: 2rem;">Unable to load news.</p>';
+        }
+    }
+
+    function initCarousel() {
         const slides = Array.from(track.querySelectorAll('.news-slide'));
+        if (slides.length === 0) return;
+        
         let current = 0;
         const dots = [];
+        
+        paginDiv.innerHTML = ''; // Clear existing
 
-        // Build pagination dots
         slides.forEach((_, i) => {
             const btn = document.createElement('button');
             btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
@@ -128,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtn.addEventListener('click', () => goTo(current + 1));
         prevBtn.addEventListener('click', () => goTo(current - 1));
 
-        // Sync dots on manual swipe
         const syncObs = new IntersectionObserver((entries) => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
@@ -140,40 +220,42 @@ document.addEventListener('DOMContentLoaded', () => {
         slides.forEach(s => syncObs.observe(s));
     }
 
-    /* =============================================
-       MODALS (News cards)
-       ============================================= */
-    const modals = document.querySelectorAll('.news-modal');
-    const readMoreBtns = document.querySelectorAll('.read-more-btn');
-    const closeModalBtns = document.querySelectorAll('.close-modal-btn');
+    function initModals() {
+        const modals = document.querySelectorAll('.news-modal');
+        const readMoreBtns = document.querySelectorAll('.read-more-btn');
+        const closeModalBtns = document.querySelectorAll('.close-modal-btn');
 
-    const openModal = (id) => {
-        const modal = document.getElementById(id);
-        if (!modal) return;
-        modal.classList.add('is-open');
-        document.body.classList.add('modal-open');
-        modal.querySelector('.close-modal-btn')?.focus();
-    };
+        const openModal = (id) => {
+            const modal = document.getElementById(id);
+            if (!modal) return;
+            modal.classList.add('is-open');
+            document.body.classList.add('modal-open');
+            modal.querySelector('.close-modal-btn')?.focus();
+        };
 
-    const closeModal = (modal) => {
-        if (!modal) return;
-        modal.classList.remove('is-open');
-        document.body.classList.remove('modal-open');
-    };
+        const closeModal = (modal) => {
+            if (!modal) return;
+            modal.classList.remove('is-open');
+            document.body.classList.remove('modal-open');
+        };
 
-    readMoreBtns.forEach(btn => {
-        btn.addEventListener('click', () => openModal(btn.dataset.modalTarget));
-    });
+        readMoreBtns.forEach(btn => {
+            btn.addEventListener('click', () => openModal(btn.dataset.modalTarget));
+        });
 
-    closeModalBtns.forEach(btn => {
-        btn.addEventListener('click', () => closeModal(btn.closest('.news-modal')));
-    });
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => closeModal(btn.closest('.news-modal')));
+        });
 
-    modals.forEach(modal => {
-        modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); });
-    });
+        modals.forEach(modal => {
+            modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); });
+        });
 
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') modals.forEach(closeModal);
-    });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') modals.forEach(closeModal);
+        });
+    }
+
+    // Call the function
+    loadNews();
 });
