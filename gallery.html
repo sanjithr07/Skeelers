@@ -384,8 +384,22 @@
 
         async function loadGallery() {
             try {
-                const res = await fetch('data/gallery.json');
+                let res = await fetch('data/gallery.json', { cache: 'no-store' });
+                if (!res.ok) {
+                    try {
+                        await fetch('/api/generate-gallery', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            cache: 'no-store'
+                        });
+                        res = await fetch('data/gallery.json', { cache: 'no-store' });
+                    } catch (refreshErr) {
+                        console.warn('Gallery refresh unavailable:', refreshErr);
+                    }
+                }
+
                 if (!res.ok) throw new Error('Failed to load gallery data');
+
                 const images = await res.json();
 
                 if (images.length === 0) {
@@ -394,14 +408,12 @@
                 }
 
                 let html = '';
-                // Sort or reverse images so newest are likely first, depending on how server generates it. 
-                // Currently server appends, so reverse to show newest first.
-                images.reverse().forEach(src => {
+                [...images].reverse().forEach(src => {
                     html += `<img src="${src}" alt="Gallery photo" loading="lazy" onerror="this.style.display='none'">`;
                 });
 
                 galleryGrid.innerHTML = html;
-                
+
                 // Re-select all images after injection to attach listeners
                 gridImgs = Array.from(galleryGrid.querySelectorAll('img'));
                 gridImgs.forEach((img, i) => img.addEventListener('click', () => openLb(i)));

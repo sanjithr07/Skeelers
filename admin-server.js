@@ -11,29 +11,32 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname))); // Serve the entire static site
 
-// Helper function to auto-generate gallery.json by scanning subdirectories of images/
+// Helper function to auto-generate gallery.json by scanning image folders under images/
 function generateGalleryJson() {
     const imagesDir = path.join(__dirname, 'images');
-    let galleryImages = [];
+    const galleryImages = [];
 
-    if (fs.existsSync(imagesDir)) {
-        const entries = fs.readdirSync(imagesDir, { withFileTypes: true });
-        
+    function scanDirectory(dirPath, relativeFolder = '') {
+        if (!fs.existsSync(dirPath)) return;
+
+        const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+
         for (const entry of entries) {
-            // Only scan subdirectories (e.g. 'gallery', 'onam', 'district2025')
+            const fullPath = path.join(dirPath, entry.name);
             if (entry.isDirectory()) {
-                const subDirPath = path.join(imagesDir, entry.name);
-                const files = fs.readdirSync(subDirPath);
-                
-                for (const file of files) {
-                    // Filter for image extensions
-                    if (/\.(jpg|jpeg|png|webp|gif)$/i.test(file)) {
-                        galleryImages.push(`images/${entry.name}/${file}`);
-                    }
-                }
+                const nextFolder = relativeFolder ? path.posix.join(relativeFolder, entry.name) : entry.name;
+                scanDirectory(fullPath, nextFolder);
+                continue;
+            }
+
+            if (entry.isFile() && /\.(jpg|jpeg|png|webp|gif)$/i.test(entry.name)) {
+                const normalizedPath = relativeFolder ? `images/${relativeFolder}/${entry.name}` : `images/${entry.name}`;
+                galleryImages.push(normalizedPath.replace(/\\/g, '/'));
             }
         }
     }
+
+    scanDirectory(imagesDir);
 
     // Save to data/gallery.json
     const dataDir = path.join(__dirname, 'data');
