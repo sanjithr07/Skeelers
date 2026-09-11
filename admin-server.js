@@ -11,32 +11,20 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname))); // Serve the entire static site
 
-// Helper function to auto-generate gallery.json by scanning image folders under images/
+// Only include files from the dedicated gallery folder.
 function generateGalleryJson() {
-    const imagesDir = path.join(__dirname, 'images');
+    const galleryDir = path.join(__dirname, 'images', 'gallery');
     const galleryImages = [];
 
-    function scanDirectory(dirPath, relativeFolder = '') {
-        if (!fs.existsSync(dirPath)) return;
+    if (fs.existsSync(galleryDir)) {
+        const files = fs.readdirSync(galleryDir, { withFileTypes: true });
 
-        const entries = fs.readdirSync(dirPath, { withFileTypes: true });
-
-        for (const entry of entries) {
-            const fullPath = path.join(dirPath, entry.name);
-            if (entry.isDirectory()) {
-                const nextFolder = relativeFolder ? path.posix.join(relativeFolder, entry.name) : entry.name;
-                scanDirectory(fullPath, nextFolder);
-                continue;
-            }
-
+        for (const entry of files) {
             if (entry.isFile() && /\.(jpg|jpeg|png|webp|gif)$/i.test(entry.name)) {
-                const normalizedPath = relativeFolder ? `images/${relativeFolder}/${entry.name}` : `images/${entry.name}`;
-                galleryImages.push(normalizedPath.replace(/\\/g, '/'));
+                galleryImages.push(`images/gallery/${entry.name}`);
             }
         }
     }
-
-    scanDirectory(imagesDir);
 
     // Save to data/gallery.json
     const dataDir = path.join(__dirname, 'data');
@@ -44,7 +32,7 @@ function generateGalleryJson() {
         fs.mkdirSync(dataDir);
     }
     fs.writeFileSync(path.join(dataDir, 'gallery.json'), JSON.stringify(galleryImages, null, 2));
-    console.log('Successfully generated data/gallery.json with', galleryImages.length, 'images.');
+    console.log('Successfully generated data/gallery.json with', galleryImages.length, 'images from images/gallery/.');
 }
 
 // Multer storage configuration
