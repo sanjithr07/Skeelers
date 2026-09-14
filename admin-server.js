@@ -5,46 +5,61 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = 8000;
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname))); // Serve the entire static site
 
-// Helper function to auto-generate gallery.json by scanning image folders under images/
+// Build structured gallery album data from the organized image folders.
 function generateGalleryJson() {
-    const imagesDir = path.join(__dirname, 'images');
-    const galleryImages = [];
+    const galleryDir = path.join(__dirname, 'images', 'gallery');
+    const albums = [];
 
-    function scanDirectory(dirPath, relativeFolder = '') {
-        if (!fs.existsSync(dirPath)) return;
+    if (fs.existsSync(galleryDir)) {
+        const albumDirs = fs.readdirSync(galleryDir, { withFileTypes: true })
+            .filter(entry => entry.isDirectory())
+            .map(entry => entry.name)
+            .sort((a, b) => a.localeCompare(b));
 
-        const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+        for (const albumName of albumDirs) {
+            const albumPath = path.join(galleryDir, albumName);
+            const images = [];
+            const files = fs.readdirSync(albumPath, { withFileTypes: true })
+                .filter(entry => entry.isFile())
+                .sort((a, b) => a.name.localeCompare(b.name));
 
-        for (const entry of entries) {
-            const fullPath = path.join(dirPath, entry.name);
-            if (entry.isDirectory()) {
-                const nextFolder = relativeFolder ? path.posix.join(relativeFolder, entry.name) : entry.name;
-                scanDirectory(fullPath, nextFolder);
-                continue;
+            for (const entry of files) {
+                if (/\.(jpg|jpeg|png|webp|gif)$/i.test(entry.name)) {
+                    images.push(`images/gallery/${albumName}/${entry.name}`);
+                }
             }
 
-            if (entry.isFile() && /\.(jpg|jpeg|png|webp|gif)$/i.test(entry.name)) {
-                const normalizedPath = relativeFolder ? `images/${relativeFolder}/${entry.name}` : `images/${entry.name}`;
-                galleryImages.push(normalizedPath.replace(/\\/g, '/'));
+            if (images.length > 0) {
+                const coverOverrides = {
+                    'Speed': 'images/gallery/Speed/PHOTO-2026-05-31-16-20-18.jpg'
+                };
+                
+                const override = coverOverrides[albumName];
+                const coverImg = (override && images.includes(override)) ? override : images[0];
+
+                albums.push({
+                    id: albumName.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+                    title: albumName.replace(/_/g, ' '),
+                    cover: coverImg,
+                    description: `Moments from ${albumName.replace(/_/g, ' ')} sessions and events.`,
+                    images
+                });
             }
         }
     }
 
-    scanDirectory(imagesDir);
-
-    // Save to data/gallery.json
     const dataDir = path.join(__dirname, 'data');
     if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir);
     }
-    fs.writeFileSync(path.join(dataDir, 'gallery.json'), JSON.stringify(galleryImages, null, 2));
-    console.log('Successfully generated data/gallery.json with', galleryImages.length, 'images.');
+    fs.writeFileSync(path.join(dataDir, 'gallery.json'), JSON.stringify(albums, null, 2));
+    console.log('Successfully generated data/gallery.json with', albums.length, 'albums.');
 }
 
 // Multer storage configuration

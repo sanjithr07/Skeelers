@@ -1,22 +1,72 @@
 [
-  "images/18may2026/1782147006602-822534984-Image.jpg",
-  "images/18may2026/1782147006614-407724441-Image__2_.jpg",
-  "images/18may2026/1782147006623-757153926-Image__1_.jpg",
-  "images/about.jpg",
-  "images/alphine.jpg",
-  "images/district2025/district1.jpg",
-  "images/downhill.jpg",
-  "images/gallery/img2.jpg",
-  "images/gallery/img3.jpg",
-  "images/gallery/img4.jpg",
-  "images/gallery/img5.jpg",
-  "images/gallery/img6.jpg",
-  "images/hero.webp",
-  "images/hockey.jpg",
-  "images/inline.jpg",
-  "images/onam/onam1.jpg",
-  "images/onam/onam2.jpg",
-  "images/onam/onam3.jpg",
-  "images/onam/onam4.jpg",
-  "images/quad.jpg"
+  {
+    "id": "alphine",
+    "title": "Alphine",
+    "cover": "images/gallery/Alphine/048a425a-5651-4bd4-85b5-4d9581f694f9.JPG",
+    "description": "Moments from Alphine sessions and events.",
+    "images": [
+      "images/gallery/Alphine/048a425a-5651-4bd4-85b5-4d9581f694f9.JPG",
+      "images/gallery/Alphine/2415d1a3-e8b5-4d87-b0bf-130e1587d319.JPG",
+      "images/gallery/Alphine/3906bc34-84ee-4501-843d-4ccd109348a7.JPG",
+      "images/gallery/Alphine/4bda96d1-b461-4af7-8b2f-f222825a76cf.JPG",
+      "images/gallery/Alphine/5f1594b4-a7ff-4eef-991f-4025aec92bdb.JPG",
+      "images/gallery/Alphine/65f58ef6-1617-4b77-86a1-aa1ea22c3524.JPG",
+      "images/gallery/Alphine/b6db5102-e32b-483b-8566-3b2f9e111354.JPG",
+      "images/gallery/Alphine/ceeb1987-4747-4af0-86e1-a6a1714ac4a3.JPG",
+      "images/gallery/Alphine/d4c4e358-d144-4468-9ee9-7a13cc9f15d7.JPG",
+      "images/gallery/Alphine/d907f181-ce0f-4c97-893f-7b511d3b4c28.JPG",
+      "images/gallery/Alphine/e85ddab1-89ae-407b-86e4-49f92daa44d1.JPG",
+      "images/gallery/Alphine/f6780c4f-dea4-4d70-913a-2f860064d970.JPG",
+      "images/gallery/Alphine/f77e2f90-6db4-4940-b0d9-c326bf1bdc94.JPG",
+      "images/gallery/Alphine/fbb85e73-aae6-497f-8b85-5f7add86eb38.JPG",
+      "images/gallery/Alphine/fbe09263-59ca-44cb-91b7-c51a550af86a.JPG",
+      "images/gallery/Alphine/img2.jpg",
+      "images/gallery/Alphine/img3.jpg",
+      "images/gallery/Alphine/img5.jpg",
+      "images/gallery/Alphine/img6.jpg"
+    ]
+  },
+  {
+    "id": "decathlon",
+    "title": "Decathlon",
+    "cover": "images/gallery/Decathlon/20260905_124530558_iOS.jpeg",
+    "description": "Moments from Decathlon sessions and events.",
+    "images": [
+      "images/gallery/Decathlon/20260905_124530558_iOS.jpeg",
+      "images/gallery/Decathlon/20260905_124534043_iOS.jpeg",
+      "images/gallery/Decathlon/20260905_124555718_iOS.jpeg",
+      "images/gallery/Decathlon/20260905_130316318_iOS.jpeg",
+      "images/gallery/Decathlon/20260905_130329009_iOS.jpeg"
+    ]
+  },
+  {
+    "id": "netted-ball",
+    "title": "Netted Ball",
+    "cover": "images/gallery/Netted_Ball/26d7910c-0a58-42a8-82a4-53dc91f3f2fb.JPG",
+    "description": "Moments from Netted Ball sessions and events.",
+    "images": [
+      "images/gallery/Netted_Ball/26d7910c-0a58-42a8-82a4-53dc91f3f2fb.JPG",
+      "images/gallery/Netted_Ball/2b7bdf59-3736-4225-aa6f-564ff941db14.JPG",
+      "images/gallery/Netted_Ball/2f9f9b57-1047-4803-922a-d8011afdb891.JPG",
+      "images/gallery/Netted_Ball/5c801f87-1079-402d-a063-434eb1cdc9d3.JPG",
+      "images/gallery/Netted_Ball/76580f9a-ff0e-469d-9120-3aa59f08124e.JPG",
+      "images/gallery/Netted_Ball/a536e29d-a7ba-4c02-8113-a560a27362f6.JPG",
+      "images/gallery/Netted_Ball/bb6aadc8-8afa-4601-a9ce-8afa73f99a2b.JPG",
+      "images/gallery/Netted_Ball/dd4191e3-d7ae-4ce6-b8ef-31d63da2e816.JPG"
+    ]
+  },
+  {
+    "id": "speed",
+    "title": "Speed",
+    "cover": "images/gallery/Speed/PHOTO-2026-05-31-16-20-18.jpg",
+    "description": "Moments from Speed sessions and events.",
+    "images": [
+      "images/gallery/Speed/5633b4c3-82c1-4d14-8f91-e8ef87b26406.JPG",
+      "images/gallery/Speed/82c60a70-127d-4bc1-b718-3137090d6749.JPG",
+      "images/gallery/Speed/9d926d7a-17e1-4369-a2a1-76a9efdc61e5.JPG",
+      "images/gallery/Speed/img4.jpg",
+      "images/gallery/Speed/PHOTO-2026-05-31-16-18-43.jpg",
+      "images/gallery/Speed/PHOTO-2026-05-31-16-20-18.jpg"
+    ]
+  }
 ]
