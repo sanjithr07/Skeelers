@@ -27,6 +27,19 @@
     ]
   },
   {
+    "id": "decathlon",
+    "title": "Decathlon",
+    "cover": "images/gallery/Decathlon/20260905_124530558_iOS.jpeg",
+    "description": "Moments from Decathlon sessions and events.",
+    "images": [
+      "images/gallery/Decathlon/20260905_124530558_iOS.jpeg",
+      "images/gallery/Decathlon/20260905_124534043_iOS.jpeg",
+      "images/gallery/Decathlon/20260905_124555718_iOS.jpeg",
+      "images/gallery/Decathlon/20260905_130316318_iOS.jpeg",
+      "images/gallery/Decathlon/20260905_130329009_iOS.jpeg"
+    ]
+  },
+  {
     "id": "netted-ball",
     "title": "Netted Ball",
     "cover": "images/gallery/Netted_Ball/26d7910c-0a58-42a8-82a4-53dc91f3f2fb.JPG",
