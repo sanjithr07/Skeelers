@@ -287,7 +287,7 @@
                 <div class="disciplines-preview reveal">
                     <a href="disciplines.html" class="disc-preview-card">
                         <div class="disc-preview-img">
-                            <img src="images/quad.jpg" alt="Speed Quad" loading="lazy"
+                            <img src="images/Disciplines/quad.jpg" alt="Speed Quad" loading="lazy"
                                 onerror="this.src='https://placehold.co/400x300/E8E0D8/003552?text=Speed+Quad'">
                         </div>
                         <div class="disc-preview-info">
@@ -297,7 +297,7 @@
                     </a>
                     <a href="disciplines.html" class="disc-preview-card">
                         <div class="disc-preview-img">
-                            <img src="images/inline.jpg" alt="Speed Inline" loading="lazy"
+                            <img src="images/Disciplines/inline.jpg" alt="Speed Inline" loading="lazy"
                                 onerror="this.src='https://placehold.co/400x300/003552/F1EBE4?text=Speed+Inline'">
                         </div>
                         <div class="disc-preview-info">
@@ -307,7 +307,7 @@
                     </a>
                     <a href="disciplines.html" class="disc-preview-card">
                         <div class="disc-preview-img">
-                            <img src="images/alphine.jpg" alt="Alpine" loading="lazy"
+                            <img src="images/Disciplines/alphine.jpg" alt="Alpine" loading="lazy"
                                 onerror="this.src='https://placehold.co/400x300/FFF3C2/003552?text=Alpine'">
                         </div>
                         <div class="disc-preview-info">
@@ -317,7 +317,7 @@
                     </a>
                     <a href="disciplines.html" class="disc-preview-card">
                         <div class="disc-preview-img">
-                            <img src="images/downhill.jpg" alt="Downhill" loading="lazy"
+                            <img src="images/Disciplines/downhill.jpg" alt="Downhill" loading="lazy"
                                 onerror="this.src='https://placehold.co/400x300/E01522/FFFFFF?text=Downhill'">
                         </div>
                         <div class="disc-preview-info">
@@ -327,7 +327,7 @@
                     </a>
                     <a href="disciplines.html" class="disc-preview-card">
                         <div class="disc-preview-img">
-                            <img src="images/hockey.jpg" alt="Roller Hockey" loading="lazy"
+                            <img src="images/Disciplines/hockey.jpg" alt="Roller Hockey" loading="lazy"
                                 onerror="this.src='https://placehold.co/400x300/1a1a2e/F1EBE4?text=Roller+Hockey'">
                         </div>
                         <div class="disc-preview-info">
@@ -372,28 +372,8 @@
 
                 <!-- Gallery — preview strip linking to full gallery page -->
                 <div class="sub-block-label reveal" style="margin-top: 5rem;">Gallery</div>
-                <div class="gallery-strip reveal">
-                    <a href="gallery.html" class="gallery-strip-item">
-                        <img src="images/about.jpg" alt="Gallery 1" loading="lazy"
-                            onerror="this.src='https://placehold.co/400x400/003552/F1EBE4?text=Gallery'">
-                    </a>
-                    <a href="gallery.html" class="gallery-strip-item">
-                        <img src="images/gallery/img2.jpg" alt="Gallery 2" loading="lazy"
-                            onerror="this.src='https://placehold.co/400x400/E01522/FFFFFF?text=Gallery'">
-                    </a>
-                    <a href="gallery.html" class="gallery-strip-item">
-                        <img src="images/gallery/img3.jpg" alt="Gallery 3" loading="lazy"
-                            onerror="this.src='https://placehold.co/400x400/F4EEE6/003552?text=Gallery'">
-                    </a>
-                    <a href="gallery.html" class="gallery-strip-item">
-                        <img src="images/gallery/img4.jpg" alt="Gallery 4" loading="lazy"
-                            onerror="this.src='https://placehold.co/400x400/E8E0D8/003552?text=Gallery'">
-                    </a>
-                    <a href="gallery.html" class="gallery-strip-item gallery-strip-more">
-                        <img src="images/gallery/img5.jpg" alt="Gallery 5" loading="lazy"
-                            onerror="this.src='https://placehold.co/400x400/1a1a2e/F1EBE4?text=Gallery'">
-                        <div class="gallery-strip-overlay">View All Photos →</div>
-                    </a>
+                <div class="gallery-strip reveal" id="home-gallery-strip">
+                    <!-- Dynamically populated from gallery.json -->
                 </div>
                 <div class="gallery-cta reveal">
                     <a href="gallery.html" class="btn-outline">View Full Gallery →</a>
@@ -634,6 +614,59 @@
     <div id="dynamic-modals-container"></div>
 
     <script src="js/main.js"></script>
+    <script>
+        // Populate home page gallery strip from gallery.json
+        (async function populateGalleryStrip() {
+            const strip = document.getElementById('home-gallery-strip');
+            if (!strip) return;
+
+            // Fallback images in case fetch fails
+            const fallbacks = [
+                { src: 'images/about.jpg', alt: 'Skeelers Gallery' },
+                { src: 'https://placehold.co/400x400/003552/F1EBE4?text=Gallery', alt: 'Gallery' },
+                { src: 'https://placehold.co/400x400/E01522/FFFFFF?text=Gallery', alt: 'Gallery' },
+                { src: 'https://placehold.co/400x400/F4EEE6/003552?text=Gallery', alt: 'Gallery' },
+                { src: 'https://placehold.co/400x400/1a1a2e/F1EBE4?text=Gallery', alt: 'Gallery' },
+            ];
+
+            let stripImages = fallbacks;
+
+            try {
+                const res = await fetch('data/gallery.json', { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    const albums = Array.isArray(data) ? data : (data.albums || []);
+
+                    // Collect a flat shuffled pool of images across all albums
+                    const pool = [];
+                    albums.forEach(album => {
+                        album.images.forEach(src => pool.push({ src, alt: album.title }));
+                    });
+
+                    // Fisher-Yates shuffle
+                    for (let i = pool.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [pool[i], pool[j]] = [pool[j], pool[i]];
+                    }
+
+                    if (pool.length > 0) stripImages = pool;
+                }
+            } catch (e) {
+                console.warn('Gallery strip: could not load gallery.json, using fallbacks.', e);
+            }
+
+            const pick = stripImages.slice(0, 5);
+            strip.innerHTML = pick.map((img, i) => {
+                const isLast = i === pick.length - 1;
+                return `
+                    <a href="gallery.html" class="gallery-strip-item${isLast ? ' gallery-strip-more' : ''}">
+                        <img src="${img.src}" alt="${img.alt}" loading="lazy"
+                            onerror="this.src='https://placehold.co/400x400/003552/F1EBE4?text=Gallery'">
+                        ${isLast ? '<div class="gallery-strip-overlay">View All Photos →</div>' : ''}
+                    </a>`;
+            }).join('');
+        })();
+    </script>
 </body>
 
 </html>

@@ -5,34 +5,61 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = 8000;
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname))); // Serve the entire static site
 
-// Only include files from the dedicated gallery folder.
+// Build structured gallery album data from the organized image folders.
 function generateGalleryJson() {
     const galleryDir = path.join(__dirname, 'images', 'gallery');
-    const galleryImages = [];
+    const albums = [];
 
     if (fs.existsSync(galleryDir)) {
-        const files = fs.readdirSync(galleryDir, { withFileTypes: true });
+        const albumDirs = fs.readdirSync(galleryDir, { withFileTypes: true })
+            .filter(entry => entry.isDirectory())
+            .map(entry => entry.name)
+            .sort((a, b) => a.localeCompare(b));
 
-        for (const entry of files) {
-            if (entry.isFile() && /\.(jpg|jpeg|png|webp|gif)$/i.test(entry.name)) {
-                galleryImages.push(`images/gallery/${entry.name}`);
+        for (const albumName of albumDirs) {
+            const albumPath = path.join(galleryDir, albumName);
+            const images = [];
+            const files = fs.readdirSync(albumPath, { withFileTypes: true })
+                .filter(entry => entry.isFile())
+                .sort((a, b) => a.name.localeCompare(b.name));
+
+            for (const entry of files) {
+                if (/\.(jpg|jpeg|png|webp|gif)$/i.test(entry.name)) {
+                    images.push(`images/gallery/${albumName}/${entry.name}`);
+                }
+            }
+
+            if (images.length > 0) {
+                const coverOverrides = {
+                    'Speed': 'images/gallery/Speed/PHOTO-2026-05-31-16-20-18.jpg'
+                };
+                
+                const override = coverOverrides[albumName];
+                const coverImg = (override && images.includes(override)) ? override : images[0];
+
+                albums.push({
+                    id: albumName.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+                    title: albumName.replace(/_/g, ' '),
+                    cover: coverImg,
+                    description: `Moments from ${albumName.replace(/_/g, ' ')} sessions and events.`,
+                    images
+                });
             }
         }
     }
 
-    // Save to data/gallery.json
     const dataDir = path.join(__dirname, 'data');
     if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir);
     }
-    fs.writeFileSync(path.join(dataDir, 'gallery.json'), JSON.stringify(galleryImages, null, 2));
-    console.log('Successfully generated data/gallery.json with', galleryImages.length, 'images from images/gallery/.');
+    fs.writeFileSync(path.join(dataDir, 'gallery.json'), JSON.stringify(albums, null, 2));
+    console.log('Successfully generated data/gallery.json with', albums.length, 'albums.');
 }
 
 // Multer storage configuration
