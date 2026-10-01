@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -58,6 +58,7 @@
                         </a>
                         <div class="dropdown-menu">
                             <a href="#training">Overview</a>
+                            <a href="#our-team">Our Team</a>
                             <a href="disciplines.html">Racing Disciplines</a>
                         </div>
                     </div>
@@ -99,6 +100,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a href="#training">Overview</a>
+                        <a href="#our-team">Our Team</a>
                         <a href="disciplines.html">Racing Disciplines</a>
                     </div>
                 </div>
@@ -134,6 +136,14 @@
         <!-- 1. HERO -->
         <section id="home" class="hero">
             <div class="hero-bg-overlay"></div>
+
+            <!-- Slim Top Announcement Bar under Navbar -->
+            <a href="#club-life" class="hero-announcement-bar" id="hero-news-badge">
+                <span class="announcement-pill">Achievement</span>
+                <span class="announcement-text">KV State Championship Medal Winners</span>
+                <span class="announcement-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right preview-icon"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg></span>
+            </a>
+
             <div class="hero-content">
                 <h1 class="hero-title">SKEELERS</h1>
                 <p class="hero-subtitle">Roller Skating Club</p>
@@ -279,7 +289,151 @@
                     <p class="progression-note">* Progression timelines depend on individual learning pace.</p>
                 </div>
 
-                <!-- B) Disciplines — compact preview linking to full page -->
+                <!-- B) Our Team -->
+                <div class="team-block reveal" id="our-team">
+                    <h3 class="sub-block-title">Our Team</h3>
+                    <div class="coach-card">
+                        <!-- Photo column -->
+                        <div class="coach-photo-col">
+                            <div class="coach-photo-frame">
+                                <img src="images/coach.jpg" alt="Jamal KT - Senior Roller Skating Coach" class="coach-photo-img" loading="lazy">
+                            </div>
+                        </div>
+
+                        <!-- Info column -->
+                        <div class="coach-info-col">
+                            <h4 class="coach-name">Jamal KT</h4>
+                            <p class="coach-role">Senior Roller Skating Coach</p>
+                            <p class="coach-bio">
+                                An experienced roller skating coach, competitor and official with extensive experience across district, state and national-level competition. His coaching career spans schools, clubs and district associations, with a strong background in competitive skating.
+                            </p>
+
+                            <!-- Stats Editorial -->
+                            <div class="coach-stats-editorial">
+                                <div class="coach-stat">
+                                    <span class="coach-stat-num">13+</span>
+                                    <span class="coach-stat-label">Years<br>Experience</span>
+                                </div>
+                                <div class="coach-stat">
+                                    <span class="coach-stat-num">3</span>
+                                    <span class="coach-stat-label">National<br>Championships</span>
+                                </div>
+                                <div class="coach-stat">
+                                    <span class="coach-stat-num">11</span>
+                                    <span class="coach-stat-label">State<br>Championships</span>
+                                </div>
+                                <div class="coach-stat">
+                                    <span class="coach-stat-num">10</span>
+                                    <span class="coach-stat-label">Organisations<br>Coached</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Career details — Timeline -->
+                        <div class="coach-timeline-wrapper">
+                            <div class="coach-timeline">
+                                <div class="timeline-group">
+                                    <div class="timeline-dot"></div>
+                                    <h5 class="timeline-title">Career Highlights</h5>
+                                    <ul class="timeline-list">
+                                        <li>Five consecutive State Championship Golds &ndash; 2006, 2007, 2008, 2009 &amp; 2010.</li>
+                                        <li>Competed in Senior Roller Hockey Championships at Kolkata and New Delhi.</li>
+                                        <li>Senior Men's Inline Speed Champion &ndash; Pathanamthitta, 2005.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-group">
+                                    <div class="timeline-dot"></div>
+                                    <h5 class="timeline-title">Coaching</h5>
+                                    <ul class="timeline-list">
+                                        <li>8 years with Kottayam District Association.</li>
+                                        <li>8 years at Sacred Heart Public School, Kottayam.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-group">
+                                    <div class="timeline-dot"></div>
+                                    <h5 class="timeline-title">Officiating</h5>
+                                    <ul class="timeline-list">
+                                        <li>Served as Official and Chief Official at Shahodhaya CSBC School Meets.</li>
+                                        <li>Officiated at District and Kerala State Roller Skating Championships.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="coach-cta">
+                                <button type="button" class="btn-outline" id="btn-coach-profile" data-modal-target="modal-coach">
+                                    Full Coach Profile <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right preview-icon"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg>
+                                </button>
+                                <a href="#join" class="btn-outline" id="btn-coach-contact">
+                                    Contact <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right preview-icon"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coach Full Profile Modal -->
+                <div class="news-modal" id="modal-coach" role="dialog" aria-modal="true" aria-labelledby="modal-coach-title">
+                    <div class="modal-box modal-coach-box">
+                        <button class="close-modal-btn" aria-label="Close">&times;</button>
+                        <div class="modal-coach-header">
+                            <div class="modal-coach-thumb">
+                                <img src="images/coach.jpg" alt="Jamal KT">
+                            </div>
+                            <div class="modal-coach-header-text">
+                                <span class="coach-eyebrow">Head Coach</span>
+                                <h3 id="modal-coach-title" class="modal-coach-name">Jamal KT</h3>
+                                <p class="modal-coach-subtitle">Skeelers Roller Skating Club &bull; Kottayam</p>
+                            </div>
+                        </div>
+                        <p class="modal-coach-bio">
+                            An experienced roller skating coach, competitor and official with extensive experience across district, state and national-level competition. His coaching career spans schools, clubs and district associations, with a strong background in competitive skating.
+                        </p>
+                        <div class="modal-coach-stats">
+                            <div class="modal-stat">
+                                <span class="modal-stat-num">13+</span>
+                                <span class="modal-stat-label">Years Experience</span>
+                            </div>
+                            <div class="modal-stat">
+                                <span class="modal-stat-num">3</span>
+                                <span class="modal-stat-label">National Championships</span>
+                            </div>
+                            <div class="modal-stat">
+                                <span class="modal-stat-num">11</span>
+                                <span class="modal-stat-label">State Championships</span>
+                            </div>
+                            <div class="modal-stat">
+                                <span class="modal-stat-num">10</span>
+                                <span class="modal-stat-label">Organisations Coached</span>
+                            </div>
+                        </div>
+                        <h4>Career Highlights</h4>
+                        <ul class="modal-list">
+                            <li>Five consecutive State Championship Golds &ndash; 2006, 2007, 2008, 2009 &amp; 2010.</li>
+                            <li>Competed in Senior Roller Hockey Championships at Kolkata and New Delhi.</li>
+                            <li>Senior Men's Inline Speed Champion &ndash; Pathanamthitta, 2005.</li>
+                            <li>Represented Kerala State in National Speed Skating &amp; Roller Hockey meets.</li>
+                            <li>Multiple district championship podium finishes across 2004&ndash;2012.</li>
+                        </ul>
+                        <h4>Coaching</h4>
+                        <ul class="modal-list">
+                            <li>8 years with Kottayam District Association.</li>
+                            <li>8 years at Sacred Heart Public School, Kottayam.</li>
+                            <li>Mentored junior and senior skaters from foundational levels to state podiums.</li>
+                            <li>Designed structured training modules for sprint, endurance, and track racing.</li>
+                            <li>Conducted intensive summer coaching camps for schools across Kottayam.</li>
+                        </ul>
+                        <h4>Officiating</h4>
+                        <ul class="modal-list">
+                            <li>Served as Official and Chief Official at Shahodhaya CSBC School Meets.</li>
+                            <li>Officiated at District and Kerala State Roller Skating Championships.</li>
+                            <li>Certified technical and track official under state federation standards.</li>
+                            <li>Chief track arbiter for regional inter-school speed skating championships.</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- C) Disciplines — compact preview linking to full page -->
                 <div class="reveal disciplines-preview-header">
                     <h3 class="sub-block-title">Disciplines</h3>
                 </div>
@@ -337,7 +491,7 @@
                     </a>
                 </div>
                 <div class="disciplines-cta reveal">
-                    <a href="disciplines.html" class="btn-outline">Explore All Disciplines →</a>
+                    <a href="disciplines.html" class="btn-outline">Explore All Disciplines <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right preview-icon"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg></a>
                 </div>
             </div>
         </section>
@@ -364,9 +518,9 @@
                         <!-- News items will be dynamically injected here by main.js -->
                     </div>
                     <div class="carousel-controls">
-                        <button class="carousel-btn" id="news-prev" aria-label="Previous">&#8592;&#xFE0E;</button>
+                        <button class="carousel-btn" id="news-prev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left preview-icon"><path d="m15 18-6-6 6-6"/></svg></button>
                         <div id="news-pagination" class="carousel-dots"></div>
-                        <button class="carousel-btn" id="news-next" aria-label="Next">&#8594;&#xFE0E;</button>
+                        <button class="carousel-btn" id="news-next" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg></button>
                     </div>
                 </div>
 
@@ -376,9 +530,9 @@
                     <!-- Dynamically populated from gallery.json -->
                 </div>
                 <div class="gallery-cta reveal">
-                    <a href="gallery.html" class="btn-outline">View Full Gallery →</a>
+                    <a href="gallery.html" class="btn-outline">View Full Gallery <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right preview-icon"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg></a>
                     <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
-                        class="btn-primary">Instagram ↗&#xFE0E;</a>
+                        class="btn-primary">Instagram <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></a>
                 </div>
 
             </div>
@@ -414,7 +568,7 @@
                             <div>
                                 <h3>Decathlon Sports</h3>
                                 <a href="https://maps.app.goo.gl/3Qip4bwPb5KPQuHWA" target="_blank"
-                                    rel="noopener noreferrer" class="map-link">View on Map ↗&#xFE0E;</a>
+                                    rel="noopener noreferrer" class="map-link">View on Map <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></a>
                             </div>
                         </div>
                         <ul class="schedule-list">
@@ -448,7 +602,7 @@
                             <div>
                                 <h3>St. John's Convention Centre</h3>
                                 <a href="https://maps.app.goo.gl/8Jz6sNKLUsj5Q7iJ9" target="_blank"
-                                    rel="noopener noreferrer" class="map-link">View on Map ↗&#xFE0E;</a>
+                                    rel="noopener noreferrer" class="map-link">View on Map <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></a>
                             </div>
                         </div>
                         <ul class="schedule-list">
@@ -475,6 +629,7 @@
 
         <!-- 6. JOIN SKEELERS -->
         <section id="join" class="section join-section">
+            <div id="contact"></div>
             <div class="container">
 
                 <div class="section-header reveal">
@@ -500,7 +655,7 @@
                             <span class="contact-row-label">Email</span>
                             <span class="contact-row-value">skeelersrsc@gmail.com</span>
                         </div>
-                        <span class="contact-row-arrow">↗&#xFE0E;</span>
+                        <span class="contact-row-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></span>
                     </a>
 
                     <a href="tel:+919562559009" class="contact-row">
@@ -515,7 +670,7 @@
                             <span class="contact-row-label">Call — Jamal KT</span>
                             <span class="contact-row-value">(+91) 95625 59009</span>
                         </div>
-                        <span class="contact-row-arrow">↗&#xFE0E;</span>
+                        <span class="contact-row-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></span>
                     </a>
 
                     <a href="tel:+919048196949" class="contact-row">
@@ -530,7 +685,7 @@
                             <span class="contact-row-label">Call — Kavitha R</span>
                             <span class="contact-row-value">(+91) 90481 96949</span>
                         </div>
-                        <span class="contact-row-arrow">↗&#xFE0E;</span>
+                        <span class="contact-row-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></span>
                     </a>
 
                     <div class="contact-row contact-row-location">
@@ -550,9 +705,9 @@
                         </div>
                         <div class="contact-row-map-links">
                             <a href="https://maps.app.goo.gl/8Jz6sNKLUsj5Q7iJ9" target="_blank"
-                                rel="noopener noreferrer" class="map-link-btn">Map ↗&#xFE0E;</a>
+                                rel="noopener noreferrer" class="map-link-btn">Map <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></a>
                             <a href="https://maps.app.goo.gl/3Qip4bwPb5KPQuHWA" target="_blank"
-                                rel="noopener noreferrer" class="map-link-btn">Map ↗&#xFE0E;</a>
+                                rel="noopener noreferrer" class="map-link-btn">Map <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></a>
                         </div>
                     </div>
                 </div>
@@ -584,13 +739,6 @@
             <div class="footer-social">
                 <h4>Follow Us</h4>
                 <div class="social-icons">
-                    <a href="#" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </a>
                     <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
                         aria-label="Instagram">
                         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -662,7 +810,7 @@
                     <a href="gallery.html" class="gallery-strip-item${isLast ? ' gallery-strip-more' : ''}">
                         <img src="${img.src}" alt="${img.alt}" loading="lazy"
                             onerror="this.src='https://placehold.co/400x400/003552/F1EBE4?text=Gallery'">
-                        ${isLast ? '<div class="gallery-strip-overlay">View All Photos →</div>' : ''}
+                        ${isLast ? '<div class="gallery-strip-overlay">View All Photos <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right preview-icon"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg></div>' : ''}
                     </a>`;
             }).join('');
         })();
@@ -670,3 +818,4 @@
 </body>
 
 </html>
+

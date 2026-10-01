@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -249,31 +249,100 @@
             color: var(--text-primary);
         }
 
+        /* ── Skeleton Loaders ── */
+        @keyframes shimmer {
+            0%   { background-position: -600px 0; }
+            100% { background-position:  600px 0; }
+        }
+
+        .skeleton-card {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .skeleton-cover {
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(90deg, #eaeaea 25%, #f5f5f5 50%, #eaeaea 75%);
+            background-size: 600px 100%;
+            animation: shimmer 1.4s infinite linear;
+        }
+
+        .skeleton-body {
+            padding: 1.2rem 1.3rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+
+        .skeleton-line {
+            height: 10px;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #eaeaea 25%, #f5f5f5 50%, #eaeaea 75%);
+            background-size: 600px 100%;
+            animation: shimmer 1.4s infinite linear;
+        }
+
+        .skeleton-line.short { width: 42%; }
+        .skeleton-line.long  { width: 72%; height: 14px; }
+
         /* ── Masonry Photo Grid ── */
         .gallery-full-grid {
             column-count: 4;
             column-gap: 1rem;
         }
 
-        .gallery-full-grid img {
+        /* Wrapper that holds both the shimmer and the real image */
+        .img-slot {
             display: block;
             width: 100%;
             margin: 0 0 1rem;
             border-radius: 12px;
             break-inside: avoid;
-            cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+            overflow: hidden;
+            position: relative;
             background: #0d1f2b;
-            opacity: 0;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .gallery-full-grid img.loaded {
-            opacity: 1;
-        }
-
-        .gallery-full-grid img:hover {
+        .img-slot:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Shimmer placeholder that sits behind the image */
+        .img-slot-shimmer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #1a2e3a 25%, #213d4b 50%, #1a2e3a 75%);
+            background-size: 600px 100%;
+            animation: shimmer 1.6s infinite linear;
+            border-radius: 12px;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            /* Maintain aspect ratio of placeholder before image size is known */
+            min-height: 140px;
+        }
+
+        .img-slot-shimmer.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .img-slot img {
+            display: block;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .img-slot img.loaded {
+            opacity: 1;
         }
 
         /* ── Lightbox ── */
@@ -417,6 +486,7 @@
                         </a>
                         <div class="dropdown-menu">
                             <a href="index.html#training">Overview</a>
+                            <a href="index.html#our-team">Our Team</a>
                             <a href="disciplines.html">Racing Disciplines</a>
                         </div>
                     </div>
@@ -449,6 +519,7 @@
                     <a href="index.html#training" class="nav-link">Training</a>
                     <div class="dropdown-menu">
                         <a href="index.html#training">Overview</a>
+                        <a href="index.html#our-team">Our Team</a>
                         <a href="disciplines.html">Racing Disciplines</a>
                     </div>
                 </div>
@@ -493,7 +564,7 @@
                             <span class="gallery-panel-photo-count" id="active-album-count"></span>
                         </div>
                         <button class="gallery-back-btn" id="back-to-albums" type="button">
-                            &#8592; Back to albums
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left preview-icon"><path d="m15 18-6-6 6-6"/></svg> Back to albums
                         </button>
                     </div>
                     <div class="gallery-full-grid" id="gallery-grid"></div>
@@ -501,7 +572,7 @@
 
                 <div style="text-align:center; margin-top: 2rem; padding-bottom: 2rem;">
                     <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
-                        class="btn-primary">See More on Instagram ↗&#xFE0E;</a>
+                        class="btn-primary">See More on Instagram <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-out-up-right preview-icon"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2 12 12"/><path d="M16 2h6v6"/></svg></a>
                 </div>
             </div>
         </section>
@@ -510,9 +581,9 @@
     <!-- Lightbox -->
     <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox">
         <button class="lb-close" id="lb-close" aria-label="Close">&#x2715;</button>
-        <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+        <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left preview-icon"><path d="m15 18-6-6 6-6"/></svg></button>
         <img src="" alt="Enlarged gallery photo" id="lb-img">
-        <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+        <button class="lb-nav lb-next" id="lb-next" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right preview-icon"><path d="m9 18 6-6-6-6"/></svg></button>
         <div class="lb-counter" id="lb-counter"></div>
     </div>
 
@@ -535,13 +606,6 @@
             <div class="footer-social">
                 <h4>Follow Us</h4>
                 <div class="social-icons">
-                    <a href="#" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </a>
                     <a href="https://www.instagram.com/skeelers.rsc" target="_blank" rel="noopener noreferrer"
                         aria-label="Instagram">
                         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -624,7 +688,9 @@
 
         const openLb = (idx) => {
             lbCurrent = idx;
-            lbImg.src = gridImgs[idx].src;
+            // Use data-src (the real URL) because img.src may still be empty if not yet loaded
+            const img = gridImgs[idx];
+            lbImg.src = img.src && img.naturalWidth > 0 ? img.src : (img.dataset.src || img.src);
             lb.classList.add('open');
             document.body.style.overflow = 'hidden';
             updateLbCounter();
@@ -636,7 +702,8 @@
         const lbNavigate = (dir) => {
             if (gridImgs.length === 0) return;
             lbCurrent = (lbCurrent + dir + gridImgs.length) % gridImgs.length;
-            lbImg.src = gridImgs[lbCurrent].src;
+            const img = gridImgs[lbCurrent];
+            lbImg.src = img.src && img.naturalWidth > 0 ? img.src : (img.dataset.src || img.src);
             updateLbCounter();
         };
         const updateLbCounter = () => {
@@ -663,23 +730,39 @@
         let albums = [];
         let currentAlbum = null;
 
+        // ── Skeleton Helpers ──
+        const SKELETON_COUNT = 4; // match the default grid column count
+
+        function showAlbumSkeletons() {
+            albumGrid.innerHTML = Array.from({ length: SKELETON_COUNT }, () => `
+                <div class="skeleton-card" aria-hidden="true">
+                    <div class="skeleton-cover"></div>
+                    <div class="skeleton-body">
+                        <div class="skeleton-line short"></div>
+                        <div class="skeleton-line long"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         function renderAlbums(list) {
             if (!list.length) {
-                albumGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align:center; padding: 2rem; color: var(--text-secondary);">No albums available.</p>';
+                albumGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align:center; padding: 2rem; color: var(--text-muted);">No albums available.</p>';
                 return;
             }
 
             albumGrid.innerHTML = list.map(album => `
                 <button type="button" class="album-card" data-id="${album.id}">
                     <div class="album-cover-wrap">
-                        <img src="${album.cover}" alt="${album.title}" loading="lazy" onerror="this.src='https://placehold.co/800x600/003552/F1EBE4?text=${encodeURIComponent(album.title)}'">
+                        <img src="${album.cover}" alt="${album.title}" loading="lazy"
+                            onerror="this.src='https://placehold.co/800x600/003552/F1EBE4?text=${encodeURIComponent(album.title)}'">
                         <span class="album-photo-count">${album.images.length} photos</span>
                     </div>
                     <div class="album-body">
                         <span class="album-tag">Album</span>
                         <div class="album-title-row">
                             <h3>${album.title}</h3>
-                            <span class="album-cta">View &#8594;</span>
+                            <span class="album-cta">View <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right preview-icon"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg></span>
                         </div>
                     </div>
                 </button>
@@ -700,31 +783,80 @@
             return a;
         }
 
+        // IntersectionObserver-based lazy loader for masonry images
+        let lazyObserver = null;
+
+        function observeSlot(slot) {
+            if (!lazyObserver) {
+                lazyObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        const s = entry.target;
+                        const img = s.querySelector('img');
+                        const shimmer = s.querySelector('.img-slot-shimmer');
+                        if (!img || img.dataset.loaded) return;
+
+                        img.dataset.loaded = '1';
+                        // Kick off the real load
+                        img.src = img.dataset.src;
+
+                        const onLoad = () => {
+                            img.classList.add('loaded');
+                            shimmer && shimmer.classList.add('hidden');
+                        };
+
+                        if (img.complete && img.naturalWidth > 0) {
+                            onLoad();
+                        } else {
+                            img.addEventListener('load', onLoad, { once: true });
+                            img.addEventListener('error', () => {
+                                s.style.display = 'none';
+                            }, { once: true });
+                        }
+
+                        lazyObserver.unobserve(s);
+                    });
+                }, { rootMargin: '200px 0px', threshold: 0 });
+            }
+            lazyObserver.observe(slot);
+        }
+
         function renderAlbum(album) {
             if (!album) return;
 
-            // Shuffle images every time the album is opened
+            // Disconnect any existing observer before rendering new content
+            if (lazyObserver) {
+                lazyObserver.disconnect();
+                lazyObserver = null;
+            }
+
             const shuffled = shuffle(album.images);
 
             activeAlbumTitle.textContent = album.title;
             const countEl = document.getElementById('active-album-count');
             if (countEl) countEl.textContent = `${shuffled.length} photos`;
 
-            galleryGrid.innerHTML = shuffled.map(src => `
-                <img src="${src}" alt="${album.title} photo" loading="lazy" onerror="this.style.display='none'">
+            // Build shimmer-wrapped slots; images use data-src for deferred loading
+            galleryGrid.innerHTML = shuffled.map((src, i) => `
+                <div class="img-slot" data-index="${i}">
+                    <div class="img-slot-shimmer"></div>
+                    <img data-src="${src}" src="" alt="${album.title} photo">
+                </div>
             `).join('');
 
-            // Fade images in as they load
-            galleryGrid.querySelectorAll('img').forEach(img => {
-                img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
-                if (img.complete) img.classList.add('loaded');
-            });
+            const slots = Array.from(galleryGrid.querySelectorAll('.img-slot'));
 
-            gridImgs = Array.from(galleryGrid.querySelectorAll('img'));
-            gridImgs.forEach((img, i) => img.addEventListener('click', () => openLb(i)));
+            // Build the gridImgs array pointing to real <img> elements for lightbox
+            gridImgs = slots.map(s => s.querySelector('img'));
+            slots.forEach((slot, i) => {
+                slot.addEventListener('click', () => openLb(i));
+                observeSlot(slot);
+            });
 
             albumListSection.style.display = 'none';
             albumDetailPanel.classList.add('active');
+            // Scroll the panel into view smoothly
+            albumDetailPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function openAlbum(id) {
@@ -737,9 +869,17 @@
             albumListSection.style.display = 'block';
             albumDetailPanel.classList.remove('active');
             currentAlbum = null;
+            // Disconnect observer when leaving album view
+            if (lazyObserver) {
+                lazyObserver.disconnect();
+                lazyObserver = null;
+            }
         }
 
         async function loadGallery() {
+            // Show skeleton album cards immediately while fetching
+            showAlbumSkeletons();
+
             try {
                 let res = await fetch('data/gallery.json', { cache: 'no-store' });
                 if (!res.ok) {
@@ -761,7 +901,7 @@
                 albums = Array.isArray(data) ? data : (data.albums || []);
 
                 if (!albums.length) {
-                    albumGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align:center; padding: 2rem; color: var(--text-secondary);">No albums available.</p>';
+                    albumGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align:center; padding: 2rem; color: var(--text-muted);">No albums available.</p>';
                     return;
                 }
 
@@ -769,7 +909,7 @@
                 showAlbums();
             } catch (err) {
                 console.error(err);
-                albumGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align:center; padding: 2rem; color: var(--text-secondary);">Unable to load gallery albums.</p>';
+                albumGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align:center; padding: 2rem; color: var(--text-muted);">Unable to load gallery albums.</p>';
             }
         }
 

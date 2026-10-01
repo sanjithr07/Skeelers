@@ -36,10 +36,11 @@ function generateGalleryJson() {
             }
 
             if (images.length > 0) {
+                // Cover overrides: use a specific image if it still exists; otherwise fall back to images[0]
                 const coverOverrides = {
                     'Speed': 'images/gallery/Speed/PHOTO-2026-05-31-16-20-18.jpg'
                 };
-                
+
                 const override = coverOverrides[albumName];
                 const coverImg = (override && images.includes(override)) ? override : images[0];
 

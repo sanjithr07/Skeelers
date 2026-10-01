@@ -132,8 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <time class="news-date">${item.date}</time>
                             <h3>${item.title}</h3>
                             <p>${item.shortDescription}</p>
-                            <button class="btn-text-link read-more-btn" data-modal-target="${modalId}">Read More
-                                →&#xFE0E;</button>
+                            <button class="btn-text-link read-more-btn" data-modal-target="${modalId}">Read More <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-chevron-right preview-icon"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg></button>
                         </div>
                     </article>
                 `;
@@ -168,6 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             track.innerHTML = cardsHTML;
             modalsContainer.innerHTML = modalsHTML;
+
+            // Sync hero announcement bar with latest news
+            const heroBadge = document.getElementById('hero-news-badge');
+            if (heroBadge && newsData.length > 0) {
+                const latest = newsData[0];
+                const badgePill = heroBadge.querySelector('.announcement-pill') || heroBadge.querySelector('.hero-badge-pill');
+                const badgeText = heroBadge.querySelector('.announcement-text') || heroBadge.querySelector('.hero-badge-text');
+                if (badgePill && latest.tag) badgePill.textContent = latest.tag;
+                if (badgeText && latest.title) badgeText.textContent = latest.title + ' — Medal Winners';
+            }
 
             initCarousel();
             initModals();
@@ -251,9 +260,42 @@ document.addEventListener('DOMContentLoaded', () => {
         modals.forEach(modal => {
             modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); });
         });
+    }
 
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') modals.forEach(closeModal);
+    // Single Escape key listener registered once — closes any open modal dynamically
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.news-modal.is-open').forEach(modal => {
+                modal.classList.remove('is-open');
+                document.body.classList.remove('modal-open');
+            });
+        }
+    });
+
+    /* =============================================
+       COACH FULL PROFILE MODAL
+       ============================================= */
+    const coachModalBtn = document.getElementById('btn-coach-profile');
+    const coachModal = document.getElementById('modal-coach');
+
+    if (coachModalBtn && coachModal) {
+        const openCoachModal = () => {
+            coachModal.classList.add('is-open');
+            document.body.classList.add('modal-open');
+            coachModal.querySelector('.close-modal-btn')?.focus();
+        };
+        const closeCoachModal = () => {
+            coachModal.classList.remove('is-open');
+            document.body.classList.remove('modal-open');
+        };
+
+        coachModalBtn.addEventListener('click', openCoachModal);
+
+        coachModal.querySelector('.close-modal-btn')
+            ?.addEventListener('click', closeCoachModal);
+
+        coachModal.addEventListener('click', (e) => {
+            if (e.target === coachModal) closeCoachModal();
         });
     }
 
