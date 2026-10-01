@@ -951,6 +951,336 @@ p {
     font-style: italic;
 }
 
+/* ── Our Team Block ── */
+.team-block {
+    margin-bottom: 4.5rem;
+    scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+
+.coach-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--t), transform var(--t);
+    margin-bottom: 1.75rem;
+}
+
+.coach-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+/* Photo column */
+.coach-photo-col {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+.coach-photo-frame {
+    width: 100%;
+    height: 100%;
+}
+
+.coach-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
+}
+
+/* Info column */
+.coach-info-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.coach-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.coach-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.15;
+    margin-bottom: 0.2rem;
+}
+
+.coach-role {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+}
+
+.coach-bio {
+    font-size: 0.95rem;
+    color: var(--text-body);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+}
+
+/* Stats Editorial */
+.coach-stats-editorial {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid rgba(0, 53, 82, 0.08);
+    margin-bottom: 1.75rem;
+}
+
+.coach-stat {
+    display: flex;
+    flex-direction: column;
+    padding-right: 2rem;
+    border-right: 1px solid rgba(0, 53, 82, 0.08);
+}
+
+.coach-stat:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.coach-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.coach-stat-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+    line-height: 1.35;
+}
+
+/* Career details — Timeline */
+.coach-timeline-wrapper {
+    grid-column: 1 / -1;
+}
+
+.coach-timeline {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.coach-timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: rgba(0, 53, 82, 0.08);
+}
+
+.timeline-group {
+    position: relative;
+    margin-bottom: 1.75rem;
+}
+
+.timeline-group:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -1.5rem;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    box-shadow: 0 0 0 6px var(--bg-alt);
+}
+
+.timeline-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.timeline-list li {
+    font-size: 0.9rem;
+    color: var(--text-body);
+    line-height: 1.6;
+    padding-left: 1.1rem;
+    position: relative;
+}
+
+.timeline-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0.15rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.coach-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.coach-cta .btn-outline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.72rem 1.4rem;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--text-primary);
+    color: var(--text-primary);
+    background: transparent;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all var(--t);
+}
+
+.coach-cta .btn-outline:hover {
+    background: var(--text-primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 53, 82, 0.15);
+}
+
+/* ── Coach Modal extras ── */
+.modal-coach-box {
+    max-width: 680px;
+}
+
+.modal-coach-header {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-bottom: 1.1rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-coach-thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+}
+
+.modal-coach-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    border-radius: 0;
+    max-height: none;
+    margin-bottom: 0;
+}
+
+.modal-coach-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.15rem;
+    padding-right: 0;
+}
+
+.modal-coach-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+.modal-coach-bio {
+    margin-bottom: 1.25rem;
+}
+
+.modal-coach-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.modal-stat {
+    padding: 0.75rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid var(--border);
+}
+
+.modal-stat:last-child {
+    border-right: none;
+}
+
+.modal-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.modal-stat-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+    line-height: 1.35;
+}
+
 /* ── Disciplines Preview (index page) ── */
 .disciplines-preview {
     display: grid;
@@ -1758,6 +2088,15 @@ a.contact-row:hover {
     .footer-inner {
         grid-template-columns: 1fr 1fr;
     }
+
+    .coach-card {
+        grid-template-columns: 260px 1fr;
+    }
+
+    .coach-photo-col {
+        width: 260px;
+        aspect-ratio: 1 / 1;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1989,6 +2328,104 @@ a.contact-row:hover {
         grid-template-columns: 1fr;
     }
 
+    .team-block {
+        margin-bottom: 3.5rem;
+    }
+
+    .coach-card {
+        grid-template-columns: 1fr;
+        padding: 1.75rem 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .coach-photo-col {
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+    }
+
+    .coach-info-col {
+        padding: 0;
+    }
+
+    .coach-name {
+        font-size: 1.85rem;
+    }
+
+    .coach-role {
+        font-size: 0.95rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .coach-bio {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .coach-stats-editorial {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem 1rem;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .coach-stat {
+        padding-right: 0;
+        border-right: none;
+    }
+
+    .coach-stat-num {
+        font-size: 1.45rem;
+    }
+
+    .coach-stat-label {
+        font-size: 0.62rem;
+    }
+
+    .coach-timeline {
+        padding-left: 1.25rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .coach-timeline::before {
+        left: 4px;
+    }
+
+    .coach-timeline .timeline-dot {
+        left: -1.25rem;
+        top: 3px;
+    }
+
+    .timeline-title {
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-list li {
+        font-size: 0.88rem;
+        line-height: 1.55;
+    }
+
+    .modal-coach-box {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .modal-coach-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .modal-stat:nth-child(2) {
+        border-right: none;
+    }
+
+    .modal-stat:nth-child(1),
+    .modal-stat:nth-child(2) {
+        border-bottom: 1px solid var(--border);
+    }
+
     /* Disciplines preview: 2 cols on tablet */
     .disciplines-preview {
         grid-template-columns: repeat(2, 1fr);
@@ -2053,6 +2490,73 @@ a.contact-row:hover {
     /* Gallery strip: 130px tiles */
     .gallery-strip-item {
         width: 130px;
+    }
+
+    .coach-card {
+        padding: 1.35rem 1.1rem;
+        border-radius: var(--radius);
+        gap: 1.35rem;
+    }
+
+    .coach-photo-col {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .coach-name {
+        font-size: 1.65rem;
+    }
+
+    .coach-stats-editorial {
+        gap: 1rem 0.75rem;
+        padding-bottom: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .coach-stat-num {
+        font-size: 1.3rem;
+    }
+
+    .coach-cta {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.6rem;
+    }
+
+    .coach-cta .btn-outline {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+    }
+
+    .modal-coach-header {
+        gap: 0.85rem;
+    }
+
+    .modal-coach-thumb {
+        width: 52px;
+        height: 52px;
+    }
+
+    .modal-coach-name {
+        font-size: 1.2rem;
+    }
+
+    .modal-coach-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .modal-stat {
+        padding: 0.6rem 0.35rem;
+    }
+
+    .modal-stat-num {
+        font-size: 1.15rem;
+    }
+
+    .modal-stat-label {
+        font-size: 0.65rem;
     }
 }
 

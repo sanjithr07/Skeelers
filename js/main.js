@@ -263,6 +263,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /* =============================================
+       COACH FULL PROFILE MODAL
+       ============================================= */
+    const coachModalBtn = document.getElementById('btn-coach-profile');
+    const coachModal = document.getElementById('modal-coach');
+
+    if (coachModalBtn && coachModal) {
+        const openCoachModal = () => {
+            coachModal.classList.add('is-open');
+            document.body.classList.add('modal-open');
+            coachModal.querySelector('.close-modal-btn')?.focus();
+        };
+        const closeCoachModal = () => {
+            coachModal.classList.remove('is-open');
+            document.body.classList.remove('modal-open');
+        };
+
+        coachModalBtn.addEventListener('click', openCoachModal);
+
+        coachModal.querySelector('.close-modal-btn')
+            ?.addEventListener('click', closeCoachModal);
+
+        coachModal.addEventListener('click', (e) => {
+            if (e.target === coachModal) closeCoachModal();
+        });
+    }
+
     // Call the function
     loadNews();
 });
