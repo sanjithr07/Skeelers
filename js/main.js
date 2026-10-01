@@ -251,11 +251,17 @@ document.addEventListener('DOMContentLoaded', () => {
         modals.forEach(modal => {
             modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); });
         });
-
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') modals.forEach(closeModal);
-        });
     }
+
+    // Single Escape key listener registered once — closes any open modal dynamically
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.news-modal.is-open').forEach(modal => {
+                modal.classList.remove('is-open');
+                document.body.classList.remove('modal-open');
+            });
+        }
+    });
 
     // Call the function
     loadNews();
