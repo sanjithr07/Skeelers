@@ -168,18 +168,32 @@ document.addEventListener('DOMContentLoaded', () => {
             track.innerHTML = cardsHTML;
             modalsContainer.innerHTML = modalsHTML;
 
-            // Sync hero announcement bar with latest news
+            // Sync hero announcement bar dynamically with latest news
             const heroBadge = document.getElementById('hero-news-badge');
-            if (heroBadge && newsData.length > 0) {
-                const latest = newsData[0];
-                const badgePill = heroBadge.querySelector('.announcement-pill') || heroBadge.querySelector('.hero-badge-pill');
-                const badgeText = heroBadge.querySelector('.announcement-text') || heroBadge.querySelector('.hero-badge-text');
-                if (badgePill && latest.tag) badgePill.textContent = latest.tag;
-                if (badgeText && latest.title) badgeText.textContent = latest.title + ' — Medal Winners';
+            if (heroBadge) {
+                if (newsData.length > 0) {
+                    const latest = newsData[0];
+                    const badgePill = heroBadge.querySelector('.announcement-pill') || heroBadge.querySelector('.hero-badge-pill');
+                    const badgeText = heroBadge.querySelector('.announcement-text') || heroBadge.querySelector('.hero-badge-text');
+                    if (badgePill) badgePill.textContent = 'News';
+                    if (badgeText && latest.title) badgeText.textContent = latest.title;
+                    heroBadge.style.display = 'inline-flex';
+                } else {
+                    heroBadge.style.display = 'none';
+                }
             }
 
+            let goToSlide = null;
             initCarousel();
             initModals();
+
+            if (heroBadge) {
+                heroBadge.addEventListener('click', () => {
+                    if (typeof goToSlide === 'function') {
+                        goToSlide(0);
+                    }
+                });
+            }
 
         } catch (err) {
             console.error(err);
@@ -215,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             track.scrollTo({ left: slides[current].offsetLeft - padLeft, behavior: 'smooth' });
             updateDots(current);
         };
+        goToSlide = goTo;
 
         nextBtn.addEventListener('click', () => goTo(current + 1));
         prevBtn.addEventListener('click', () => goTo(current - 1));
