@@ -117,7 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let modalsHTML = '';
 
             newsData.forEach((item, i) => {
-                const modalId = `modal-news-${item.id}`;
+                // Use customModalId if provided (for rich/static modals), otherwise generate one
+                const modalId = item.customModalId || `modal-news-${item.id}`;
                 const heroImg = item.heroImage || `https://placehold.co/800x440/E8E0D8/003552?text=News`;
                 
                 // Build Card
@@ -136,6 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </article>
                 `;
+
+                // Skip generating a dynamic modal if this item has a static custom modal
+                if (item.customModalId) return;
+
 
                 // Build Modal
                 let galleryHTML = '';
@@ -253,6 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const openModal = (id) => {
             const modal = document.getElementById(id);
             if (!modal) return;
+            const modalBox = modal.querySelector('.modal-box');
+            if (modalBox) modalBox.scrollTop = 0;
             modal.classList.add('is-open');
             document.body.classList.add('modal-open');
             modal.querySelector('.close-modal-btn')?.focus();
