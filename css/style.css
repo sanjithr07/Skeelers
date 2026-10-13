@@ -2003,8 +2003,13 @@ a.contact-row:hover {
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
+    scrollbar-width: none;
     position: relative;
     animation: modalSlideUp 0.3s ease both;
+}
+
+.modal-box::-webkit-scrollbar {
+    display: none;
 }
 
 .modal-box h3 {
@@ -2059,6 +2064,568 @@ a.contact-row:hover {
     font-size: 0.95rem;
 }
 
+/* =============================================================
+   RICH MODAL (Kottayam 2026-style achievement modals)
+   ============================================================= */
+.modal-rich-box {
+    max-width: 860px;
+    max-height: 90vh;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    background: var(--bg-alt);
+    position: relative;
+}
+
+.modal-rich-box::-webkit-scrollbar { display: none; }
+
+/* Sticky Floating Close Button (stays pinned at top-right while scrolling) */
+.modal-sticky-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.modal-sticky-bar .close-modal-btn {
+    pointer-events: auto;
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    line-height: 1;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background var(--t), transform var(--t);
+}
+
+.modal-sticky-bar .close-modal-btn:hover {
+    background: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Hero image - square corners, edge-to-edge */
+.modal-rich-hero {
+    position: relative;
+    width: 100%;
+    background: #001224;
+    border-radius: 0 !important;
+    overflow: hidden;
+    display: block;
+}
+
+.modal-rich-hero img {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+    min-height: 180px;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+    margin-bottom: 0;
+    border-radius: 0 !important;
+}
+
+/* Mobile drag indicator (hidden on desktop) */
+.modal-drag-handle {
+    display: none;
+}
+
+/* Title block below photo */
+.modal-rich-header {
+    padding: 1.35rem 1.75rem 1rem;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-rich-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+    display: block;
+}
+
+.modal-rich-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    margin: 0;
+}
+
+/* Content wrapper */
+.modal-rich-content {
+    padding: 1.4rem 1.75rem 0.5rem;
+    background: var(--bg-alt);
+}
+
+.modal-rich-intro {
+    font-size: 0.94rem;
+    color: var(--text-body);
+    line-height: 1.75;
+    margin: 0 0 1.35rem;
+}
+
+/* Medal Tally bar — 5-column grid on desktop */
+.modal-rich-tally {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.modal-tally-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 0.35rem;
+    text-align: center;
+}
+
+.modal-tally-stat:not(:first-child) {
+    border-left: 1px solid var(--border);
+}
+
+.modal-tally-divider {
+    display: none;
+}
+
+.modal-tally-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.modal-tally-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+    line-height: 1.2;
+}
+
+/* Medal colour utilities */
+.gold-text   { color: #c48f00; }
+.silver-text { color: #6e7c8a; }
+.bronze-text { color: #a0552a; }
+.accent-text { color: var(--accent); }
+.fw-bold     { font-weight: 700; }
+
+/* Section / discipline headings */
+.modal-rich-section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    margin-top: 1.85rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.modal-rich-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 13px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.modal-discipline-title {
+    margin-top: 1.75rem;
+    margin-bottom: 0.65rem;
+}
+
+.modal-discipline-badge {
+    display: inline-block;
+    background: var(--bg-dark);
+    color: #ffffff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0, 53, 82, 0.12);
+}
+
+/* Data tables */
+.modal-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-alt);
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    min-width: 360px;
+}
+
+.modal-table thead th {
+    background: var(--bg-dark);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.modal-table thead th.col-num {
+    text-align: center;
+}
+
+.modal-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background var(--t);
+}
+
+.modal-table tbody tr:nth-child(even) {
+    background: var(--bg);
+}
+
+.modal-table tbody tr:hover {
+    background: rgba(0, 53, 82, 0.04);
+}
+
+.modal-table tbody td {
+    padding: 0.52rem 0.75rem;
+    color: var(--text-body);
+    vertical-align: middle;
+}
+
+.modal-table td.col-num {
+    text-align: center;
+    width: 2.8rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.modal-table td.col-num:not(.fw-bold) {
+    color: var(--text-muted);
+    opacity: 0.45;
+}
+
+.modal-table td.col-cat {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.table-total-row td {
+    background: rgba(0, 53, 82, 0.08) !important;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+    border-top: 2px solid var(--border);
+    font-weight: 700;
+}
+
+/* Section photo */
+.modal-section-photo {
+    margin-top: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-section-photo img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+    margin-bottom: 0;
+}
+
+/* Photo grid — 3-col */
+.modal-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-photo-grid img {
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 2px);
+    border: 1px solid var(--border);
+    width: 100%;
+    display: block;
+    margin-bottom: 0;
+    max-height: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.modal-photo-grid img:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-md);
+}
+
+/* Photo duo — 2-col */
+.modal-photo-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-photo-duo img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+    margin-bottom: 0;
+    max-height: none;
+}
+
+/* Body text & Youngest skaters */
+.modal-rich-body {
+    font-size: 0.91rem;
+    color: var(--text-body);
+    line-height: 1.7;
+    margin-top: 0.85rem;
+    margin-bottom: 0;
+}
+
+.modal-youngest-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    padding: 0;
+}
+
+.modal-youngest-list li {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Closing banner */
+.modal-rich-closing {
+    margin-top: 1.5rem;
+    background: var(--bg-dark);
+    border-top: 3px solid var(--accent);
+    padding: 1.35rem 1.75rem;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.modal-rich-closing p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    margin: 0;
+    font-style: italic;
+    text-align: center;
+}
+
+/* =============================================================
+   RICH MODAL — RESPONSIVE (≤ 640px)
+   ============================================================= */
+@media (max-width: 640px) {
+
+    /* Bottom-sheet behaviour on phones */
+    #modal-kottayam-2026.news-modal {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .modal-rich-box {
+        max-height: 92vh;
+        border-radius: 0 !important;
+        width: 100%;
+    }
+
+    .modal-rich-hero {
+        border-radius: 0 !important;
+        display: block;
+    }
+
+    .modal-drag-handle {
+        display: block;
+        width: 40px;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.7);
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 25;
+    }
+
+    .modal-sticky-bar .close-modal-btn {
+        top: 0.75rem;
+        right: 0.75rem;
+        margin-right: 0;
+        width: 34px;
+        height: 34px;
+        font-size: 1.05rem;
+    }
+
+    .modal-rich-hero img {
+        width: 100%;
+        height: auto;
+        max-height: 220px;
+        min-height: 160px;
+        object-fit: cover;
+        object-position: center 25%;
+        display: block;
+        border-radius: 0 !important;
+    }
+
+    .modal-rich-header {
+        padding: 0.95rem 1.15rem 0.8rem;
+    }
+
+    .modal-rich-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: -0.015em;
+        padding-right: 0;
+    }
+
+    .modal-rich-content {
+        padding: 1.15rem 1.15rem 0.5rem;
+    }
+
+    /* Tally wraps into balanced 3 (podium medals) + 2 (totals) grid */
+    .modal-rich-tally {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .modal-rich-tally .modal-tally-divider {
+        display: none;
+    }
+
+    /* Row 1: Gold, Silver, Bronze (3 equal columns) */
+    .modal-rich-tally .stat-gold {
+        grid-column: span 2;
+        border-left: none;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .modal-rich-tally .stat-silver {
+        grid-column: span 2;
+        border-left: 1px solid var(--border);
+        padding: 0.7rem 0.2rem;
+    }
+
+    .modal-rich-tally .stat-bronze {
+        grid-column: span 2;
+        border-left: 1px solid var(--border);
+        padding: 0.7rem 0.2rem;
+    }
+
+    /* Row 2: Total Medals & Points (2 equal 50% columns) */
+    .modal-rich-tally .stat-total {
+        grid-column: span 3;
+        border-top: 1px solid var(--border);
+        border-left: none;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .modal-rich-tally .stat-points {
+        grid-column: span 3;
+        border-top: 1px solid var(--border);
+        border-left: 1px solid var(--border);
+        padding: 0.7rem 0.2rem;
+    }
+
+    .modal-tally-num {
+        font-size: 1.25rem;
+    }
+
+    .modal-rich-section-title {
+        font-size: 0.78rem;
+        margin-top: 1.6rem;
+        margin-bottom: 0.65rem;
+    }
+
+    /* Photo grid: 2 cols on mobile */
+    .modal-photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.35rem;
+    }
+
+    .modal-table {
+        font-size: 0.75rem;
+        min-width: 340px;
+    }
+
+    .modal-table thead th {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.6rem;
+    }
+
+    .modal-table tbody td {
+        padding: 0.45rem 0.6rem;
+    }
+
+    .modal-discipline-badge {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.75rem;
+    }
+
+    .modal-rich-closing {
+        padding: 1.15rem 1.15rem 1.5rem;
+        border-radius: 0;
+    }
+}
+
 .close-modal-btn {
     position: absolute;
     top: 1.1rem;
@@ -2066,6 +2633,7 @@ a.contact-row:hover {
     background: none;
     border: none;
     font-size: 1.3rem;
+
     color: var(--text-muted);
     transition: color var(--t);
     width: 30px;
